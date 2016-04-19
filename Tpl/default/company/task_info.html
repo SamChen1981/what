@@ -1,0 +1,255 @@
+<include file="public:header_company" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <!--
+                <div class="row page-header">
+                    <div class="span5">
+                        <a href="/"><img src="/Public/images/logo.png" align="absmiddle" /></a>
+                    </div>
+                    <div class="span10">
+                    </div> </div>
+                </div>
+                -->
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span>我的活动<span class="gt">&gt;</span>活动详情<span class="gt">&gt;</span>活动“{$info.name}”
+</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <div style="width:935px;margin:0 auto;height:40px;line-height:40px;font-size:16px;line-height:40px;height:40px;">
+        <span style="color:orangered;border-left:4px solid orangered;padding-left:10px;">“{$info.name}”</span> 的活动信息
+        <button type="button" class="btn danger pull-right" onclick="location.href=&#39;{$company.task}&#39;">返回活动列表</button>
+    </div>
+    <div class="com_info" style="padding:10px 20px;">
+        <table class="bordered-table">
+            <tbody><tr>
+                <td width="10%" height="25" align="right" class="tdbg"><strong>活动名称：</strong></td>
+                <td width="90%" height="25" colspan="3">{$info.name}</td>
+            </tr>
+            <tr>
+               <td width="10%" height="25" align="right" class="tdbg"><strong>活动类型：</strong></td>
+                <td width="40%" height="25"><if condition="$info.type eq 'publish'">直发<elseif condition="$info.type eq 'click'"/>点击<else/>转发</if></td>
+                 <td width="10%" height="25" align="right" class="tdbg"><strong>投放平台：</strong></td>
+                <td width="40%" height="25">
+                	<if condition="$info.platform eq 'sina'">新浪微博
+                  <else />腾讯微博
+                  </if>
+                </td>
+            </tr>
+            <tr>
+               <td width="10%" height="25" align="right" class="tdbg"><strong>开始时间：</strong></td>
+                <td width="40%" height="25" colspan="3">{$info.begintime|date="y-m-d H:i",###}</td>
+             </tr>
+            <tr>
+                <td width="10%" height="25" align="right" class="tdbg"><strong>链接：</strong></td>
+                <td width="40%" height="25" colspan="3">
+                        <a href="{$info.url}" target="_blank">{$info.url}</a>
+                </td>
+            </tr>
+            <tr>
+                <if condition="$info.type eq 'publish' || $info.type eq 'click' ">
+                    <td width="10%" height="25" align="right" class="tdbg"><strong>图片：</strong></td>
+                    <td width="40%" height="25" colspan="3">
+                    <if condition="$info.type eq 'publish' || $info.type eq 'click' ">
+                        <neq name="info.image" value=""><a href="{$info.image}" target="_blank" class="label success">查看图片</neq>
+                        <eq name="info.image" value=""><span class="label">无图片</eq>
+                    </if>
+                    </td>
+                </if>
+            </tr>
+            <tr>
+                 <td width="10%" height="25" align="right" class="tdbg"><strong><if condition="$info.type eq 'publish'">直发<elseif condition="$info.type eq 'click'"/>点击<else/>转发</if>语言：</strong></td>
+                 <td width="90%" height="25" colspan="3">{$info.content}</td>       
+            </tr>
+            <tr>
+                <td width="10%" height="25" align="right" class="tdbg"><strong>其他要求：</strong></td>    
+                <td width="90%" height="25" colspan="3">{$info.remark}</td>      
+            </tr>
+            <tr>
+                 <td width="10%" height="25" align="right" class="tdbg"><strong>活动状态：</strong></td>
+                <td width="40%" height="25">
+                                        <span class="task-cancel">
+                                        	<switch name="info.state">
+	                                        	<case value="0">未派单</case>
+	                                        	<case value="1">已派单</case>
+	                                        	<case value="2">活动进行中</case>
+	                                        	<case value="3">派单完成</case>
+	                                        	<case value="4">已取消</case>
+							                          	</switch>
+                                        </span>                </td>  
+               <td width="10%" height="25" align="right" class="tdbg"><strong>支付状态：</strong></td>
+                 <td width="40%" height="25">
+                                        <span class="task-time">
+                                        	<if condition="$info.pay_state eq 'Y'">已付款
+                                        	<else />未付款
+                                        	</if>
+                                        	
+                                        </span>                </td>  
+            </tr>
+            <tr>
+                <td width="10%" height="25" align="right" class="tdbg"><strong>活动充值：</strong></td>
+                 <td width="40%" height="25">
+                    <span style="color:orangered;font-size:16px;font-weight:bold;">{$info.money}元</span>
+                </td>
+                 <td width="10%" height="25" align="right" class="tdbg"><strong>实际消费：</strong></td>
+                 <td width="40%" height="25">
+                    <span style="color:orangered;font-size:16px;font-weight:bold;">{$info.consume}元</span>
+                </td>           
+            </tr>
+        </tbody></table>
+    </div>
+    <div class="actions align-center" style="padding:15px;maring-top:0px;">
+        <a href="{$task_edit}&task_id={$info.task_id}" class="btn large success" style="float:none;">编辑活动</a>
+        &nbsp;&nbsp;
+        <a href="{$task_choose}&task_id={$info.task_id}&name={$info.name}" class="btn info large" style="float:none;">继续选择博主</a>
+        &nbsp;&nbsp;
+        <a href="{$task_pay}&task_id={$info.task_id}" class="btn primary large" style="float:none;">立即付款</a>
+        &nbsp;&nbsp;
+        <a href="{$task_del}&task_id={$info.task_id}" class="btn large danger" style="float:none;" onclick="if(!confirm(&#39;您确认要删除本活动吗？&#39;)) return false;">删除活动</a>
+    </div>        <a name="choose"></a>
+    <div style="width:935px;margin:0 auto;height:40px;line-height:40px;">
+        <span style="color:orangered;font-size:16px;font-weight:bold;padding-left:10px;border-left:4px solid orangered;">您选择以下微博主为您服务：</span>
+    </div>
+    <div class="list_header">  
+        <form id="task_search" method="get">
+            <div class="pull-left" style="font-size:12px;margin-left:5px;line-height:26px;">
+                 微博数：{$tnum}，需支付：{$money}元，
+            	粉丝数：<strong style="color:#06F;">{$info.fans_num}</strong>个，&nbsp;
+            	总消费额：<strong style="color:#f00">￥{$info.consume}</strong>，
+            	 已派单：<strong style="color:#73DC00;">{$info.yp_num}</strong>个，&nbsp;
+            	 已收链接：<strong style="color:#569B0B">{$info.url_num}</strong>个，&nbsp;
+            	 流单：<strong style="color:#FFOOFF;">{$info.ld_num}</strong>个，
+            	 拒单：<strong style="color:#F2C200;">{$info.rj_num}</strong>个，
+            	 已取消：<strong style="color:#999999">{$info.qx_num}</strong>个
+         
+            </div>
+            <div class="pull-right" style="margin-right:5px;">
+            <!--<select id="sort" name="sort" onchange="" ondblclick="" class="width-auto"></select>-->
+            </div>
+            <script type="text/javascript">
+                $("#sort").change(function(){ $('#task_search').submit(); })
+            </script>
+        </form>
+    </div>
+    <div style="min-height:400px">
+        <table class="dash_table zebra-striped" style="margin:0px;">
+            <thead>
+                <tr>
+                    <th class="align-center split" width="8%">
+                        订单号
+                    </th>
+                    <th class="align-center split" width="">微博主名称</th>
+                    <th class="align-center split" width="10%">粉丝数量</th>
+                    <th class="align-center split" width="10%">消费额</th>
+                    <th class="align-center split" width="10%">订单状态</th>
+                    <th class="align-center split" width="20%">完成链接</th>
+                    <th class="align-center" width="6%">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+            	<foreach name="list" item="vo">
+            	<tr wid="{$vo.blog_id}">
+                    <td class="align-center">
+                        {$vo.tblog_id}
+                    </td>
+                    <td class="align-center" style="padding-left:10px;">
+		                	<div style="float: left;">
+									       <a target="_blank" href="{$vo.weibo}">
+									       				       		<img src="{$vo.image}" style="float: left;margin-right: 4px;width: 39px;">
+									       </a>
+								           <div style="float: left;width: 140px;text-align: left;color: #666;line-height: 21px;">
+								           	<span class="username">
+								           		<a href="{$vo.weibo}" target="_blank" rel="twipsy" data-original-title="微博标签：<if condition="$vo.keywords eq ''">无<else/>{$vo.keywords}</if>">
+		                      			{$vo.nick}
+		                      		</a>
+		                      	</span>
+									           <if condition="$vo.verifyinfo eq 'Y'"><img src="{&APP_IMAGE}company/v.gif"></if>
+									           <p style="height:16px;line-height:16px;margin-bottom:0px;">
+										           <if condition="$vo.sex eq 'm'"><img src="{&APP_IMAGE}company/boy.gif" width="9" >
+										           <elseif condition="$vo.sex eq 'f'"/><img src="{&APP_IMAGE}company/gril.gif" width="9" ></if>
+										           <span>{$vo.location}</span>
+									           </p>
+								       			</div>
+								       </div>
+								    </td>
+                    <td class="align-center">{$vo.fansnum}</td>
+                    <td class="align-center" style="color:orangered">
+                    	<if condition="$info.type eq 'publish'">{$vo.com_pmoney}<else/>{$vo.com_money}</if>元
+                    </td>
+                    <td class="align-center" style="color:orangered">
+                    	<switch name="vo.reject">
+                    		<case value="0">已派单</case>
+                    		<case value="1"><a href="#" rel="twipsy" data-original-title="拒单原因：{$vo.comment}">拒单</a></case>
+                    		<case value="2">已收链接</case>
+                    		<case value="3">已取消</case>
+                    		<case value="4">流单</case>
+                    		<case value="5">待派单</case>
+                    	</switch>
+                    </td>
+                    <td class="align-center" ><a href="{$vo.url}">{$vo.url}</a></td>
+                    <td class="align-center">
+                    	<if condition="$vo.bfav_id neq ''">
+                    		已收藏
+                    	<else/>
+                        <a href="javascript:void(0);" class="fav_weibo"><img src="{&APP_IMAGE}company/folder_user.png" /></a>
+                      </if>
+                    </td>
+                </tr>
+              </foreach>
+            </tbody>
+        </table>
+        <input type="hidden" name="id" id="id" value="{$task_id}">
+            </div>
+    <script type="text/javascript">
+    		$(".fav_weibo").click(function(){
+            var $this = $(this);
+            $.post("index.php?m=company&a=blog_add_fav", {blog_id:select_id($this)}, function(request){
+                if(request.status == 1){
+                    $this.parent("td").html("<span style='color:#999'>已收藏</span>");
+                }else{ 
+                    alert(request.info);
+                }
+            }, "json");
+        });
+        function select_id(obj){
+            return obj.parent("td").parent("tr").attr("wid");
+        }
+        $("a[rel=twipsy]").twipsy({live:true,placement:'right'});
+        function return_select(name){
+            var selected = [];
+            name?"":name = 'select';
+            $("input[name="+name+"]:checked").each(function(){
+                selected.push($(this).val());
+            });
+            return selected.join(",");
+        }
+        function del_weibo(weibo){
+            if(!weibo){
+                alert("请选择一个微博主！");
+            }else{
+                $.post("{$task_del_blog}", {task_id: $("#id").val(),blog_id: weibo}, function(request){
+                    if(request.status == 1){
+                        location.href = "{$task_info}&task_id={$task_id}&r="+Math.random()+"#choose";                   
+                    }else{
+                        alert(request.info);
+                    }
+                },"json");
+            }
+        }
+        $(".del_weibo").click(function(){
+        	
+            del_weibo(select_id($(this)));
+        });
+        $("#view_allcheck").click(function(){
+            if(this.checked == true){
+                $("input[name=view_select]").attr("checked", true);
+            }else{
+                $("input[name=view_select]").attr("checked", false);
+            }
+        });
+    </script></div>
+<div id="window" class="modal hide fade"></div>
+    </div>
+
+<include file="public:footer_company" />

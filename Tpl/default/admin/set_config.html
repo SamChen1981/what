@@ -1,0 +1,84 @@
+<include file="public:header_admin" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span>基本配置</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <form action="" method="post" style="width:800px;margin:20px auto;" enctype="multipart/form-data" >
+    		<div class="clearfix label success">
+    			{$msg}
+    		</div>
+    		<div class="clearfix">
+            <label for="shop_name">网站名称: </label>
+            <div class="input">
+                <input class="xlarge" id="shop_name" name="shop_name" size="30" value="{$info.shop_name}" type="text" >
+                <span class="help-inline"> 输入网站的名称 </span>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="shop_title">网站标题: </label>
+            <div class="input">
+                <input class="xlarge" id="shop_title" name="shop_title" size="30" value="{$info.shop_title}" type="text" >
+                <span class="help-inline"> 输入网站标题，在浏览器标题栏显示 </span>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="shop_account">网站描述: </label>
+            <div class="input">
+                <input class="xlarge" id="shop_account" name="shop_account" size="30" value="{$info.shop_account}" type="text" >
+                <span class="help-inline"> 输入网站的描述，seo优化</span>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="shop_keywords">网站关键字: </label>
+            <div class="input">
+                <input class="xlarge" id="shop_keywords" name="shop_keywords" size="30" value="{$info.shop_keywords}" type="text" >
+                <span class="help-inline"> 搜索引擎，检索,关键字用逗号隔开。</span>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="shop_dir">网站根目录: </label>
+            <div class="input">
+                <input class="xlarge" id="shop_dir" name="shop_dir" size="30" value="{$info.shop_dir}" type="text" >
+                <span class="help-inline"> 如果网站放在根目录就是用"/"即可。</span>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="shop_icp">ICP证书号: </label>
+            <div class="input">
+                <input class="xlarge" id="shop_icp" name="shop_icp" size="30" value="{$info.shop_icp}" type="text" >
+                <span class="help-inline"> 网站备案的ICP号码</span>
+            </div>
+        </div> 
+        <div class="clearfix">
+            <label for="shop_image_h">收费%比: </label>
+            <div class="input">
+                <input class="xlarge" id="give_m" name="give_m" size="30" value="{$info.give_m}" type="text" maxlength="16">
+                <span class="help-inline"> 填写收费%比如：15</span>
+            </div>
+        </div>        
+        <div class="actions">
+        	<input type="hidden" name="hgive" value="{$info.give_m}">
+            <button type="submit" class="btn primary" id="submit_repass">确认修改</button>
+            &nbsp;&nbsp;
+            <button type="reset" class="btn">重置</button>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+		$('#clear_time,#start_time,#end_time').calendar();
+    function addtes()
+    {
+    	$.post('{$testsms}',{smstest:$('#smstest').val()},function(request){
+    		alert(request.info);   		   	
+    	},'json');
+    }
+    
+    upload_file(".extend_edit", '/weiqi/index.php?m=company&a=upload', false, {tools:"mfull",upImgExt:"jpg,jpeg,gif,png",forcePtag:false,cleanPaste:3,internalStyle:false,inlineStyle:false,html5Upload:false});
+</script>
+    </div>
+
+<include file="public:footer_admin" />

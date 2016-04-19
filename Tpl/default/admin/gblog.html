@@ -1,0 +1,111 @@
+<include file="public:header_admin" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span>微博管理</div>
+<div class="child_main">
+    <div style="clear:both;">
+
+        <div class="pull-right">
+        </div>    </div>
+        <div class="list_header" style="clear:both;">  
+        <form id="task_search" method="post">
+            <div class="pull-left" style="line-height:28px;">
+                <div class="pull-left">排序：</div>
+                <div class="pull-left">
+                	<select id="sort" name="sort" onchange="" ondblclick="" class="width-auto">
+                	<option value="">默认排序</option>
+                	<option value="desc">从高到底</option>
+                	<option value="asc">从低到高</option>
+                	</select>
+                </div>
+            </div>
+            <div class="pull-right" style="line-height:28px;">
+                <div class="pull-left">&nbsp;关键字：</div>
+                <div class="pull-left">&nbsp;<input type="text" class="medium" name="str" id="str" value=""></div>
+                <div class="pull-left">&nbsp;
+                	<select id="field" name="field" onchange="" ondblclick="" class="width-auto">
+											                	<option value="name">微博名称</option>
+											                	<option value="keywords">关键字</option>
+											                	<option value="platform">平台</option>
+											                	</select></div>
+               <div class="pull-left">&nbsp;<button type="button" onclick="subm()" class="btn">查询</button></div>
+            </div>
+        </form>
+        <script type="text/javascript">
+        function subm(){
+            var url = "{$action}";
+            location.href = url+'&sort='+$('#sort').val()+'&str='+$('#str').val()+'&field='+$('#field').val();
+            return false;
+        }
+        </script>
+    </div>
+    <table class="dash_table zebra-striped">
+        <thead>
+            <tr>	
+                <th class="align-center split" width="6%">平台</th>
+                <th class="align-center split" width="auto">微博名称</th>
+                <th class="align-center split" width="10%">粉丝</th>
+                <th class="align-center split" width="10%">转发价格</th>
+                <th class="align-center split" width="10%">直发价格</th>
+                <th class="align-center split" width="10%">点击价格</th>
+                <th class="align-center split" width="7%">仅软广</th>
+                <th class="align-center split" width="7%">接单</th>
+                <th class="align-center split" width="7%">竞单</th>
+                <th class="align-center split" width="7%">审核</th>                <th class="align-center" width="10%">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        	<foreach name="val" item="info">
+            <tr>
+                <td class="align-center"><if condition="$info.platform eq 'sina'">新浪<else />腾讯</if></td>
+                <td class="align-left"><a href="{$info.weibo}" target="_blank">{$info.name}</a></td>
+                <td class="align-left">{$info.fansnum}</td>
+                <td class="align-left" style="color:orangered;">¥ {$info.money}</td>
+                <td class="align-left" style="color:orangered;">¥ {$info.publish_money}</td>
+                <td class="align-left" style="color:orangered;">¥ {$info.click_money}</td>
+                <td class="align-center">
+                				<if condition="$info.soft eq 'Y'">
+                						<span class="label success">是</span>
+                				<else />
+                                        <span class="label">否</span>
+                        </if>                                
+                </td>
+                <td class="align-center">
+                    <if condition="$info.reject eq 'N'">
+                						<span class="label success">是</span>
+                				<else />
+                                        <span class="label">否</span>
+                        </if>
+                </td>
+                <td class="align-center">
+                        <if condition="$info.reject eq 'N'">
+                						<span class="label success">是</span>
+                				<else />
+                            <span class="label">否</span>
+                        </if>                
+                </td>
+                <td class="align-center">
+                				<if condition="$info.lock eq 0">
+                					<span class="label important" title="微博正在审核中，请耐心等待">待审</span>
+                				<elseif condition="$info.lock eq 1" />
+                            <span class="label success" title="审核已经通过">通过</span>
+                        <elseif condition="$info.lock eq 2" />
+                            <span class="label warning" title="被驳回">驳回</span>
+                        </if> 
+                </td>
+                <td class="align-center">
+                		<a href="{$hgblog}&blog_id={$info.blog_id}&act=edit">编辑</a> 
+                    <a href="{$hgblog}&blog_id={$info.blog_id}&act=del">删除</a>            
+                </td>
+            </tr>   
+          </foreach>                 
+        </tbody>
+    </table>
+    <div class="page_style">{$page}</div>
+</div>
+    </div>
+
+<include file="public:footer_admin" />

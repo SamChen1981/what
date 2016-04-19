@@ -1,0 +1,245 @@
+<include file="public:header_blog" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span>全部订单</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <div class="table_title"><span>{$_SESSION.username}的全部订单：</span></div>
+    <div class="list_header" style="">  
+        <form id="task_search" method="post">
+            <div class="pull-left" style="line-height:28px;">
+                <div class="pull-left">起止时间：</div>
+                <div class="input-append pull-left calendar">
+                    <input id="start_time" name="start_time" style="width:120px;cursor:pointer;" type="text" value=""><span class="calendar_append"></span>
+                    <label class="add-on"><button type="button"><img src="{&APP_IMAGE}company/date.png"></button></label>
+                </div>
+                <div class="pull-left">&nbsp;-&nbsp;</div>
+                <div class="input-append pull-left calendar">
+                    <input id="end_time" name="end_time" style="width:120px;cursor:pointer;" type="text" value=""><span class="calendar_append"></span>
+                    <label class="add-on"><button type="button"><img src="{&APP_IMAGE}company/date.png"></button></label>
+                </div>
+            </div>
+            <div class="pull-right" style="line-height:28px;">
+                &nbsp;<select id="field" name="field" onchange="" ondblclick="" class="width-auto">
+                	<option value="tb.tblog_id">订单编号</option>
+                	<option value="t.name">活动名称</option>
+                	<option value="b.name">微博账号</option>
+                </select>
+                &nbsp;<input type="text" class="medium" name="str" id="str" value="">
+                &nbsp;
+                &nbsp;<button type="submit" class="btn">查询</button>
+            </div>
+        </form>
+        <script type="text/javascript">
+            $('.calendar input,.calendar button').calendar();
+        </script>
+    </div>
+    <table class="dash_table zebra-striped">
+        <thead>
+            <tr>	
+                <th class="align-center split" width="9%">订单号</th>
+                <th class="align-center split" width="17%">微博账号</th>
+                <th class="align-left split" width="auto">活动名称</th>
+                <th class="align-center split" width="8%">价格</th>
+                <th class="align-center split" width="13%">开始时间</th>
+                <th class="align-center split" width="10%">状态</th>
+                <th class="align-center" width="15%">完成链接<span style="color:#000040;font-size:10px;">(点击修改)</span></th>
+            </tr>
+        </thead>
+        <tbody>
+        	<if condition="$list eq ''">
+            <tr>
+                <td class="align-center" colspan="7">
+                    没有找到今日可执行的订单...
+                </td>
+            </tr>  
+          <else />  
+          	<foreach name="list" item="vo">
+          	<tr oid="{$vo.tblog_id}">
+                <td class="align-center">{$vo.tblog_id}</td>
+                <td class="align-left">{$vo.bname}</td>
+                <td class="align-left"><a href="#" task_id="{$vo.task_id}" class="adtask_info">{$vo.name}</a></td>
+                <td class="align-center"><if condition="$vo.type eq 'publish'">{$vo.publish_money}<else/>{$vo.money}</if></td>
+                <td class="align-center">{$vo.begintime|date="Y-m-d H:i",###}</td>
+                <td class="align-center">
+                		<switch name="vo.reject">
+                    	<case value="0">已派单</case>
+                    	<case value="1"><a href="#" rel="twipsy" data-original-title="拒单原因：{$vo.comment}">拒单</a></case>
+                    	<case value="2">已完成</case>
+                    	<case value="3">已取消</case>
+                    	<case value="4">流单</case>
+                    	<case value="5">待派单</case>
+                  	</switch> 
+                </td>
+                <td class="align-center">
+                	<if condition="$vo.url neq ''"><span class="etask_info" task_id="{$vo.task_id}" id="url{$vo.tblog_id}" style="cursor: hand;" title="点击修改">{$vo.url}</span></if>
+                </td>
+            </tr> 
+            </foreach> 
+          </if>   
+        </tbody>
+    </table>
+        <div style="clear:both"></div>
+</div>
+<div id="adtask_info" class="modal hide fade" getid="">
+    <div class="modal-header">
+        <a href="#" class="close">×</a>
+        <h5></h5>
+    </div>
+    <div class="modal-body">
+        <div class="com_info">
+            <table class="bordered-table" style="border-top:0px;">
+                <tbody><tr>
+                    <td width="50%" height="25" id="adtask_info_type"><strong class="label">活动类型：</strong><span></span></td>
+                    <td width="50%" height="25" id="adtask_info_platform"><strong class="label">投放平台：</strong><span></span></td>
+                </tr>
+                <tr>
+                    <td width="50%" height="25" colspan="2" id="adtask_info_url"><strong class="label" id="z_c2">转发链接：</strong><span></span></td>
+                </tr>
+                <tr>
+                    <td width="50%" height="25" colspan="2" id="adtask_info_begintime"><strong class="label">开始时间：</strong><span></span></td>
+                </tr>
+                <tr>
+                    <td width="50%" height="25" colspan="2" id="adtask_info_content"><strong class="label" id="z_c">转发语言：</strong><span></span></td>
+                </tr>
+                <tr>
+                    <td width="50%" height="25" colspan="2" id="adtask_info_remark"><strong class="label">其他要求：</strong><span></span></td>
+                </tr>
+            </tbody></table>
+        </div>
+    </div>
+</div>
+<div id="etask_info" class="modal hide fade" getid="">
+    <div class="modal-header">
+        <a href="#" class="close">×</a>
+        <h5></h5>
+    </div>
+    <div class="modal-body">
+        <div class="com_info">
+            <table class="bordered-table" style="border-top:0px;">
+                <tbody><tr>
+                    <td width="50%" height="25" id="adtask_info_type"><strong class="label">活动类型：</strong><span></span></td>
+                    <td width="50%" height="25" id="adtask_info_platform"><strong class="label">投放平台：</strong><span></span></td>
+                </tr>
+                <tr>
+                    <td width="50%" height="25" colspan="2" id="adtask_info_url"><strong class="label" id="z_c21">转发链接：</strong><span></span></td>
+                </tr>
+                <tr>
+                    <td width="50%" height="25" colspan="2" id="adtask_info_begintime"><strong class="label">开始时间：</strong><span></span></td>
+                </tr>
+                <tr>
+                    <td width="50%" height="25" colspan="2" id="adtask_info_content"><strong class="label" id="z_c22">转发语言：</strong><span></span></td>
+                </tr>
+                <tr>
+                    <td width="50%" height="25" colspan="2" id="adtask_info_remark"><strong class="label">其他要求：</strong><span></span></td>
+                </tr>
+                <tr id="hidden">
+                    <td width="50%" height="25" colspan="2" ><strong class="label success" id="z_c23">转发链接：</strong><span><input id="referer" name="referer"/></span><input style="margin-left:10px" type="button" value="修改" onclick="edit_order(this.value)" class="label success" ></td>
+                </tr>
+            </tbody></table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+	$("a[rel=twipsy]").twipsy({live:true,placement:'right'});
+	function build_adtask_info(obj){
+        $("#adtask_info").attr("getid", getid);
+        $("#adtask_info .modal-header h5").html("<span class='label important'>“"+obj.name+"”</span> 活动详情");
+        $("#adtask_info #adtask_info_type span").html(obj.type);
+        $("#adtask_info #adtask_info_platform span").html(obj.platform);
+        $("#adtask_info #adtask_info_url span").html('<a href="'+obj.url+'" title="'+obj.url+'" target="_blank">'+obj.url+'</a>');
+        $("#adtask_info #adtask_info_begintime span").html(obj.begintime);
+        $("#adtask_info #adtask_info_content span").html(obj.content);
+        $("#adtask_info #adtask_info_remark span").html(obj.remark);
+        if (obj.t!=1)
+        {
+        	$('#adtask_info #z_c').html('直发语言：');
+        	$('#adtask_info #z_c2').html('直发图片：');
+        	if (obj.image=='')
+        		$("#adtask_info #adtask_info_url span").html('无图片');
+        	else
+        		$("#adtask_info #adtask_info_url span").html('<a href="'+obj.image+'" title="查看图片" class="label success" target="_blank">查看图片</a>');
+        }
+        $('#adtask_info').modal({
+            backdrop: true,
+            keyboard: true,
+            show: true
+        });
+    }
+   function build_etask_info(obj){
+        $("#etask_info").attr("getid", getid);
+        $("#etask_info .modal-header h5").html("<span class='label important'>“"+obj.name+"”</span> 活动详情（修改）");
+        $("#etask_info #adtask_info_type span").html(obj.type);
+        $("#etask_info #adtask_info_platform span").html(obj.platform);
+        $("#etask_info #adtask_info_url span").html('<a href="'+obj.url+'" title="'+obj.url+'" target="_blank">'+obj.url+'</a>');
+        $("#etask_info #adtask_info_begintime span").html(obj.begintime);
+        $("#etask_info #adtask_info_content span").html(obj.content);
+        $("#etask_info #adtask_info_remark span").html(obj.remark);
+        $("#etask_info #referer").val(obj.zurl);
+        if (obj.t!=1)
+        {
+        	$('#etask_info #z_c22').html('直发语言：');
+        	$('#etask_info #z_c21').html('直发图片：');
+        	$('#etask_info #z_c23').html('直发链接：');
+        	if (obj.image=='')
+        		$("#etask_info #adtask_info_url span").html('无图片');
+        	else
+        		$("#etask_info #adtask_info_url span").html('<a href="'+obj.image+'" title="查看图片" class="label success" target="_blank">查看图片</a>');
+        }  
+        $('#etask_info').modal({
+            backdrop: true,
+            keyboard: true,
+            show: true
+        });
+  }
+  
+  function edit_order(oid){
+        if(!reg.url.test($("#referer").val())){
+            alert("URL格式不正确！URL必须以http://开头");
+        }else{
+            $.post("{$edit_url}", {tblog_id:$("#etask_info").attr('getid'),url:$("#referer").val()}, function(request){
+                if(request.status == 1){
+                    $("#url"+request.data['tblog_id']).html(request.data['url']);
+                    $('#etask_info').modal('hide');
+                }else{
+                    alert(request.info);
+                }
+            }, "json");
+        }
+    }
+  
+  $(".etask_info").click(function(){
+    		getid = $(this).parent("td").parent("tr").attr("oid");
+    	 $.post("{$getinfo}", {task_id: $(this).attr('task_id'),tb_id: getid,zurl:1}, function(request){
+            if(request.status==1){
+                build_etask_info(request.data);
+                $('#hidden').show();
+                return false;
+            }else{
+                alert(request.info);
+                return false;
+            }
+        }, "json");  
+        return false;      
+    });
+  
+    $(".adtask_info").click(function(){
+    		getid = $(this).parent("td").parent("tr").attr("oid");
+    	 $.post("{$getinfo}", {task_id: $(this).attr('task_id')}, function(request){
+            if(request.status==1){
+                build_adtask_info(request.data);
+                return false;
+            }else{
+                alert(request.info);
+                return false;
+            }
+       }, "json");  
+        return false;      
+    });
+</script>
+    </div>
+
+<include file="public:footer_blog" />

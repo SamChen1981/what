@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>微推广</title>
+        <meta name="keywords" content="微推广">
+        <meta name="description" content="微推广">
+        <!--[if lt IE 9]>
+        <script type="text/javascript" src="/Public/js/html5.js"></script>
+        <![endif]-->
+        <!--[if lt IE 7]>
+        <script type="text/javascript" src="/Public/js/ie7/IE7.js"></script>
+        <![endif]-->
+       <import file="jquery,bootstrap-modal,bootstrap-alerts,bootstrap-twipsy,bootstrap-popover,bootstrap-dropdown" basepath="./Tpl/default/public/js" />
+    	<import file="bootstrap-scrollspy,bootstrap-tabs,bootstrap-buttons,base,glDatePicker,jquery-calendar,form,xheditor" basepath="./Tpl/default/public/js" />
+    	
+    	<import type='css' file="bootstrap,poster,jquery-calendar,default,ui,bloger" basepath="./Tpl/default/public/css" />	
+      
+        <style type="text/css">
+            body,ul,li,p,table { margin:0px;padding:0px; }
+            html { overflow-x:hidden ; }
+            body { background:#eee; }
+            #header { width:100%;height:100px;background:url("./Tpl/default/public/images/blog/bg.gif") repeat scroll 0 0 transparent;text-align:center; }
+			.header_bg{ height:100px; background:url("./Tpl/default/public/images/blog/menu_bar.gif") repeat-x scroll 0 bottom transparent;}
+            #nav,#container,#footer { width:980px;margin:0px auto;clear:both; }
+            #nav { height:76px;padding:11px 0px;text-align:left; }
+            #logo { width:391px; }
+            #container { margin-top:0px;padding:20px 50px;border:1px solid #ccc;border-top:0px;background:#fff; }
+            #container form { display:block;width:90%;margin:20px auto; }
+            #footer { height:60px;line-height:60px;margin-bottom:20px;text-align:center;}
+            #sitemap { border-bottom:1px solid #ccc;height:26px;line-height:26px;margin-top:-10px;clear:both; }
+            .box_style {
+                box-shadow:0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+                    -webkit-box-shadow:0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+                    -moz-box-shadow:0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            }
+            .width-auto { width:auto !important; }
+        </style>
+    </head>
+    <body scroll="no">
+        <div id="header" class="box_style">
+        <div class="header_bg">
+            <div id="nav">
+                <div id="logo"><img src="{&APP_IMAGE}blog/wbz_logo.png" height="47"></div>
+                 <button type="button" class="btn danger" onClick="location.href=&#39;{$login}&#39;" style="float:right;margin-right:40px;margin-top:6px;">已有账户，我要登录 &gt;&gt;</button>
+            </div>
+            </div>
+        </div>
+        <div id="container" class="box_style">
+            <div id="sitemap">
+                当前位置： 微博主注册
+            </div>
+            <form id="reg_form" action="{$hregister}" method="post">
+                <div class="clearfix">
+                    <label for="username">* 手机号码</label>
+                    <div class="input">
+                        <input class="xlarge" id="username" name="username" size="30" type="text" onKeyUp="check_input(this, reg.phone, &#39;手机格式不正确&#39;)">
+                        <span class="help-inline">请输入您的手机号码，手机号码将作为您的用户名登录</span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="password">* 登录密码</label>
+                    <div class="input">
+                        <input class="xlarge" id="password" name="password" size="30" type="password" maxlength="16">
+                        <span class="help-inline">密码长度为6~16位</span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="repassword">* 重复密码</label>
+                    <div class="input">
+                        <input class="xlarge" id="repassword" name="repassword" size="30" type="password" maxlength="16">
+                        <span class="help-inline">重复上面的密码</span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="contact">* 联系人</label>
+                    <div class="input">
+                        <input class="xlarge" id="contact" name="contact" size="30" type="text" onKeyUp="check_input(this, reg.string, &#39;联系人名称不能含有特殊字符&#39;)">
+                        <span class="help-inline">* 请输入联系人姓名</span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="qq">* QQ号码</label>
+                    <div class="input">
+                        <input class="xlarge" id="qq" name="qq" size="30" type="text" onKeyUp="check_input(this, reg.number, &#39;请输入正确的QQ号码&#39;)">
+                        <span class="help-inline">* </span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="email">* 电子邮箱</label>
+                    <div class="input">
+                        <input class="xlarge" id="email" name="email" size="30" type="text" onKeyUp="check_input(this, reg.email, &#39;请输入正确的邮箱地址&#39;)">
+                        <span class="help-inline">* </span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="alipay_account">* 支付宝账户</label>
+                    <div class="input">
+                        <input class="xlarge" id="alipay_account" name="alipay_account" size="30" type="text" onKeyUp="check_input(this, reg.require, &#39;请输入支付宝账户&#39;)">
+                        <span class="help-inline">* </span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="alipay_realname">* 支付宝姓名</label>
+                    <div class="input">
+                        <input class="xlarge" id="alipay_realname" name="alipay_realname" size="30" type="text" onKeyUp="check_input(this, reg.require, &#39;请输入支付宝姓名&#39;)">
+                        <span class="help-inline">* </span>
+                    </div>
+                </div>                             
+                <div class="clearfix">
+                    <label for="email">* 验证码</label>
+                    <div class="input">
+                        <input class="mini" id="verify" name="verify" size="30" type="text">
+                        <img id="verifyImg" src="{$verify}" align="absmiddle">
+                        <a href="javascript:void(0);" style="color:#666;" onClick="changeVerify();">看不清楚？点击更换</a>
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button type="submit" class="btn primary" data-loading-text="提交中...">注册</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="reset" class="btn">重置</button>
+                </div>
+            </form>
+        </div>
+    <div id="footer">
+        CopyRight © 版权所有***网络科技有限公司(fandow.com) 粤ICP备11016938号-1             
+    </div>
+    <script type="text/javascript">
+    
+        function check_weibo(){
+        var text = '';
+
+        if(text){
+            alert(text);
+            return false;
+        }else{
+            return true;
+        }
+    }    function add_weibo(){
+        var n = parseInt($(".weibo_form:last").attr("id").split("_")[2]) + 1;
+        var html = '<div class="clearfix weibo_form" id="weibo_lists_'+n+'">';
+        html+= '<label>添加微博<br/><a href="javascript:void(0);" onclick="del_weibo('+n+');" style="color:red;">删除</a></label>';
+        html+= '<div class="input"><div class="inline-inputs box_style" style="border:1px solid #ccc;padding:5px;background:#eee;width:640px;">';
+        html+= '<div style="padding:3px 0px;">';
+        html+= '&nbsp;* 平台：<select id="" name="platform[]" onchange="" ondblclick="" class="width-auto" ><option value="sina">新浪微博</option><option value="qq">腾讯微博</option></select>';
+        html+= '&nbsp;* 名称：<input class="small" name="name[]" type="text" value="">';
+        html+= '&nbsp;* 地址：<input class="medium" name="weibo[]" type="text" value="http://">';   
+        html+= '&nbsp;* 粉丝：<input class="mini" name="fansnum[]" type="text" value="0">';
+        html+= '</div><div style="padding:3px 0px;">';
+        html+= '&nbsp;* 加V：<select id="" name="verifyinfo[]" onchange="" ondblclick="" class="width-auto" ><option value="N">否</option><option value="Y">是</option></select>';
+        html+= '&nbsp;* 转发价格：<input class="mini" name="money[]" type="text" value="0.00">';
+        html+= '&nbsp;&nbsp; 关键字：<input class="large" name="keywords[]" type="text" value="">(多个以空格区分)';
+        html+= '</div></div></div></div>';
+        $(".weibo_form:last").after(html);
+    }
+    function del_weibo(n){
+        $("#weibo_lists_"+n).remove();
+    }
+    $("#username").blur(function(){
+        var $this = $(this);
+        $this.triggerHandler("keyup");
+        var obj = select_row($this);
+        if(!obj.is(".error")){
+            change_status($this, "loading");
+            $.post("{$checkUsername}", {username:$this.val()}, function(request){
+                if(request.status==1){
+                    change_status($this);
+                }else{
+                    change_status($this, "error", request.info);
+                }
+            },"json");
+        }
+    });
+    $("#password").keyup(function(){
+        var $this = $(this);
+        var val = $(this).val();
+        if(val.length< 4 || val.length> 16){
+            change_status($this, "error", "密码长度不正确");
+        }else{
+            change_status($this);
+        }
+    });
+    $("#repassword").keyup(function(){
+        var $this = $(this);
+        var val = $(this).val();
+        if(val.length< 4 || val.length> 16){
+            change_status($this, "error", "密码长度不正确");
+        }else if(val!=$("#password").val()){
+            change_status($this, "error", "两次输入密码不相同");
+        }else{
+            change_status($this);
+        }
+    });
+    $("#verify").keyup(function(){
+        var $this = $(this);
+        if($(this).val().length==4){
+            change_status($this, "loading");
+            $.post("{$checkVerify}", {verify:$(this).val()}, function(request){
+                if(request.status==1){
+                    change_status($this);
+                }else{
+                    change_status($this, "error", request.info);
+                }
+            },"json");
+        }else{
+            change_status($this, "error", "验证码长度不正确");
+        }
+    });
+    $("#password,#repassword,#realname,#contact,#homepage,#verify,#qq").blur(function(){
+        $(this).triggerHandler("keyup");
+    });
+    $("#reg_form").submit(function(){
+        if($("#reg_form div.success").length<8){
+            alert("您还有未正确填写的项\n\n * 请注意带星号(*)的均为必填项\n * 显示红色的表示输入存在问题，绿色表示正确");
+            if($("#reg_form div.error").length<=0){
+                $("#username").focus();
+            }else{
+                $("#reg_form div.error:first").find("input").focus();
+            }
+            return false;
+        }else if(!check_weibo()){
+            return false;
+        }
+    });
+    function changeVerify(){
+        var img = "{$verify}";
+        $("#verifyImg").attr("src",img+"&d="+Math.random());
+        select_row($("#verify")).removeClass("success error");
+        select_row_error($("#verify")).html("");
+        $("#verify").focus();
+    }
+    </script>
+    
+</body></html>

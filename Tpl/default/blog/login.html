@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <title>微推广</title>
+ <meta name="keywords" content="微推广">
+ <meta name="description" content="微推广">
+ <import  file="jquery" basepath="./Tpl/default/public/js" /> 
+<import type='css' file="bootstrap" basepath="./Tpl/default/public/css" />      
+        <style type="text/css">
+            body,ul,li,p,table { margin:0px;padding:0px; }
+			body{background: url("./Tpl/default/public/images/blog/ggz_login_bg.jpg") no-repeat scroll top center #0394d5;}
+            html { overflow-x:hidden ; }
+            #header { width:100%;height:98px;background:url(./Tpl/default/public/images/blog/login_nav_bg.jpg) repeat-x;text-align:center; }
+            #nav,#container,#footer { width:680px;margin:0px auto;clear:both; }
+            #nav { height:76px;padding:11px 0px;text-align:left; }
+			.form-stacked label {color: #747474;font-weight: normal;line-height: 2;padding-left:5px;}
+			
+			.form-stacked .clearfix div.input {margin:6px 0 0 8px;}
+            .logo {margin:40px auto 20px;width:350px;}
+			.logo img{_margin-top:80px;}
+			.input-prepend input, .input-append input {border-radius: none;border:none;box-shadow:none;background:none;}
+			a {color: red;}
+            #container {padding: 20px 0 40px;background: url("./Tpl/default/public/images/blog/login_bg_wbz.png") no-repeat center top;}
+            #container #main { float: left;margin-left: 20px;padding-right: 10px;width: 270px;_margin-left:10px;}
+            #container #sidebar {float:left;width: 300px;}
+			#main .main_content{height:230px;padding-top:2px;margin:0px;}
+			#main .main_content span{margin-top:5px;float:left;}
+            #cover_lists { width:366px;height:276px;overflow:hidden; }
+            #cover_lists li { display:none; }
+            #cover_lists li.show { display:block; }
+            #container #sidebar #login_title { display:block;padding:8px;font-size:16px;margin-bottom:10px;background:#222;width:264px;color:#fff;font-weight:bold;font-family:'宋体'; }
+            #container #sidebar fieldset { padding:0px 15px; margin:0;}
+            #footer { height:60px;line-height:60px;margin-bottom:20px; text-align:center;}
+            .box_style {
+                text-shadow:0 -1px 0 rgba(0, 0, 0, 0.25);
+                box-shadow:0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+                    -webkit-box-shadow:0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+                    -moz-box-shadow:0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            }
+			.ch_box{padding-left: 30px;padding-top: 35px;}
+			.ch_btn {text-align:center; clear:both;}
+			.ch_btn .ch_register{background: url("./Tpl/default/public/images/blog/register_btn.png") no-repeat; width:121px;text-indent:-9999px;height:40px;}
+			.ch_btn .ch_login{background: url("./Tpl/default/public/images/blog/login_btn.png") no-repeat; width:121px;height:40px;_margin-top:-10px;}
+			.ch_btn .ch_loading{background: url("./Tpl/default/public/images/blog/loading_btn.png") no-repeat;}
+			.ch_btn .ch_register:hover{background: url("./Tpl/default/public/images/blog/register_btn_hover.png") no-repeat;}
+			.ch_btn .ch_login:hover{background: url("./Tpl/default/public/images/blog/login_btn_hover.png") no-repeat;}
+			.input_big { font-size:16px !important;font-weight:normal;color:#000;font-family:'微软雅黑'; }
+        </style>
+    </head>
+    <body scroll="no">
+        <div class="logo"><center><a href="/"><img src="{&APP_IMAGE}logo.png"></a></center></div>
+        <div id="container">
+        <div class="ch_box">
+        	<div id="main">
+                <fieldset class="main_content">
+                    <p style="font-size:16px;line-height:2;">“每个微博账户的背后，都是一个活生生的消费者”</p><br><br>
+                    <p>
+                        <span>业务咨询：</span>
+                        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=345938947&site=qq&menu=yes">
+                            <img border="0" src="{&APP_IMAGE}company/pa" alt="点击这里给我发消息" title="点击这里给我发消息">
+                        </a>
+                    </p>
+                </fieldset>
+                <div class="ch_btn"> 
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="button" onClick="location.href=&#39;{$register}&#39;" class="ch_register">注册</button>                </div>
+            </div>            
+            <div id="sidebar">
+                <form id="login_form" class="form-stacked">
+                    <fieldset>
+                        <div class="clearfix">
+                            <label for="username">用户名:</label>
+                            <div class="input">
+                                <div class="input-prepend">
+                                    <input class="input_big" id="username" name="username" type="text"  autocomplete="off" style="width:222px;padding:5px 3px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <label for="password">密码:</label>
+                            <div class="input" style="margin:3px 0px 0px 8px;">
+                                <div class="input-prepend">
+                                    <input class="input_big" id="password" name="password" type="password" autocomplete="off" style="width:222px;padding:5px 3px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <label>验证码:</label>
+                            <div style="padding-left:5px;">
+                                <div class="inline-inputs">
+                                    <div class="pull-left">
+                                        <input class="mini input_big" id="verify" name="verify" type="text" maxlength="4" autocomplete="off">
+                                    </div>
+                                    <div class="pull-left" style="margin:1px 0px 0px 10px;">
+                                        <img id="verifyImg" src="{$verify}" align="absmiddle">
+                                    </div>
+                                    <div class="pull-right" style="line-height:28px;">
+                                        <a href="javascript:void(0);" style="color:#2a89b4;" onClick="changeVerify();">看不清楚？换一张</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="input">
+                                <input class="pie" type="checkbox" name="remember" id="remember" value="Y" checked="true">
+                                <span>记住用户名 </span>|<a href="index.php?m=index&a=get_pw&type=2" target="_blank" class="forg">忘记密码</a>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="ch_btn">
+                        <button type="button" id="login-btn" onClick="submit_form();" class="ch_login"></button>
+                      
+                    </div>
+                </form>
+            </div>
+            <div style="clear:both"></div>
+            </div>
+        </div>
+        <div id="footer">
+            CopyRight © 版权所有***科技有限公司(fandow.com) 粤ICP备11016938号-1      
+
+        </div>
+        <script type="text/javascript">
+            $("input[type=text],input[type=password]").keypress(function(e){
+               if(e.keyCode == 13){
+                   var obj = {
+                       u: $("#username"),
+                       p: $("#password"),
+                       v: $("#verify")
+                   };
+                   if(!obj.u.val()){ obj.u.focus(); }
+                   else if(!obj.p.val()){ obj.p.focus(); }
+                   else if(!obj.v.val()){ obj.v.focus(); }
+                   else{
+                       submit_form();
+                   }
+               }
+            });
+            function submit_form(){
+                disabledForm();
+                var data = {
+                    username: $("#username").val(),
+                    password: $("#password").val(),
+                    verify: $("#verify").val(),
+                    remember: $("#remember").val()
+                };
+                if(!data.username){
+                    alert("请填写用户名！");
+                    enabledForm();
+                }else if(!data.password){
+                    alert("请填写登录密码！");
+                    enabledForm();
+                }else if(!data.verify){
+                    alert("请填写验证码");
+                    enabledForm();
+                }else{
+                    $.ajax("{$hlogin}", {
+                        type: "post",
+                        data: data,
+                        dataType: "json",
+                        success: function(request){
+                            if(request.status==1){
+                                location.href = request.info;
+                            }else{
+                                alert(request.info);
+                            }
+                            enabledForm();
+                        }
+                    });
+                }
+            }
+            function disabledForm(){
+                //$("#login-btn").button("loading");
+                $("#username").addClass("disabled").attr("disabled", true);
+                $("#password").addClass("disabled").attr("disabled", true);
+                $("#verify").addClass("disabled").attr("disabled", true);
+                $("#remember").addClass("disabled").attr("disabled", true);
+				$("#login-btn").addClass("ch_loading");
+            }
+            function enabledForm(){
+                changeVerify();
+                $("#username").removeClass("disabled").attr("disabled", false);
+                $("#password").removeClass("disabled").attr("disabled", false);
+                $("#verify").removeClass("disabled").attr("disabled", false).val("");
+                $("#remember").removeClass("disabled").attr("disabled", false);
+				$("#login-btn").removeClass("ch_loading");
+                //$("#login-btn").button("reset");
+            }
+            function changeVerify(){
+                var img = "{$verify}";
+                $("#verifyImg").attr("src",img+"&d="+Math.random());
+            }
+            $("#data_menu li a").mouseover(function(){
+                $("#data_menu a[rel^=data_lists_]").removeClass("show");
+                $(this).addClass("show");
+                $("#data_lists li.show").removeClass("show");
+                $("#data_lists #"+$(this).attr("rel")).addClass("show");
+            });
+            $("#case_title li a").mousemove(function(){
+                $("#case_content li").removeClass("show");
+                $("#case_content #"+$(this).attr("rel")).parent("li").addClass("show");
+            });
+            window.setInterval(function(){
+                var $cur = $("#cover_lists li.show");
+                if($cur.next("li").is("#cover_end")){
+                    $cur.removeClass("show");
+                    $("#cover_lists li:first").addClass("show");
+                }else{
+                    $cur.removeClass("show").next("li").addClass("show");
+                }
+            }, 3000);
+        </script>
+    
+</body></html>

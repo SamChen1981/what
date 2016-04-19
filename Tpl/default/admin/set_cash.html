@@ -1,0 +1,75 @@
+<include file="public:header_admin" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span>红包管理</div>
+<div class="child_main">
+    <div style="clear:both;">   </div>
+    <div class="list_header" style="clear:both;">  
+        <form id="task_search" method="post">
+            <div class="pull-right" style="line-height:28px;">
+                <div class="pull-left">&nbsp;红包数量：</div>
+                <div class="pull-left">&nbsp;<input type="text" class="medium" name="num" id="num" value=""></div>
+								<div class="pull-left">&nbsp;红包价格：</div>
+                <div class="pull-left">&nbsp;<input type="text" class="medium" name="money" id="money" value=""></div>
+               <div class="pull-left">&nbsp;<button type="submit" onclick="return subm()" class="btn">增加红包</button></div>
+            </div>
+        </form>
+        <script type="text/javascript">
+        function subm(){
+            if ($('#moeny').val()=='')
+            {
+            	alert('请输入红包价格');
+            	return false;
+            }
+            if ($('#num').val()=='')
+            {
+            	alert('请输入红包数量');
+            	return false;
+            }
+            return true;
+        }
+        </script>
+    </div>
+    <table class="dash_table zebra-striped">
+        <thead>
+            <tr>	
+                <th class="align-center split" width="6%">ID</th>
+                <th class="align-center split" width="20%">红包ID</th>
+                <th class="align-center split" width="10%">红包价格</th>
+                <th class="align-center split" width="8%">状态</th>
+                <th class="align-center split" width="10%">操作</th>
+                <th class="align-center" width="auto"></th>               
+            </tr>
+        </thead>
+        <tbody>
+        	<foreach name="list" item="vo">
+            <tr>
+                <td class="align-center">{$vo.cash_id}</td>                
+                <td class="align-left" style="color:orangered;">{$vo.card}</td>
+                <td class="align-left" >{$vo.money}</td>     
+                <td class="align-left" >
+                	<switch name="vo.state">
+                		<case value="0"><span class="label notice" style="color:#FFFFFF" >未发放<span></case>
+                		<case value="1"><span class="label success" style="color:#FFFFFF" >已使用<span></case>
+                		<case value="2"><span class="label important" style="color:#FFFFFF" >作废<span></case>
+                		<case value="3"><span class="label warning" style="color:#FFFFFF" >已发放<span></case>
+                	</switch>
+                </td>            
+								<td class="align-center">
+											 <eq name="vo.state" value="0"><a href="{$hset_cash}&cash_id={$vo.cash_id}&act=gnt"> <span class="label warning" style="color:#FFFFFF" >发放</span></a></eq>
+                       <a href="{$hset_cash}&cash_id={$vo.cash_id}&act=del"> <span class="label important" style="color:#FFFFFF" >删除</span></a>             
+                </td>
+                <td></td>
+            </tr>   
+          </foreach>                 
+        </tbody>
+    </table>
+    <div class="page_style">{$page}</div>
+       <div style="clear:both;"></div>
+</div>
+    </div>
+
+<include file="public:footer_admin" />

@@ -1,0 +1,185 @@
+@charset "utf-8";
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 150%;
+    color: #646464;
+    
+}
+body,div,p,ul,li{margin:0;padding:0;}
+h1, h2, h3, h4, h5 {line-height: 1.1em;margin: 15px 0;font-family:Microsoft YaHei,LiHei Pro；}
+h1 {font-size: 260%;}
+h2 {font-size: 200%;}
+h3 {font-size: 175%;}
+h4 {font-size: 150%;}
+h5 {font-size: 120%;}
+p{font-size:14px;font-weight:normal;color:#555555;}
+body{background:url("http://www.weiqc.com/Public/images/home/page_bg.gif") repeat-x #fff;}
+body.home{background:url("http://www.weiqc.com/Public/images/home/front_bg.gif") repeat-x #fff;}
+a{color:#00a1e9;text-decoration: none;}
+a:hover{color:#1370B3;}
+li{ list-style: none;}
+ol li{list-style:decimal;}
+.clear{clear: both;}
+.more {position: absolute;right:20px;top:15px;font-size:12px;}
+input, textarea {
+  -moz-transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
+}
+input:focus, textarea:focus {
+  border:1px solid #AACCF6;
+  border-color: rgba(82, 168, 236, 0.8);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset, 0 0 8px rgba(82, 168, 236, 0.6);
+  outline: 0 none;
+}
+
+#header,#container{width: 1000px;margin:0 auto;position: relative;}
+
+/*header*/
+#header{height:75px;padding-top:10px;background:url("http://www.weiqc.com/Public/images/home/hd_bg.jpg") no-repeat;}
+#header .logo{width:315px;height: 60px;margin:0px 0 0 10px;}
+#header .menu{left: 360px;position: absolute;top:45px;}
+#header .menu li{float:left;display:block; }
+#header .menu li a{color:#ffffff;font-size:16px;font-weight:bold;padding:5px 15px;display:block; line-height: 18px; font-family:'微软雅黑';}
+#header .menu li a:hover,#header .menu li a:active{background-color: #00A1E9;}
+
+#header .top_menu{position: absolute;right: 10px; top:10px;}
+#header .top_menu li{float:left;}
+#header .top_menu li a{color:#eeeeee;padding:2px 10px;}
+#header .top_menu li a:hover{color: #D7791B;}
+
+/*container*/
+#container{clear: both;}
+
+#container .slide{width: 670px;float:left;padding:5px 0;margin-top:15px;}
+#container .slide .mark{margin-top:20px;text-align:center;}
+.clearfix{clear:both;display: table;margin:10px 0;}
+#container .login_form{ float:left;margin-top:10px;width:312px;background:url("http://www.weiqc.com/Public/images/home/login_form_bg.png") no-repeat; position: relative;}
+#container .login_form label{color:#444;display:block;margin-bottom:2px;}
+#container .login_form input{width:250px;height:25px;line-height: 25px;font-size:16px;border:1px solid #ccc;padding-left:5px;}
+#container .login_form #login-mark,#container .login_form #login-info  { position: absolute; width:290px; height:270px; z-index:99; top:48px; left:12px; background:#fff; display:none; }
+#container .login_form #login-mark div { width:110px;margin:40px auto; }
+#container .login_form #login-info ul { margin:20px;height:60px; }
+#container .login_form #login-info li { line-height:20px; }
+#container .login_form #login-info div { margin-top:10px; text-align:center; }
+#container .login_form .form_content{margin:60px 10px 0 25px;height:300px;_margin-top:50px;}
+#container .login_form .form_content .pie {border: medium none;height: auto;line-height: normal;margin: 3px 0;padding: 0;width: auto;}
+#container .login_form .form_content .login_btn,#container .login_form .form_content .login_btn:hover,#container .login_form .form_content .register_btn,#container .login_form .form_content .register_btn:hover{
+    background-image:url("http://www.weiqc.com/Public/images/home/form_btn.gif");background-repeat: no-repeat;
+}
+#container .login_form .form_content .login_btn{cursor:pointer; width:87px;height:33px; background-position:0 0;border:none;}
+#container .login_form .form_content .register_btn{cursor:pointer;width:87px;height:33px; background-position:0 -66px;border:none;}
+#container .login_form .form_content .login_btn:hover{background-position:0 -33px;}
+#container .login_form .form_content .register_btn:hover{background-position:0 -99px;}
+#container .login_form .form_menu{background-color:#f5f5f5;border: 1px solid #e5e5e5; padding: 10px; margin: 0pt 20px 15px; height: 80px;}
+#container .login_form .form_menu li{float:left;width:60px;text-align:left;font-size:12px;margin:2px 0;}
+
+
+#container .content .conleft{width:220px;float:left}
+#container .content .conright{width:750px;float:left;margin-left:15px;}
+#container .content .conmain{width:100%;}
+#container .content .box{background:url("http://www.weiqc.com/Public/images/home/content_bg.gif") repeat-x top #fff;;border: 1px solid #d7d7d7;margin-bottom:15px;border-radius:5px 5px 5px 5px; position: relative;}
+#container .content .box h1{margin:15px 0 5px 15px;font-size: 14px; font-weight:normal;line-height:24px;
+background-image:url("http://www.weiqc.com/Public/images/home/boxtitleicon.png");padding-left:30px;background-repeat: no-repeat;}
+#container .content .box .tip{padding:0 15px 10px;}
+
+#container .content .conleft .top{background:url("http://www.weiqc.com/Public/images/home/title-bg.png") repeat-x scroll 0 bottom #fff; padding:8px;border-left:1px solid #e0e0e0;border-top:1px solid #e0e0e0;border-right:1px solid #e0e0e0;}
+#container .content .conleft .left_nav{margin-bottom:15px;}
+#container .content .conleft .left_nav ul{border-left:1px solid #e6e6e6;border-right:1px solid #e6e6e6;border-bottom:1px solid #e6e6e6;}
+#container .content .conleft .left_nav li a{display:block;color:#555;padding:8px 8px 8px 30px;border-top:1px solid #e3e3e3;background:url("http://www.weiqc.com/Public/images/home/menu_li.png") 5px no-repeat;}
+#container .content .conleft .left_nav li a:hover,#container .content .conleft .left_nav li a.active{background-color:#f5f5f5;}
+
+#container .content .video h1{ background-position:0 -48px;} 
+#container .content .video .video_img{padding:10px 15px;}
+#container .content .video .video_img img{border:1px solid #e0e0e0;}
+#container .content .video .video_img img:hover{border:1px solid #b0b0b0;}
+
+#container .content .blogarea h1{ background-position:0 -24px;}
+#container .content .blogarea p{line-height:30px;padding:0 10px;color:#666;}
+#container .content .blogarea .apply a{line-height:48px;width:240px;height:48px;background:url("http://www.weiqc.com/Public/images/home/apply.png") no-repeat;color:#fff;margin:10px auto 16px;display: block;text-align: center;font-size: 18px;}
+#container .content .blogarea .apply a:hover{background-position:0 -48px;}
+#container .content .blogarea .side_apply a{background: url("http://www.weiqc.com/Public/images/home/side_apply.png") no-repeat scroll 0 0 transparent;color: #FFFFFF;display: block;font-size: 18px;height: 46px;line-height: 46px;margin: 5px auto 10px;text-align: center;width: 190px;}
+#container .content .blogarea .side_apply a:hover{background-position:0 -46px;}
+
+#container .content .brandblog .wbz_list{padding:10px 8px 10px;}
+#container .content .brandblog .wbz_list ul li{float:left;margin:3px;width:50px;height:50px;overflow:hidden; border:1px solid #ccc;}
+#container .content .brandblog .wbz_list ul li:hover{border:1px solid #444;}
+
+#container .content .contactus h1 {background-position:0 -72px;}
+#container .content .contactus li{font-size:12px;line-height: 24px;}
+#container .content .contactus li strong{font-size:14px;margin-top:5px;}
+
+#container .content .channel{background-color:#f7f7f7;border:5px solid #eeeeee;margin-bottom:15px;}
+#container .content .channel h1{margin:15px 0 5px 15px;font-size: 14px; font-weight:normal;line-height:24px;
+background-image:url("http://www.weiqc.com/Public/images/home/boxtitleicon.png");padding-left:30px;background-position: 0 -96px;background-repeat:no-repeat;}
+#container .content .ggz_channel a{background:url("http://www.weiqc.com/Public/images/home/ggz_channel.png") no-repeat;margin:15px auto;width:190px;height: 50px;line-height: 50px;text-indent:-9999px;display:block;}
+#container .content .wbz_channel a{background:url("http://www.weiqc.com/Public/images/home/wbz_channel.png") no-repeat;margin:15px auto;width:190px;height: 50px;line-height: 50px;text-indent:-9999px;display:block;}
+
+#container .content .sitemap{padding:10px 0 10px 10px;}
+#container .content .page_content{padding:10px 20px;;min-height: 400px;}
+#container .content .page_content p{margin:10px 0;padding:0 5px;}
+#container .content .page_content .blank{height:1px;border-bottom:1px solid #E6E6E6;margin:10px 0;clear: both;}
+#container .content .page_content .help img,#container .content .page_content .cases img{padding:5px;border:1px solid #dddddd;background-color:#f8f8f8;text-align:center;margin:5px 0;}
+#container .content .page_content .cases img{margin:5px 2px;}
+#container .content .page_content .weibo_list{padding:5px;background-color:#f5f5f5;border:1px solid #ddd;margin-top:15px;}
+#container .content .page_content .weibo_list li{float: left;margin:3px;width:50px;height:50px;}
+#container .content .page_content .help_video{padding-left:20px;margin-left:15px;height:16px;font-size:12px;background:url("http://www.weiqc.com/icon/television.png") no-repeat center left;}
+
+/*list_style*/
+ul.bullet-check,ul.bullet-star,ul.bullet-1, ul.bullet-2, ul.bullet-3, ul.bullet-4, ul.bullet-5, ul.bullet-6, ul.bullet-7, ul.bullet-8{
+    margin:0 0 15px 10px;}
+ul.bullet-1 li, ul.bullet-2 li, ul.bullet-3 li, ul.bullet-4 li, ul.bullet-5 li, ul.bullet-6 li, ul.bullet-7 li, ul.bullet-8 li {
+    background-position: 0 8px;background-repeat: no-repeat;list-style: none outside none;margin: 0 0 3px;padding: 0 0 0 15px;}
+ul.bullet-check li,ul.bullet-star li{background-position: 0 2px;background-repeat: no-repeat;list-style: none outside none;margin: 0 0 3px;padding: 0 0 0 26px;
+}
+ul.bullet-1 li {background-image: url("http://www.weiqc.com/Public/images/home/list_style/bullet1.png");}
+ul.bullet-2 li {background-image: url("http://www.weiqc.com/Public/images/home/list_style/bullet2.png");}
+ul.bullet-3 li {background-image: url("http://www.weiqc.com/Public/images/home/list_style/bullet3.png");}
+ul.bullet-4 li {background-image: url("http://www.weiqc.com/Public/images/home/list_style/bullet4.png");}
+ul.bullet-5 li {background-image: url("http://www.weiqc.com/Public/images/home/list_style/bullet5.png");}
+ul.bullet-6 li {background-image: url("http://www.weiqc.com/Public/images/home/list_style/bullet6.png");}
+ul.bullet-7 li {background-image: url("http://www.weiqc.com/Public/images/home/list_style/bullet7.png");}
+ul.bullet-8 li {background-image: url("http://www.weiqc.com/Public/images/home/list_style/bullet8.png");}
+ul.bullet-check li {background-image: url("http://www.weiqc.com/Public/images/home/list_style/icon-check.png");}
+ul.bullet-star li {background-image: url("http://www.weiqc.com/Public/images/home/list_style/rating_star.png");}
+
+/*page_content_layout*/
+.grid-2{float: left;}
+.grid-2{width:340px;}
+
+/*footer*/
+.footer{background:#ececec;margin-top:30px;padding:10px 0px;border:1px solid #d7d7d7;height:100px;}
+.footer .bottom{width:1000px;margin:0 auto;}
+.footer .copyright{width:550px;padding-left:20px;float: left;}
+.footer .bottom_menu{width:400px;float:right;padding-right:20px; text-align:right;}
+.footer .bottom_menu a{color:#555;}
+.footer .bottom_menu a:hover{color:#00A1E9;}
+
+/*errar*/
+.errar{width:500px;margin:80px auto;padding-left:60px;padding-top:5px;background:url("http://www.weiqc.com/Public/images/home/errar.png") 0 5px no-repeat;}
+.errar h3{font-family:'微软雅黑';}
+.errar h3 span{color:#0693d2;}
+.errar p{line-height:30px;}
+
+/*tooltips*/
+#tt{position:absolute;display:block;background:url(http://www.weiqc.com/Public/images/home/tt_left.gif) top left no-repeat}
+#tttop{display:block;height:5px;margin-left:5px;background:url(http://www.weiqc.com/Public/images/home/tt_top.gif) top right no-repeat;overflow:hidden}
+#ttcont{display:block;padding:2px 12px 3px 7px;margin-left:5px;background:#666;color:#FFF}
+#ttbot{display:block;height:5px;margin-left:5px;background:url(http://www.weiqc.com/Public/images/home/tt_bottom.gif) top right no-repeat;overflow:hidden}
+
+.page-image { border:1px solid #e5e5e5;padding:5px;background: none repeat scroll 0 0 #FFFFFF;margin:10px;}
+h5{background: url("http://www.weiqc.com/Public/images/home/title-bg.png") repeat-x scroll 0 0 transparent;color: #666;display: block;height: 32px;line-height:30px;padding-left:10px;position: relative;
+border-top:1px solid #eeeeee;border-left:1px solid #eeeeee;border-right:1px solid #eeeeee;font-weight:normal;}
+
+
+/* slider */
+.slider{margin:0px auto 5px;width:640px;height:260px;border:5px solid #fff;position:relative;overflow:hidden;}
+.conbox{position:absolute;/*必要元素*/}
+.conbox img{border:none;}
+.switcher{position:absolute;bottom:10px;right:10px;float:right;z-index:99;}
+.switcher a{background:url(http://www.weiqc.com/Public/images/home/trans.png);cursor:pointer;float:left;font-family:arial;height:18px;line-height:18px;width:18px;margin:4px;text-align:center;color:#00a1e9;}
+.switcher a.cur,.switcher a:hover{background:#00a1e9;border:1px solid #fff;height:24px;line-height:24px;width:24px;margin:0 2px;color:#fff;font-weight:800;}
+/* slider1 水平 */
+#slider1 .conbox{width:9999em;}
+#slider1 .conbox div{width:640px;height:260px;overflow:hidden;float:left;}
+

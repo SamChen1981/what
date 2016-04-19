@@ -1,0 +1,80 @@
+<include file="public:header_admin" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span>增加文章</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <div class="table_title">
+        <span>增加文章</span>
+    </div>
+    <form action="{$harticle_add}" enctype="multipart/form-data" method="post" style="margin-top:-15px;">
+        <fieldset>
+                        <div class="clearfix">
+                <label for="type">* 文章类型</label>
+                <div class="input">
+                    <select name="type" id="dinner_id" onchange="change_dinner()">
+                         <option value="1">业界动态</option>       
+                         <option value="2">帮助中心</option>  
+                         <option value="3">关于我们</option> 
+                         <option value="4">视频教程</option>
+                         <option value="5">通知公告</option>                                        
+                    </select>
+                </div>
+            </div>
+            <div class="clearfix">
+                <label for="begintime">* 文章名称</label>
+                <div class="input">
+                    <input type="text" class="xxlarge" id="name" name="name" value="" style="width:120px;cursor:pointer;">
+                    <span class="help-inline">请填写文章的名称</span>
+                </div>
+            </div>
+            <div class="clearfix">
+                <label for="content">* 文章内容</label>
+                <div class="input">
+                    <textarea name="remark" id="remark" class="extend_edit xlarge" style="width: 780px; height: 300px; display: none; "></textarea>
+                    <span class="help-block">* 你可以添加图片和文字信息</span>
+                </div>
+            </div>
+                    </fieldset>
+        <input type="hidden" name="id" id="id" value="">
+        <div class="actions">
+            <input type="submit" class="btn primary" onclick="return check_form();" value="保存">&nbsp;&nbsp;
+            <button type="button" onclick="if(confirm(&#39;确认要返回上一页吗？&#39;)) history.back();" class="btn">返回上一页</button>
+        </div>
+    </form>
+    <script type="text/javascript">
+        upload_file(".extend_edit", '{$upload}', false, {tools:"mfull",upImgExt:"jpg,jpeg,gif,png",forcePtag:false,cleanPaste:3,internalStyle:false,inlineStyle:false,html5Upload:false});
+ 				
+        function change_dinner(){
+            var dinner_id = $("#dinner_id option:selected").val();
+            $("#dinner_money span").html(" &yen; "+dinner[dinner_id].money);
+            $("#dinner_content pre").html(dinner[dinner_id].content);
+        }
+        function add_finish(){
+            var num = parseInt($("#finish_lists li[id^=finish_add_]").length) + 1;
+            var row = '<li id="finish_add_'+num+'"><input type="text" class="xlarge" name="finish[]" value="" \/>';
+            row+= '<a href="javascript:void(0);" onclick="delete_finish(\'finish_add_'+num+'\')"> - 删除<\/a><\/li>';
+            $("#add_finish").before(row);
+        }
+        function delete_finish(id){
+            $("#"+id).remove();
+        }
+        function check_form(){
+            if(!$("#name").val()){
+                alert("请输入文章名称！");
+                $("#name").focus();
+                return false;
+            }else if(!$("#remark").val()){
+                alert("请输入文章内容！");
+                $("#remark").focus();
+                return false;
+            }
+        }
+    </script>
+</div>
+    </div>
+
+<include file="public:footer_admin" />

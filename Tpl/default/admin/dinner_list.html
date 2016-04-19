@@ -1,0 +1,50 @@
+<include file="public:header_admin" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>套餐管理</div>
+<div class="child_main">
+    <div style="clear:both;">   </div>
+    
+    <table class="dash_table zebra-striped">
+        <thead>
+            <tr>	
+                <th class="align-center split" width="6%">ID</th>
+                <th class="align-center split" width="25% ">套餐名称</th>
+                <th class="align-center split" width="10%">投放平台</th>
+                <th class="align-center split" width="10%">套餐价格</th>
+                <th class="align-center split" width="40%">套餐介绍</th>
+                <th class="align-center" width="9%">操作</th>
+                <th class="align-center" width="auto"></th>                   
+            </tr>
+        </thead>
+        <tbody>
+        	<foreach name="list" item="info">
+            <tr>
+                <td class="align-center">{$info.dinner_id}</td>
+                <td class="align-left">{$info.name}</td>
+                <td class="align-left" style="color:orangered;">
+                	<if condition="$info.platform eq 'sina'">新浪
+                  <else />腾讯
+                   </if>
+                </td>
+                <td class="align-left" style="color:orangered;">{$info.money}</td>
+                <td class="align-center">
+                				 {$info.content}                             
+                </td>
+								<td class="align-center">
+											<a href="{$hdl}&dinner_id={$info.dinner_id}&act=edit"> <span class="label success" style="color:#FFFFFF" >编辑</span></a> 
+                      <a href="{$hdl}&dinner_id={$info.dinner_id}&act=del"> <span class="label important" style="color:#FFFFFF" >删除</span></a>             
+                </td>
+                <td></td>
+            </tr>   
+          </foreach>                 
+        </tbody>
+    </table>
+    <div class="page_style">{$page}</div>
+       <div style="clear:both;"></div>
+</div>
+    </div>
+
+<include file="public:footer_admin" />

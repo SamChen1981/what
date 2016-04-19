@@ -1,0 +1,97 @@
+<include file="public:header_company" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span><a href="http://ggz.weiqc.com/Bill/credit.html">账单</a><span class="gt">&gt;</span>账户充值</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <form id="recharge_form" action="{$jump}" method="post" target="_blank">
+                <div class="com_info">
+            <h2>公司信息</h2>
+            <table class="bordered-table">
+                <tbody>
+                    <tr>
+                        <td width="10%" height="25" align="right" class="tdbg"><strong>公司名称：</strong></td>
+                        <td width="40%" height="25">{$info.realname}</td> 
+                        <td width="10%" height="25" align="right" class="tdbg"><strong>账户余额：</strong></td>
+                        <td width="40%" height="25" style="color:orangered;">¥ {$info.money}</td>
+                    </tr>
+                    <tr>
+                         <td width="10%" height="25" align="right" class="tdbg"><strong>联系电话：</strong></td>
+                        <td width="40%" height="25">{$info.phone}</td>
+                        <td width="10%" height="25" align="right" class="tdbg"><strong>E-mail：</strong></td>
+                        <td width="40%" height="25"><a href="{$info.email}">{$info.email}</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="input_money" style="text-align:center;">
+            <div style="display:inline-block;padding:6px 10px 5px;margin:auto;text-align:auto;" class="task-verify">
+                <div style="font-size:16px;padding:4px;">
+                    请输入充值金额：<input type="text" id="outlay" name="outlay" class="medium" value="{$money}"> 元
+                </div>
+            </div>
+        </div>        <div class="recharge_bank">
+            <ul>
+                <li class="li3">
+                    <input type="radio" name="paymethod" value="alipay" checked="">
+                    <span>阿里巴巴旗下专业支付平台。凡是拥有支付宝帐号的用户，都可以进行网上直充，方便快捷，同时支持网银。注册支付宝账号。</span>
+                </li>
+            </ul>            <center>
+                <div class="all_btn1">
+                    <button type="button" id="submit_recharge" class="btn primary large">立即支付</button>
+                </div>
+            </center>
+        </div>
+        <input type="hidden" id="a_id" name="a_id" value="0">
+        <input type="hidden" id="m_id" name="m_id" value="1516">
+        <input type="hidden" id="money" name="money" value="{$money}">
+        <input type="hidden" id="timestamp" name="timestamp" value="1336285038">
+        <input type="hidden" id="secret" name="secret" value="2132d1608ac06d30c095d6ac35af9bf4">
+        <input type="hidden" id="paytype" name="paytype" value="alipay_alipay">    </form>
+</div>
+<div id="wait_pay" class="modal hide fade">
+    <div class="modal-header">
+        <a href="http://ggz.weiqc.com/Bill/recharge.html#" class="close">×</a>
+        <h3>等待完成付款</h3>
+    </div>
+    <div class="modal-body">
+        <div>
+            <span style="font-size:16px;">请在新打开的窗口中完成付款</span>
+            <ul style="margin-top:10px;">
+
+            </ul>
+        </div>
+    </div>
+    <div class="modal-footer align-center">
+        <button class="btn large primary choose_next" id="pay_success" type="button" style="float:none;">已完成付款</button>
+        &nbsp;
+        <button class="btn large" type="button" onclick="$(&#39;#wait_pay&#39;).modal(&#39;hide&#39;);" style="float:none;">取消</button>
+    </div>
+</div>
+<script type="text/javascript">
+    function open_modal(){
+        $('#wait_pay').modal({
+            backdrop: true,
+            keyboard: true,
+            show: true
+        });
+    }
+    $('#wait_pay').bind('show', function () {
+        $("#recharge_form").submit();
+    });
+        $("#submit_recharge").click(function(){
+        if($("#outlay").val() < {$money} ){
+            alert("充值金额不能小于{$money}元！");
+        }else{
+            open_modal();
+        }
+    });
+    $("#pay_success").click(function(){
+        location.href= "{$bill_payment}";
+    });</script>
+    </div>
+
+<include file="public:footer_company" />

@@ -1,0 +1,53 @@
+<include file="public:header_admin" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span>编辑模版</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <div class="table_title">
+        <span><if condition="$info.type eq 'sms'">短信：<else/>邮件：</if>{$info.send_name}</span>
+    </div>
+    <form action="" enctype="multipart/form-data" method="post" style="margin-top:-15px;">
+        <fieldset>
+            <div class="clearfix">
+                <label for="begintime">变量标签</label>
+                <div class="input">
+                    <textarea class="default-cursor" readonly="true" style="background:#fff;height:100px;width:500px;">{$info.tag_var}</textarea>
+                    <span class="help-block">* 可替换<if condition="$info.type eq 'sms'">短信<else/>邮件</if>内容，系统会自动识别</span>
+                </div>
+            </div>
+            <eq name="info.type" value='email'>
+            <div class="name">
+                <label for="begintime">* 邮件标题</label>
+                <div class="input">
+                    <input type="text" class="xxlarge" id="name" name="name" value="{$info.name}" style="width:300px;cursor:pointer;">
+                    <span class="help-inline">* 填写邮件的标题</span>
+                </div>
+            </div>
+          	</eq>
+            <div class="clearfix">
+                <label for="content">* <if condition="$info.type eq 'sms'">短信<else/>邮件</if>内容</label>
+                <div class="input">
+                    <textarea name="content" id="content" class="extend_edit xlarge" style="width: 780px; height: 300px; display: none; ">{$info.content}</textarea>
+                    <span class="help-block">* <if condition="$info.type eq 'sms'">填写短信内容<else/>你可以添加图片、文字信息以及html</if></span>
+                </div>
+            </div>
+                    </fieldset>
+        <input type="hidden" name="theme_id" value="{$info.theme_id}">
+        <div class="actions">
+            <input type="submit" class="btn primary" onclick="return check_form();" value="保存">&nbsp;&nbsp;
+            <button type="button" onclick="if(confirm(&#39;确认要返回上一页吗？&#39;)) history.back();" class="btn">返回上一页</button>
+        </div>
+    </form>
+    <script type="text/javascript">
+        upload_file(".extend_edit", '{$upload}', false, {tools:"mfull",upImgExt:"jpg,jpeg,gif,png",forcePtag:false,cleanPaste:3,internalStyle:false,inlineStyle:false,html5Upload:false});
+ 				
+
+    </script>
+</div>
+    </div>
+
+<include file="public:footer_admin" />

@@ -1,0 +1,179 @@
+<include file="public:header_admin" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span>微博信息<span class="gt">&gt;</span>更新微博</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <form id="user_form" action="" method="post" style="margin:10px auto;">
+        <div class="pull-left">
+            <fieldset>
+                <legend>基本信息</legend>
+                <div class="clearfix">
+                    <label for="platform">* 微博平台：</label>
+                    <div class="input">
+                        <select id="platform" name="platform" onchange="" ondblclick="" class="xlarge">
+                        	<option value="sina" <if condition="$info.platform eq 'sina'">selected="selected"</if>>新浪微博</option>
+                        	<option <if condition="$info.platform eq 'qq'">selected="selected"</if> value="qq">腾讯微博</option></select>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="name">* 微博名称：</label>
+                    <div class="input">
+                        <input class="xlarge" id="name" name="name" type="text" rel="twipsy" value="{$info.name}">
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="weibo">* 微博URL：</label>
+                    <div class="input">
+                        <input class="xlarge" id="weibo" name="weibo" type="text" rel="twipsy" value="{$info.weibo}" data-original-title="微博URL必须包含http://">
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="fansnum">* 粉丝数量：</label>
+                    <div class="input">
+                        <input class="xlarge" id="fansnum" name="fansnum" type="text" rel="twipsy" value="{$info.fansnum}" data-original-title="粉丝数必须为正整数">
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="money">* 转发价格：</label>
+                    <div class="input">
+                        <input class="xlarge" id="money" name="money" type="text" rel="twipsy" value="{$info.money}" data-original-title="转发价格保留两位小数">
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="money">直发价格：</label>
+                    <div class="input">
+                        <input class="xlarge" id="publish_money" name="publish_money" type="text" rel="twipsy" value="{$info.publish_money}" data-original-title="可选直发价格保留两位小数">
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="money">分类：</label>
+                    <div class="input">
+                        <select name="class">
+                        	<option value="0" <eq name="info.class" value="0">selected</eq>>普通</option>
+                        	<option value="1" <eq name="info.class" value="1">selected</eq>>草根微博主</option>
+                        	<option value="2" <eq name="info.class" value="2">selected</eq>>红人馆</option>
+                        	<option value="3" <eq name="info.class" value="3">selected</eq>>媒体汇</option>
+                        	<option value="4" <eq name="info.class" value="4">selected</eq>>精品小号</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="keywords">* 关键字：</label>
+                    <div class="input">
+                        <textarea style="width:200px;" name="keywords" id="keywords" class="xlarge" rel="twipsy" rows="3" data-original-title="可选，多个关键字请以空格分隔，最多不要超过10个">{$info.keywords}</textarea>
+                    <select style="width:65px;" onchange="keyword(this)">
+                    	<foreach name="list" item="vo">
+                    		<option value="{$vo}">{$vo}</option>
+                    	</foreach>
+                    </select>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="pull-left">
+            <fieldset>
+                <legend>其他参数</legend>
+                <div class="clearfix">
+                    <label for="give_m">收费%比：</label>
+                    <div class="input">
+                        <input class="xlarge" id="give_m" name="give_m" type="text" rel="twipsy" value="{$info.give_m}" data-original-title="单独设置收费比例">
+                    </div>
+                </div>                
+                <div class="clearfix">
+                    <label for="twitternum">周订单量：</label>
+                    <div class="input">
+                        <input class="xlarge" id="week_order" name="week_order" type="text" rel="twipsy" value="{$info.week_order}" data-original-title="本周的订单量">
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="follownum">月订单量：</label>
+                    <div class="input">
+                        <input class="xlarge" id="month_order" name="month_order" type="text" rel="twipsy" value="{$info.month_order}" data-original-title="本月的订单量">
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="location">所在地区：</label>
+                    <div class="input">
+                        <input class="xlarge" id="location" name="location" type="text" rel="twipsy" value="{$info.location}" data-original-title="微博所在地区">
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="sex">微博受众：</label>
+                    <div class="input">
+                        <select id="to_sex" name="to_sex" onchange="" ondblclick="" class="xlarge">
+                        	<option <if condition="$info.to_sex eq '0'">selected="selected"</if> value="0">全部</option>
+                        	<option <if condition="$info.to_sex eq '1'">selected="selected"</if> value="1">男性</option>
+                        	<option <if condition="$info.to_sex eq '2'">selected="selected"</if> value="2">女性</option>
+                     		</select>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="soft">* 是否软广：</label>
+                    <div class="input">
+                        <select id="soft" name="soft" onchange="" ondblclick="" class="xlarge">
+                        	<option <if condition="$info.soft eq 'N'">selected="selected"</if> value="N">否</option>
+                        	<option <if condition="$info.soft eq 'Y'">selected="selected"</if> value="Y">是</option></select>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="shield">* 是否直发：</label>
+                    <div class="input">
+                        <select id="shield" name="shield" onchange="" ondblclick="" class="xlarge">
+                        	<option <if condition="$info.shield eq 'N'">selected="selected"</if> value="N">否</option>
+                        	<option <if condition="$info.shield eq 'Y'">selected="selected"</if> value="Y">是</option></select>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="verifyinfo">* 是否加V：</label>
+                    <div class="input">
+                        <select id="verifyinfo" name="verifyinfo" onchange="" ondblclick="" class="xlarge">
+                        	<option <if condition="$info.verifyinfo eq 'N'">selected="selected"</if> value="N">未认证</option>
+                        	<option <if condition="$info.verifyinfo eq 'Y'">selected="selected"</if> value="Y">已认证</option></select>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="reject">* 是否拒单：</label>
+                    <div class="input">
+                        <select id="reject" name="reject" onchange="" ondblclick="" class="xlarge">
+                        	<option <if condition="$info.reject eq 'N'">selected="selected"</if> value="N">不拒单</option>
+                        	<option <if condition="$info.reject eq 'Y'">selected="selected"</if> value="Y">拒单</option></select>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div style="clear:both;"></div>
+        <div class="actions">
+            <button type="submit" class="btn primary" onclick="return submit_form();">确认提交</button>&nbsp;&nbsp;
+            <button type="reset" class="btn danger">重置表单</button>&nbsp;&nbsp;
+            <button type="button" class="btn" onclick="history.back();">返回上一页</button>&nbsp;&nbsp;
+            <input type="hidden" name="id" id="id" value="6140">
+        </div>
+    </form>    
+</div>
+<div id="choose_bloger" class="modal hide fade"></div>
+<script type="text/javascript">
+	function keyword(sel)
+	{
+		str = $('#keywords').val()+' '+$(sel).val();
+		$('#keywords').val(str);
+	}
+$("[rel=twipsy]").twipsy({live:true,placement:'right'});
+function submit_form(){
+    if(!$("#name").val()){
+        alert("请填写微博名称！");return false;
+    }else if(!reg.url.test($("#weibo").val())){
+        alert("请填写正确的微博URL！URL必须以http://开头");return false;
+    }else if(!reg.number.test($("#fansnum").val()) || parseInt($("#fansnum").val()) <= 0){
+        alert("请填写大于0的正整数微博粉丝数！");return false;
+    }else if(!reg.money.test($("#money").val()) || parseFloat($("#money").val()) <= 0){
+        alert("请填写大于0的最多两位小数的转发价格！");return false;
+    }
+}
+</script>
+    </div>
+
+<include file="public:footer_admin" />

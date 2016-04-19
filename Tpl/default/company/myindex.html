@@ -1,0 +1,166 @@
+<include file="public:header_company" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="row">
+    <div class="span12">
+        <div class="index_welcome">
+            <h2 class="span7">{$uinfo.realname}<small>，欢迎您！</small></h2>
+            <h6 class="right">
+            	<if condition="$_SESSION.lasttime neq ''">上次登录：{$_SESSION.lasttime|date="y-m-d H:i:s",###}</if>
+            </h6>
+        </div>
+        <div class="index_nav_btn">
+            <ul class="media-grid">
+                <li><a href="{$company.task_add}"><img class="thumbnail" src="{&APP_IMAGE}company/nav_01.jpg" alt=""><div>添加活动</div></a></li>
+                <li><a href="{$company.dinner_add}"><img class="thumbnail" src="{&APP_IMAGE}company/nav_07.jpg" alt=""><div>推广套餐</div></a></li>
+                <li><a href="{$company.bloger}"><img class="thumbnail" src="{&APP_IMAGE}company/nav_04.jpg" alt=""><div>全部微博</div></a></li>
+                <li><a href="{$company.bloger_hots}"><img class="thumbnail" src="{&APP_IMAGE}company/nav_05.jpg" alt=""><div>热门微博</div></a></li>
+                <li><a href="{$company.bloger_fav}"><img class="thumbnail" src="{&APP_IMAGE}company/nav_06.jpg" alt=""><div>查看收藏</div></a></li>                
+                <li><a href="{$company.bill_credit}"><img class="thumbnail" src="{&APP_IMAGE}company/nav_08.jpg" alt=""><div>账单查询</div></a></li>
+                <li><a href="{$company.bill_payoff}"><img class="thumbnail" src="{&APP_IMAGE}company/nav_09.jpg" alt=""><div>消费明细</div></a></li>
+            </ul>
+        </div>
+        <!--<hr style="margin:0px 20px 20px 0px;border-color:#ccc;"/>-->
+        <div class="first_zuo_bottom">
+            <div class="first_zuo_tit">
+                <img src="{&APP_IMAGE}company/xfen.jpg" style="display:block;float:left;margin-top:9px;margin-right:2px;margin-left:-2px;">近期活动 
+            </div>
+            <table class="first_table zebra-striped">
+                <thead>
+                    <tr>
+                        <th class="align-center split" width="18%">时间</th>
+                        <th class="align-center split" width="auto">名称</th>
+                        <th class="align-center split" width="12%">平台</th>
+                        <th class="align-center split" width="8%">类型</th>
+                        <th class="align-center split" width="17%">状态</th>
+                        <th class="align-center split" width="14%">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <foreach name="list" item="vo">
+                	<tr>
+
+                        <td class="align-center">{$vo.begintime|date="m-d H:i",###}</td>
+
+                        <td class="align-left"><a href="{$task_info}&task_id={$vo.task_id}" target="_blank">{$vo.name}</a></td>
+
+                        <td class="align-center">
+                        	<if condition="$vo.platform eq 'sina'">新浪微博
+                        	<else />腾讯微博
+                       	 	</if>                       		
+                        </td>
+
+                        <td class="align-center">
+                        	<if condition="$vo.type eq 'publish'">直发<elseif condition="$vo.type eq 'click'"/>点击<else/>转
+                                发</if>
+                        </td>
+
+                        <td class="align-center">
+
+                            <span class="task-draft">
+                           								<switch name="vo.state">
+	                                        	<case value="0">未派单</case>
+	                                        	<case value="1">已派单</case>
+	                                        	<case value="2">活动进行中</case>
+	                                        	<case value="3">派单完成</case>
+	                                        	<case value="4">已取消</case>
+							                          	</switch>                         	                           	
+                            </span>
+
+                            <img align="absmiddle" src="{&APP_IMAGE}company/task_draft.png">
+
+                        </td>
+
+                        <td class="align-center" style="padding:7px;">
+
+                            <ul class="tabs min_menu">
+
+                                <li class="dropdown" data-dropdown="dropdown">
+
+                                    <a href="javascript:void(0);" class="dropdown-toggle">管理操作</a>
+
+                                    <ul class="dropdown-menu">
+
+                                        <li><a href="{$task_info}&task_id={$vo.task_id}" target="_blank">查看详情</a></li>
+
+                                        <li><a href="{$task_edit}&task_id={$vo.task_id}" target="_blank">编辑活动</a></li>
+
+                                        <li><a href="{$task_choose}&task_id={$vo.task_id}&name={$vo.name}" target="_blank">选择微博主</a></li>
+
+                                        <li class="divider"></li>
+
+                                        <li><a href="{$task_del}&task_id={$vo.task_id}">删除活动</a></li>
+
+                                    </ul>
+
+                                </li>
+
+                            </ul>
+
+                                                    </td>
+
+                    </tr>
+                  </foreach>
+                	
+                                    </tbody>
+            </table>
+            <div class="frist_bottom">
+                <!--
+                注：<span style="color:#F00;">0</span>个未派单，
+                <span style="color:#F00;">0</span>个进行中，
+                <span style="color:#F00;">0</span>已叫停，
+                <span style="color:#F00;">0</span>个草稿，
+                <span style="color:#F00;">3</span>个已完成，
+                <span style="color:#F00;">0</span>个已取消，
+                -->
+                <a href="{$task}"><span>查看所有活动记录&gt;&gt;</span></a>
+            </div>
+        </div>
+    </div>
+    <div class="span4">
+        <div class="first_you fr user_info" style="position:relative;">
+            <div class="first_you_top">
+                <span style="display:block;"><a href="{$company.account_info}" style="color:#2276b3;font-size:12px;">用户资料</a></span>
+            </div>
+            <div class="first_you_xx">
+                <div class="first_you_two">
+                   <a href="{$company.account_info}"> <img src="{&APP_IMAGE}company/tx.jpg" align="absmiddle"></a>
+                    <span class="qian">可用余额：</span>
+                    <div class="price"><span>{$uinfo.money}</span>元</div>
+                </div>
+                <div style="width:213px;height:7px;margin:0 auto;border-bottom:1px dashed #CCC;margin-top:3px;_margin-top:-7px;"></div>
+                <input type="button" class="cz_btn" style="cursor:pointer;" value="立即充值" onclick="location.href=&#39;{$company.bill_recharge}&#39;">
+            </div>
+        </div>        <div class="first_you fr" style="margin-top:11px;margin-bottom:11px;padding-bottom:8px;height:130px">
+            <div class="first_you_top">
+                <img src="{&APP_IMAGE}company/laba.jpg" style="display:block;float:left;margin-top:8px;margin-right:2px;">
+                <span style="color:#ff3300; text-decoration:none;">通知</span>
+            </div>
+            <div style="width:220px;height:80px;margin-top:10px;overflow:hidden;">
+                <ul id="notice_show_win">
+                    <foreach name="a2list" item="vo">
+                    <li><a href="{$help}&article_id={$vo.article_id}" title="{$vo.name}" target="_blank">{$vo.name}</a></li>
+                  	</foreach>         
+                </ul>
+            </div>
+        </div>          
+
+        <div class="first_you fr" style="height:310px;">
+            <div class="first_you_top">
+                <img src="{&APP_IMAGE}company/wenhao.jpg" style="display:block;float:left;margin-top:7px;_margin-top:5px;">常见问题
+            </div>
+            <div style="width:220px;height:260px;margin-top:10px;overflow:hidden;">
+                <ul>
+                	<foreach name="alist" item="vo">
+                    <li><a href="{$help}&article_id={$vo.article_id}" title="{$vo.name}" target="_blank">{$vo.name}</a></li>
+                  </foreach>               
+                </ul> 
+            </div>
+        </div>
+    </div>
+</div>
+<div id="window" class="modal hide fade"></div>
+    </div>
+
+<include file="public:footer_company" />

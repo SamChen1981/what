@@ -1,0 +1,370 @@
+<include file="public:header_blog" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span>我的微推广</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <div class="table_title">
+        <span>今日订单：</span>
+         总：{$tj['5']}个/￥{$tj['5m']}元，
+            	已：{$tj[2]}个/<strong style="color:#06F;">￥{$tj['2m']}</strong>&nbsp;
+            	流：{$tj[4]}个/<strong style="color:#f00">￥{$tj['4m']}</strong>
+            	 拒：{$tj[1]}个/<strong style="color:#73DC00;">￥{$tj['1m']}</strong>&nbsp;
+            	 取消：{$tj[3]}个/<strong style="color:#569B0B">￥{$tj['3m']}</strong>&nbsp;
+            	 派：{$tj[0]}个/<strong style="color:#FFOOFF;">￥{$tj['0m']}</strong>
+    </div>
+    <div class="list_header" style="">  
+        <form id="task_search" method="post">
+            <div id="auto_refresh" class="pull-left" style="line-height:28px;">
+                <img src="{&APP_IMAGE}blog/loading2.gif" align="absmiddle"> 还剩 <span style="color:red;">583</span> 秒自动刷新            </div>
+            <div class="pull-right" style="line-height:28px;">
+                &nbsp;<select id="field1" name="field1" onchange="" ondblclick="" class="width-auto">
+                	<option value="order">订单编号</option>
+                	<option value="task">活动名称</option>
+                	<option value="weibo">微博账号</option>
+                	</select>
+                &nbsp;<input type="text" class="medium" name="str1" id="str1" value="">
+                &nbsp;<button type="submit" class="btn">查询</button>
+            </div>
+        </form>
+    </div>
+    <table class="dash_table zebra-striped">
+        <thead>
+            <tr>	
+                <th class="align-center split" width="10%">订单号</th>
+                <th class="align-center split" width="15%">账号</th>
+                <th class="align-center split" width="auto">活动</th>
+                <th class="align-center split" width="10%">价格</th>
+                <th class="align-center split" width="15%">开始时间</th>
+                <th class="align-center split" width="9%">订单状态</th>
+                <th class="align-center split" width="8%">执行</th>
+                <th class="align-center" width="8%">拒单</th>
+            </tr>
+        </thead>
+        <tbody>
+        	<if condition="$dlist eq ''">
+            <tr>
+                <td class="align-center" colspan="8">
+                    没有找到今日可执行的订单...
+                </td>
+            </tr>
+          <else /> 
+          	<foreach name="dlist" item="vo">
+          	<tr oid="{$vo.oid}">  
+          		<td class="align-center">{$vo.oid} </td>
+          		<td class="align-left"">{$vo.bname} </td>
+          		<td class="align-left">{$vo.name} </td>
+          		<td class="align-center"><if condition="$vo.type eq 'publish'">{$vo.publish_money}<else/>{$vo.money}</if> </td>
+          		<td class="align-center">{$vo.begintime|date="Y-m-d H:i",###} </td>
+          		<td class="align-center">
+          						  <switch name="vo.state">
+                           	<case value="0">未派单</case>
+                           	<case value="1">已派单</case>
+                           	<case value="2">活动进行中</case>
+                           	<case value="3">派单完成</case>
+                           	<case value="4">已取消</case>
+                         </switch> 
+              </td>
+          		<td class="align-center">
+          			<if condition="$vo.reject eq 0"><a href="#" task_id="{$vo.task_id}" class="label success adtask_info" style="color:#FFFFFF">执行</a>
+          			</if>
+          		</td>
+          		<td class="align-center">
+          			<if condition="$vo.reject eq 0"><a href="#" class="label important reject_order" style="color:#FFFFFF">拒单</a>
+          			<elseif condition="$vo.reject eq 1"/><span class="label important">已拒单</span>
+          			<elseif condition="$vo.reject eq 2"/><span class="label success">已完成</span>
+          			</if>
+          		</td>
+          	</tr>
+          	</foreach>
+          </if>
+         </tbody>
+    </table>
+    <div class="table_title"><span>非今日待执行订单：</span></div>
+    <div class="list_header">  
+        <form id="task_search" method="post">
+            <div class="pull-left" style="line-height:28px;">
+                <div class="pull-left">起止时间：</div>
+                <div class="input-append pull-left calendar">
+                    <input id="start_time" name="start_time" style="width:120px;cursor:pointer;" type="text" value=""><span class="calendar_append"></span>
+                    <label class="add-on"><button type="button"><img src="{&APP_IMAGE}company/date.png"></button></label>
+                </div>
+                <div class="pull-left">&nbsp;-&nbsp;</div>
+                <div class="input-append pull-left calendar">
+                    <input id="end_time" name="end_time" style="width:120px;cursor:pointer;" type="text" value=""><span class="calendar_append"></span>
+                    <label class="add-on"><button type="button"><img src="{&APP_IMAGE}company/date.png"></button></label>
+                </div>
+            </div>
+            <div class="pull-right" style="line-height:28px;">
+                &nbsp;<select id="field2" name="field2" onchange="" ondblclick="" class="width-auto"><option value="order">订单编号</option><option value="task">活动名称</option><option value="weibo">微博账号</option></select>
+                &nbsp;<input type="text" class="medium" name="str2" id="str2" value="">
+                &nbsp;<button type="submit" class="btn">查询</button>
+            </div>
+        </form>
+        <script type="text/javascript">
+            $('.calendar input').calendar();
+        </script>
+    </div>
+    <table class="dash_table zebra-striped">
+        <thead>
+            <tr>	
+                <th class="align-center split" width="10%">订单号</th>
+                <th class="align-center split" width="15%">账号</th>
+                <th class="align-center split" width="auto">活动</th>
+                <th class="align-center split" width="10%">价格</th>
+                <th class="align-center split" width="15%">开始时间</th>
+                <th class="align-center split" width="9%">订单状态</th>
+                <th class="align-center split" width="8%">查询</th>
+            </tr>
+        </thead>
+        <tbody>
+              <if condition="$alist eq ''">
+            <tr>
+                <td class="align-center" colspan="8">
+                    没有找到可执行的订单...
+                </td>
+            </tr>
+          <else /> 
+          	<foreach name="alist" item="vo">
+          	<tr oid="{$vo.oid}">  
+          		<td class="align-center">{$vo.oid} </td>
+          		<td class="align-left"">{$vo.bname} </td>
+          		<td class="align-left">{$vo.name} </td>
+          		<td class="align-center"><if condition="$vo.type eq 'publish'">{$vo.publish_money}<else/>{$vo.money}</if> </td>
+          		<td class="align-center">{$vo.begintime|date="Y-m-d H:i",###} </td>
+          		<td class="align-center">
+          			 				<switch name="vo.state">
+                           	<case value="0">未派单</case>
+                           	<case value="1">已派单</case>
+                           	<case value="2">活动进行中</case>
+                           	<case value="3">派单完成</case>
+                           	<case value="4">已取消</case>
+                         </switch> 
+          	 </td>
+          		<td class="align-center">   
+          			<a href="#" task_id="{$vo.task_id}" class="label success looktask_info" style="color:#FFFFFF">查看</a>    			
+          		</td>
+          	</tr>
+          	</foreach>
+          </if>
+        </tbody>
+    </table>
+</div>
+<div id="judan" class="modal hide fade" getid="">
+    <div class="modal-header">
+        <a href="#" class="close">×</a>
+        <h5>拒单原因</h5>
+    </div>
+    <div class="modal-body">
+        <div class="com_info">
+            <table class="bordered-table" style="border-top:0px;">
+                <tbody>
+                <tr>
+                    <td width="5%" height="25" >
+                    	<input name="comment" id="comment1" value="此单为硬广" type="radio"/>
+                    </td>
+                		<td ><strong >此单为硬广</strong></td>
+                </tr>
+								<tr>
+                    <td width="5%" height="25" >
+                    	<input name="comment" value="时间冲突"  id="comment2" type="radio"/>
+                    </td>
+                		<td ><strong >时间冲突</strong></td>
+                </tr>
+                <tr>
+                    <td width="5%" height="25" >
+                    	<input name="comment" value="暂时离开" id="comment3" type="radio"/>
+                    </td>
+                		<td ><strong >暂时离开</strong></td>
+                </tr>
+                <tr>
+                    <td width="5%" height="25" >
+                    	<input name="comment" value="价格原因" id="comment4" type="radio"/>
+                    </td>
+                		<td ><strong >价格原因</strong></td>
+                </tr>
+                <tr >
+                <tr>
+                    <td width="5%" height="25" >
+                    	<span class="label">其它原因</span>
+                    </td>
+                		<td ><textarea id="other" onclick="check_comment()" style="width:200px;height:80px;"></textarea></td>
+                </tr>
+                <tr >
+                    <td width="5%" height="25"  id="" style="border-right:none;"></td>
+                <td style="border-left:none;">
+                	<input type="submit" onclick="return reject_submit()" class="btn success" value="提交">&nbsp;
+                	<input type="button" onclick="$('#judan').modal('hide');" class="btn" value="取消">
+                </td>
+                </tr>                                             
+            </tbody></table>
+        </div>
+    </div>
+</div>
+<div id="adtask_info" class="modal hide fade" getid="">
+    <div class="modal-header">
+        <a href="#" class="close">×</a>
+        <h5></h5>
+    </div>
+    <div class="modal-body">
+        <div class="com_info">
+            <table class="bordered-table" style="border-top:0px;">
+                <tbody><tr>
+                    <td width="50%" height="25" id="adtask_info_type"><strong class="label">活动类型：</strong><span></span></td>
+                    <td width="50%" height="25" id="adtask_info_platform"><strong class="label">投放平台：</strong><span></span></td>
+                </tr>
+                <tr>
+                    <td width="50%" height="25" colspan="2" id="adtask_info_url"><strong class="label" id="z_c">转发链接：</strong><span></span></td>
+                </tr>
+                <tr>
+                    <td width="50%" height="25" colspan="2" id="adtask_info_begintime"><strong class="label">开始时间：</strong><span></span></td>
+                </tr>
+                <tr>
+                    <td width="50%" height="25" colspan="2" id="adtask_info_content"><strong class="label" id="z_c2">转发语言：</strong><span></span></td>
+                </tr>
+                <tr>
+                    <td width="50%" height="25" colspan="2" id="adtask_info_remark"><strong class="label">其他要求：</strong><span></span></td>
+                </tr>
+                <tr id="hidden">
+                    <td width="50%" height="25" colspan="2" ><strong class="label success" id="z_c3">转发链接：</strong><span><input id="referer" name="referer"/></span><input style="margin-left:10px" type="button" value="完成" onclick="finish_order(this.value)" class="label success" ></td>
+                </tr>
+            </tbody></table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript"> 
+	function check_comment()
+	{
+		for (var i=1;i<=4;i++)
+		{
+			$('#comment'+i).attr('checked',false);
+		}
+	}	
+	
+	function build_adtask_info(obj){
+        $("#adtask_info").attr("getid", getid);
+        $("#adtask_info .modal-header h5").html("<span class='label important'>“"+obj.name+"”</span> 活动详情");
+        $("#adtask_info #adtask_info_type span").html(obj.type);
+        $("#adtask_info #adtask_info_platform span").html(obj.platform);
+        $("#adtask_info #adtask_info_url span").html('<a href="'+obj.url+'" title="'+obj.url+'" target="_blank">'+obj.url+'</a>');
+        $("#adtask_info #adtask_info_begintime span").html(obj.begintime);
+        $("#adtask_info #adtask_info_content span").html(obj.content);
+        $("#adtask_info #adtask_info_remark span").html(obj.remark);
+        if (obj.t!=1)
+        {
+        	$('#z_c2').html('直发语言：');
+        	$('#z_c').html('直发图片：');
+        	$('#z_c3').html('直发链接：');
+        	if (obj.image=='')
+        		$("#adtask_info #adtask_info_url span").html('无图片');
+        	else
+        		$("#adtask_info #adtask_info_url span").html('<a href="'+obj.image+'" title="查看图片" class="label success" target="_blank">查看图片</a>');
+        }  
+        $('#adtask_info').modal({
+            backdrop: true,
+            keyboard: true,
+            show: true
+        });
+  }
+    
+    
+    $(".adtask_info").click(function(){
+    		getid = $(this).parent("td").parent("tr").attr("oid");
+    	 $.post("{$getinfo}", {task_id: $(this).attr("task_id")}, function(request){
+            if(request.status==1){
+                build_adtask_info(request.data);
+                $('#hidden').show();
+                return false;
+            }else{
+                alert(request.info);
+                return false;
+            }
+        }, "json");  
+        return false;      
+    });
+		
+		$(".looktask_info").click(function(){
+    		getid = $(this).parent("td").parent("tr").attr("oid");
+    	 $.post("{$getinfo}", {task_id: $(this).attr("task_id")}, function(request){
+            if(request.status==1){
+            		$('#hidden').hide();
+                build_adtask_info(request.data);
+                return false;
+            }else{
+                alert(request.info);
+                return false;
+            }
+        }, "json");  
+        return false;      
+    });
+	
+		var oid2=0;
+    $(".reject_order").click(function(){
+    	oid2 = $(this).parent("td").parent("tr").attr("oid");
+        $('#judan').modal({
+            backdrop: true,
+            keyboard: true,
+            show: true
+        });       
+    });
+    function reject_submit(obj)
+    {
+    	var comment='';
+    	for(var i=1;i<=4;i++)
+    	{
+    		if ($('#comment'+i).attr('checked')!= undefined)
+    		{
+    			comment = $('#comment'+i).val();
+    		}
+    	}
+    	if (comment=='' && $('#other').val()!='')
+    		comment=$('#other').val();
+    	if (comment=='')
+    	{
+    		alert('请选择或填写拒单原因！');
+    		return false;
+    	}
+    	
+        $.post("{$hreject}", {tblog_id: oid2,comment: comment}, function(request){
+            if(request.status==1){
+                $("table tr[oid="+request.info+"]").remove();
+                $('#judan').modal('hide');
+            }else{
+                alert(request.info);
+            }
+        }, "json");
+    }
+    
+    
+    var reg = {
+        url: /^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\':+!]*([^<>\"\"])*$/
+    }
+    function finish_order(oid){
+        if(!reg.url.test($("#referer").val())){
+            alert("URL格式不正确！URL必须以http://开头");
+        }else{
+            $.post("{$referer}", {tblog_id:$("#adtask_info").attr('getid'),url:$("#referer").val()}, function(request){
+                if(request.status == 1){
+                    $("table tr[oid="+request.info+"]").remove();
+                    $('#adtask_info').modal('hide');
+                }else{
+                    alert(request.info);
+                }
+            }, "json");
+        }
+    }
+    var s = 600;
+    var auto = window.setInterval(function(){
+        s-= 1;
+        $("#auto_refresh span").text(s);
+        if(s <= 0){
+            window.clearInterval(auto);
+            history.go(0);
+        }
+    }, 1000);</script>
+    </div>
+
+<include file="public:footer_blog" />

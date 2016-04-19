@@ -1,0 +1,184 @@
+<include file="public:header_company" />
+
+ <div class="container">
+            <div class="content" style="padding-top:30px;">
+
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span>查看微博主</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <form id="choose_weibo" method="get" style="margin:0px;">
+    		<input type="hidden" name="m" value="company"/>
+    		<input type="hidden" name="a" value="bloger"/>
+        <ul class="tabs first_tabs" style="margin:0px;border-bottom:0px;">
+    <li <eq name="cls" value="all">class="active"</eq>><a href="{$company.bloger}">全部微博主</a></li>
+    <li <eq name="cls" value="grass">class="active"</eq>><a href="{$company.bloger}&cls=grass">草根微博主</a></li>
+    <li <eq name="cls" value="red">class="active"</eq>><a href="{$company.bloger}&cls=red">红人馆</a></li>
+    <li <eq name="cls" value="media">class="active"</eq>><a href="{$company.bloger}&cls=media">媒体汇</a></li>
+    <li <eq name="cls" value="small">class="active"</eq>><a href="{$company.bloger}&cls=small">精品小号</a></li>
+    <li><a href="{$company.bloger_hots}">热门微博主</a></li>
+    <li><a href="{$company.bloger_history}">查看历史</a></li>
+    <li><a href="{$company.bloger_fav}">查看收藏</a></li>
+    <li><a href="{$company.bloger_block}">查看黑名单</a></li>
+</ul>
+        <div class="list_header">
+            <div style="padding:0px;">
+                <span>&nbsp;价格：</span><input type="text" class="span1" id="money1" name="money1" value="">&nbsp;-&nbsp;<input type="text" class="span1" id="money2" name="money2" value="">
+                <span>&nbsp;粉丝数量：</span><input type="text" class="span1" id="fans1" name="fans1" value="">&nbsp;-&nbsp;<input type="text" class="span1" id="fans2" name="fans2" value="">
+                 <span>&nbsp;
+                 	<select style="width:120px;" onchange="keyword(this)">
+                 		<option value=''>常用微博主分类</option>
+                 		{$cs}
+                 	</select>
+                 </span>
+                <span>&nbsp;关键字：</span><input type="text" class="span2" id="keywords" name="keywords" value="" data-placement="below" rel="twipsy" data-original-title="搜索微博关键字，多个关键字请以空格分开，最多能输入10个关键字">
+                <!--<span>&nbsp;博主名称：</span><input type="text" class="span2" id="name" name="name" value="">-->
+                &nbsp;<select id="platform" name="platform" onchange="" ondblclick="" class="width-auto"><option value="all">全部平台</option><option value="sina">新浪微博</option><option value="qq">腾讯微博</option></select>
+                <span>&nbsp;是否加V：</span><select id="verify" name="verify" onchange="" ondblclick="" class="width-auto"><option value="all">全部</option><option value="Y">是</option><option value="N">否</option></select>
+                <span>&nbsp;</span><button type="submit" class="btn info" style="width:56px;height:29px;">搜索</button>
+            </div>
+        </div>
+        <input type="hidden" id="act" name="act" value="other">
+        <input type="hidden" name="cls" value="{$cls}">
+        <script type="text/javascript">
+        		function keyword(obj)
+        		{
+        			$('#keywords').val($(obj).val());
+        		}
+//            $("#platform,#verify").change(function(){
+//                $("#choose_weibo").submit();
+//            });
+            $(function(){
+                $("input[rel=twipsy]").twipsy();
+            });
+        </script>
+    </form>
+    <table id="choose_weibo_table" class="dash_table zebra-striped">
+        <thead>
+            <tr>
+                <th class="align-center split" width="6%">平台</th>
+                <th class="align-left split" width="">微博主名称</th>
+                <th class="align-left split" width="7%">
+                   <a href="javascript:sort('zp_rate','{$s.zp_rate}')">转评率<span class="arrows_{$class.zp_rate}"></span></a>                
+                </th>
+                <th class="align-left split" width="9%">
+                                        <a href="javascript:sort('fansnum','{$s.fansnum}')">粉丝数量<span class="arrows_{$class.fansnum}"></span></a>                </th>
+                <th class="align-left split" width="9%">
+                                        <a href="javascript:sort('com_money','{$s.com_money}')">转发价格<span class="arrows_{$class.com_money}"></span></a>                </th>
+                <th class="align-left split" width="9%">
+                   <a href="javascript:sort('com_pmoney','{$s.com_pmoney}')">直发价格<span class="arrows_{$class.com_pmoney}"></span></a>                
+                </th>
+                <th class="align-left split" width="9%">
+                   <a href="javascript:sort('month_order','{$s.month_order}')">月订单量<span class="arrows_{$class.month_order}"></span></a>                
+                </th>
+                <th class="align-left split" width="6%">
+                   <a href="javascript:sort('week_order','{$s.week_order}')">周订单量<span class="arrows_{$class.week_order}"></span></a>
+                </th>
+                <th class="align-center split" width="6%">受众性别</th>
+                <th class="align-center split" width="6%">受众地区</th>
+                <!--<th class="align-left split" width="10%">
+                                        <a href="javascript:sort('hots','{$s.hots}')">热度<span class="arrows_{$class.hots}"></span></a>                </th>-->
+                <th class="align-center split" width="7%">收藏</th>
+                <th class="align-center" width="5%">加黑</th>
+            </tr>
+        </thead>
+        <tbody>
+        	<foreach name="list" item="vo">
+            <tr wid="{$vo.blog_id}">
+                <td class="align-center">
+                	<if condition="$vo.platform eq 'sina'">新浪
+                	<else />腾讯
+                	</if>
+                </td>
+                <td class="align-left" style="padding-left:10px;">
+                	<div style="float: left;">
+							       <a target="_blank" href="{$vo.weibo}">
+							       				       		<img src="{$vo.image}" style="float: left;margin-right: 4px;width: 39px;">
+							       </a>
+						           <div style="float: left;width: 140px;text-align: left;color: #666;line-height: 21px;">
+						           	<span class="username">
+						           		<a href="{$vo.weibo}" target="_blank" rel="twipsy" data-original-title="微博标签：<if condition="$vo.keywords eq ''">无<else/>{$vo.keywords}</if>">
+                      			{$vo.nick}
+                      		</a>
+                      	</span>
+							           <if condition="$vo.verifyinfo eq 'Y'"><img src="{&APP_IMAGE}company/v.gif"></if>
+							           <p style="height:16px;line-height:16px;margin-bottom:0px;">
+								           <if condition="$vo.sex eq 'm'"><img src="{&APP_IMAGE}company/boy.gif" width="9" >
+								           <elseif condition="$vo.sex eq 'f'"/><img src="{&APP_IMAGE}company/gril.gif" width="9" ></if>
+								           <span><!--{$vo.location}--></span>
+							           </p>
+						       			</div>
+						       </div>
+                    
+                </td>
+                <td class="align-center"><span style="color:green"><if condition="$vo.zp_rate eq 0">数据不足<else/>{$vo.zp_rate}</if></span></td>
+                <td class="align-left"><span>{$vo.fansnum}</span></td>
+                <td class="align-left"><span style="color:orangered;">{$vo.com_money} 元</span></td>
+                <td class="align-left"><span style="color:orangered;">{$vo.com_pmoney} 元</span></td>
+                <td class="align-center"><span >{$vo.month_order}</span></td>
+                <td class="align-center"><span >{$vo.week_order}</span></td>
+                <td class="align-center">
+                	<span style="color:orangered;">
+                	<switch name="vo.to_sex">
+                		<case value="0">泛</case>
+                		<case value="1">男</case>
+                		<case value="2">女</case>
+                	</switch>
+                	</span>
+                </td>
+                <td class="align-center">
+                    <span>{$vo.location}</span>
+                </td>
+                <!--<td class="align-left">
+                    <if condition="$vo.hots gt 1"><img src="{&APP_IMAGE}company/redu4.jpg">
+                    <else /> <img src="{&APP_IMAGE}company/redu1.jpg">
+                  	</if>
+                </td>-->
+                <td class="align-center">
+                           <if condition="$vo.bfav_id neq ''"><span style='color:#999'>已收藏</span>
+                           <else/><a href="javascript:void(0);" class="fav_weibo"><img src="{&APP_IMAGE}company/folder_user.png"></a>
+                           </if>                </td>
+                <td class="align-center">
+                    <a href="javascript:void(0);" class="block_weibo"><img src="{&APP_IMAGE}company/bomb.png"></a>
+                </td>
+            </tr> 
+         	</foreach>
+        </tbody>
+    </table>
+    <div class="page_style">{$page}    <div style="clear:both"></div>
+    <script type="text/javascript">
+        function sort(sort, direction){
+            var url = "{$url}";
+            location.href = url+'&sort='+sort+'&direction='+direction;
+        }
+        $("a[rel=twipsy]").twipsy({live:true,placement:'right'});
+        var view_items = {};
+        function select_id($obj){
+            return $obj.parent("td").parent("tr").attr("wid");}
+        $(".fav_weibo").click(function(){
+            var $this = $(this);
+            $.post("{$blog_add_fav}", {blog_id:select_id($this)}, function(request){
+                if(request.status == 1){
+                    $this.parent("td").html("<span style='color:#999'>已收藏</span>");
+                }else{ 
+                    alert(request.info);
+                }
+            }, "json");
+        });
+        $(".block_weibo").click(function(){
+            var $this = $(this);
+            $.post("{$blog_add_block}", {blog_id:select_id($this)}, function(request){
+                if(request.status == 1){
+                    $this.parent("td").parent("tr").remove();
+                }else{ 
+                    alert(request.info);
+                }
+            }, "json");
+            
+        });
+    </script>
+</div>
+    </div>
+</div>
+<include file="public:footer_company" />

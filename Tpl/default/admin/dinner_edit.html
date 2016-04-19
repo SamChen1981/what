@@ -1,0 +1,60 @@
+<include file="public:header_admin" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span>增加套餐</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <form action="" method="post" style="width:650px;margin:50px auto;">
+        <div class="clearfix">
+            <label for="oldpassword">套餐名称：</label>
+            <div class="input">
+                <input class="xlarge" id="name" name="name" size="30" value="{$info.name}" type="text" >
+                <span class="help-inline">*</span>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="platform">投放平台：</label>
+            <div class="input">
+                <select id="platform" name="platform" onchange="" ondblclick="" class="xlarge">
+                	<option value="sina" <eq name="info.platform" value="sina">selected</eq> >新浪微博</option>
+                	<option value="qq"  <eq name="info.platform" value="qq">selected</eq>>腾讯微博</option>
+                </select>
+                <span class="help-inline">* </span>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="password">套餐价格：</label>
+            <div class="input">
+                <input class="xlarge" id="password" name="money" value="{$info.money}" size="30" type="text" maxlength="16">
+                <span class="help-inline">* </span>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="repassword">套餐介绍：</label>
+            <div class="input">
+                <input class="xlarge" id="repassword" name="content" value="{$info.content}" size="30" type="text" >
+                <span class="help-inline">* </span>
+            </div>
+        </div>
+        <div class="actions">
+            <button type="submit" class="btn primary" id="submit_repass">确认修改</button>
+            &nbsp;&nbsp;
+            <button type="reset" class="btn">重置</button>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+$("#submit_repass").click(function(){
+    var name = $("#name").val();
+    if(!name){
+        alert("名称必须输入");
+    }else return true;
+    return false;
+})    
+</script>
+    </div>
+
+<include file="public:footer_admin" />

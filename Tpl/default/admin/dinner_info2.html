@@ -1,0 +1,66 @@
+<include file="public:header_admin" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span>套餐信息</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+			<form style="width:750px;margin:50px auto;">
+        <div class="clearfix">
+            <label for="oldpassword">套餐名称：</label>
+            <div class="input">
+                <input class="xlarge" id="name" name="name" size="30" value="{$info.name}" type="text" >
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="platform">投放平台：</label>
+            <div class="input">
+              <eq name="info.platform" value="sina"><span class="label success">新浪微博</span></eq>
+              <eq name="info.platform" value="qq"><span class="label success">腾讯微博</span></eq>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="password">套餐价格：</label>
+            <div class="input">
+                <input class="xlarge"  value="{$info.money}" size="30" type="text" maxlength="16">
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="password">支付状态：</label>
+            <div class="input">
+                <if condition="$info.pay_state eq 'Y'"><span class="label success">已支付</span><else/><span class="label important">未支付</span></if>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="repassword">购买用户：</label>
+            <div class="input">
+                <input class="xlarge" value="{$info.realname}" size="30" type="text" > 
+                <span class="help-inline"><a href="index.php?m=admin&a=hgcompany&member_id={$info.member_id}&act=edit" target="_blank" class="label warning">查看用户信息</a></span>
+            </div>
+            
+        </div>
+        <div class="clearfix">
+            <label for="repassword">用户要求：</label>
+            <div class="input">
+                <textarea style="width:270px ;height:120px;" >{$info.content}</textarea>
+            </div>
+        </div>
+        <div class="actions">
+            <button type="button" onclick="history.go(-1);" class="btn">返回</button>
+        </div>
+      </form>
+</div>
+<script type="text/javascript">
+$("#submit_repass").click(function(){
+    var name = $("#name").val();
+    if(!name){
+        alert("名称必须输入");
+    }else return true;
+    return false;
+})    
+</script>
+    </div>
+
+<include file="public:footer_admin" />

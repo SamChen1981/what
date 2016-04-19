@@ -1,0 +1,150 @@
+<include file="public:header_blog" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span><a href="http://wbz.weiqc.com/Weibo/lists.html">微博信息</a><span class="gt">&gt;</span>添加微博</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <form id="user_form" action="{$hweibo_add}" method="post" style="margin:10px auto;">
+        <div class="pull-left">
+            <fieldset>
+                <legend>基本信息</legend>
+                <div class="clearfix">
+                    <label for="platform">* 微博平台：</label>
+                    <div class="input">
+                        <select id="platform" name="platform" onchange="" ondblclick="" class="xlarge"><option value="sina">新浪微博</option><option value="qq">腾讯微博</option></select>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="name">* 微博名称：</label>
+                    <div class="input">
+                        <input class="xlarge" id="name" name="name" type="text" rel="twipsy" value="">
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="weibo">* 微博URL：</label>
+                    <div class="input">
+                        <input class="xlarge" id="weibo" name="weibo" type="text" rel="twipsy" value="" data-original-title="微博URL必须包含http://">
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="fansnum">* 粉丝数量：</label>
+                    <div class="input">
+                        <input class="xlarge" id="fansnum" name="fansnum" type="text" rel="twipsy" value="" data-original-title="粉丝数必须为正整数">
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="money">* 转发价格：</label>
+                    <div class="input">
+                        <input class="xlarge" id="money" name="money" type="text" rel="twipsy" value="" data-original-title="转发价格保留两位小数">
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="money">直发价格：</label>
+                    <div class="input">
+                        <input class="xlarge" id="publish_money" name="publish_money" type="text" rel="twipsy" value="" data-original-title="可选直发价格保留两位小数">
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="click_money">点击价格：</label>
+                    <div class="input">
+                        <input class="xlarge" id="click_money" name="click_money" type="text" rel="twipsy" value=""
+                               data-original-title="可选点击价格保留两位小数">
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="keywords">* 关键字：</label>
+                    <div class="input">
+                        <textarea name="keywords" id="keywords" class="xlarge" rel="twipsy" rows="3" data-original-title="可选，多个关键字请以空格分隔"></textarea>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="pull-left">
+            <fieldset>
+                <legend>其他参数</legend>
+                <div class="clearfix">
+                    <label for="bind">微博ID：</label>
+                    <div class="input">
+                        <input class="xlarge" id="bind" name="bind" type="text" rel="twipsy" value="" data-original-title="可选参数，功能暂未开放">
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="twitternum">微博数：</label>
+                    <div class="input">
+                        <input class="xlarge" id="twitternum" name="twitternum" type="text" rel="twipsy" value="" data-original-title="可选参数，功能暂未开放">
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="follownum">关注数：</label>
+                    <div class="input">
+                        <input class="xlarge" id="follownum" name="follownum" type="text" rel="twipsy" value="" data-original-title="可选参数，功能暂未开放">
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="location">所在地区：</label>
+                    <div class="input">
+                        <input class="xlarge" id="location" name="location" type="text" rel="twipsy" value="" data-original-title="可选参数，功能暂未开放">
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="sex">微博受众：</label>
+                    <div class="input">
+                        <select id="sex" name="sex" onchange="" ondblclick="" class="xlarge"><option value="none">全部</option><option value="M">男性</option><option value="F">女性</option></select>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="soft">* 是否仅软广：</label>
+                    <div class="input">
+                        <select id="soft" name="soft" onchange="" ondblclick="" class="xlarge"><option value="N">否</option><option value="Y">是</option></select>
+                    </div>
+                </div>
+                
+                <div class="clearfix">
+                    <label for="verifyinfo">* 是否加V：</label>
+                    <div class="input">
+                        <select id="verifyinfo" name="verifyinfo" onchange="" ondblclick="" class="xlarge"><option value="N">未认证</option><option value="Y">已认证</option></select>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="reject">* 是否拒单：</label>
+                    <div class="input">
+                        <select id="reject" name="reject" onchange="" ondblclick="" class="xlarge"><option value="N">不拒单</option><option value="Y">拒单</option></select>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div style="clear:both;"></div>
+        <div class="actions">
+            <button type="submit" class="btn primary" onclick="return submit_form();">确认提交</button>&nbsp;&nbsp;
+            <button type="reset" class="btn danger">重置表单</button>&nbsp;&nbsp;
+            <button type="button" class="btn" onclick="history.back();">返回上一页</button>&nbsp;&nbsp;
+            <input type="hidden" name="id" id="id" value="">
+        </div>
+    </form>    
+</div>
+<div id="choose_bloger" class="modal hide fade"></div>
+<script type="text/javascript">
+$("[rel=twipsy]").twipsy({live:true,placement:'right'});
+function submit_form(){
+    if(!$("#name").val()){
+        alert("请填写微博名称！");return false;
+    }else if(!reg.url.test($("#weibo").val())){
+        alert("请填写正确的微博URL！URL必须以http://开头");return false;
+    }else if(!reg.number.test($("#fansnum").val()) || parseInt($("#fansnum").val()) <= 0){
+        alert("请填写大于0的正整数微博粉丝数！");return false;
+    }else if(!reg.money.test($("#money").val()) || parseFloat($("#money").val()) <= 0){
+        alert("请填写大于0的最多两位小数的转发价格！");return false;
+    }
+    if($("#id").val()){
+        if(!confirm('您确认要修改微博数据吗？\n修改后需要重新等待审核，在此期间您的微博将无法接单！')){
+            return false;
+        }
+    }
+}
+</script>
+    </div>
+
+<include file="public:footer_blog" />

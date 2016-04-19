@@ -1,0 +1,60 @@
+<include file="public:header_admin" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span><span class="gt">&gt;</span>修改密码</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <form action="{$hedit_pass}" method="post" style="width:650px;margin:50px auto;">
+        <div class="clearfix">
+            <label for="oldpassword">原密码：</label>
+            <div class="input">
+                <input class="xlarge" id="oldpassword" name="oldpassword" size="30" type="password" maxlength="16">
+                <span class="help-inline">* 6-16位字符或者数字</span>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="password">新密码：</label>
+            <div class="input">
+                <input class="xlarge" id="password" name="password" size="30" type="password" maxlength="16">
+                <span class="help-inline">* 6-16位字符或者数字</span>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="repassword">重复密码：</label>
+            <div class="input">
+                <input class="xlarge" id="repassword" name="repassword" size="30" type="password" maxlength="16">
+                <span class="help-inline">* 6-16位字符或者数字</span>
+            </div>
+        </div>
+        <div class="actions">
+            <button type="submit" class="btn primary" id="submit_repass">确认修改</button>
+            &nbsp;&nbsp;
+            <button type="reset" class="btn">重置</button>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+$("#submit_repass").click(function(){
+    var old = $("#oldpassword").val();
+    var pwd = $("#password").val();
+    var repwd = $("#repassword").val();
+    if(!old){
+        alert("请输入旧密码！");
+    }else if(old == pwd){
+        alert("新密码不能和旧密码相同！");
+    }else if(pwd.length < 6 || pwd.length >16){
+        alert("新密码长度不正确！");
+    }else if(pwd != repwd){
+        alert("新密码两次输入不相同！");
+    }else{
+        return true;
+    }    
+    return false;
+})    
+</script>
+    </div>
+
+<include file="public:footer_admin" />

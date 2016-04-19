@@ -1,0 +1,46 @@
+<include file="public:header_admin" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span>文章管理</div>
+<div class="child_main">
+    <div style="clear:both;">   </div>
+    <table class="dash_table zebra-striped">
+        <thead>
+            <tr>	
+                <th class="align-center split" width="6%">ID</th>
+                <th class="align-center split" width="14%">类型</th>
+                <th class="align-center split" width="auto">名称</th>
+                <th class="align-center split" width="10%">操作</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+        	<foreach name="list" item="vo">
+            <tr>
+                <td class="align-center">{$vo.article_id}</td>
+                <td class="align-left" style="color:orangered;">
+                	<if condition="$vo.type eq '1'">业界动态
+                  <elseif condition="$vo.type eq '2'" />帮助中心
+                  <elseif condition="$vo.type eq '3'" />关于我们
+                  <elseif condition="$vo.type eq '4'" />视频教程
+                  <elseif condition="$vo.type eq '5'" />通知公告
+                   </if>
+                </td>
+                <td class="align-left" style="color:orangered;">{$vo.name}</td>                
+								<td class="align-center">
+											 <a href="{$harticle}&article_id={$vo.article_id}&act=edit"> <span class="label marning" style="color:#FFFFFF" >编辑</span></a>
+                       <a href="{$harticle}&article_id={$vo.article_id}&act=del"> <span class="label important" style="color:#FFFFFF" >删除</span></a>             
+                </td>
+            </tr>   
+          </foreach>                 
+        </tbody>
+    </table>
+    <div class="page_style">{$page}</div>
+       <div style="clear:both;"></div>
+</div>
+    </div>
+
+<include file="public:footer_admin" />

@@ -1,0 +1,28 @@
+<include file="public:header" />
+
+<div id="container">
+    <div class="content clear">
+        <div class="sitemap">当前位置：首页 &gt; 视频教程</div>
+        <div class="conleft">
+            <div class="left_nav"><div class="top">视频教程</div>
+            	<ul>
+            		<foreach name="list" item="vo">
+            		<li><a href="{$video}&article_id={$vo.article_id}">{$vo.name}</a></li>
+            		</foreach>
+            	</ul>
+        </div><div class="blogarea box" style="padding:0 10px;">
+        <p style="margin-top:20px;">想了解更详细的信息，可以<a href="#">联系我们</a>,</p><p> 或在线注册留下相关信息：</p><div class="side_apply">
+        	<a href="{$register}" target="_blank">在线申请</a></div>
+        		</div>       
+        		</div>        
+        		<div class="conright">
+            <div class="page_content box">
+                <h4>{$info.name}</h4>
+               {$info.remark}           
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<include file="public:footer" />

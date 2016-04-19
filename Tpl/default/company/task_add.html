@@ -1,0 +1,190 @@
+<include file="public:header_company" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span><a href="{$company.task}">我的活动</a><span class="gt">&gt;</span>发布活动</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <div class="bz1">
+        <span class="bz_a1" style="color:#f30;">1.添加活动</span>
+        <span class="bz_a2">2.选择微博主</span>
+        <span class="bz_a3">3.提交创建</span>
+    </div>
+    <form id="task_add" action="" method="post" style="display:block;margin:50px 50px 100px;" enctype="multipart/form-data">
+        <div class="clearfix">
+            <label for="type">* 活动类型</label>
+            <div class="input">
+                <select id="type" name="type" onchange="check_change()" ondblclick="" class="xlarge">
+                	<option value="forward">转发</option>
+                	<option value="publish">直发</option>
+                    <option value="click">点击</option>
+                </select>
+                <span class="help-inline"></span>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="platform">* 投放平台</label>
+            <div class="input">
+                <select id="platform" name="platform" onchange="" ondblclick="" class="xlarge"><option value="sina">新浪微博</option><option value="qq">腾讯微博</option></select>
+                <span class="help-inline"></span>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="platform">* 软硬广</label>
+            <div class="input">
+                <select id="soft" name="soft" onchange="" ondblclick="" class="xlarge">
+                	<option value="Y">硬广</option>
+                	<option value="N">软广</option>                	
+                </select>
+                <span class="help-inline"></span>
+            </div>
+        </div>
+        <div class="clearfix check_row">
+            <label for="name">* 活动名称</label>
+            <div class="input">
+                <input class="xlarge" id="name" name="name" size="30" type="text" value="" onkeyup="check_keyup(this, [[2,28], reg.string ], [&#39;活动名称长度不正确！&#39;,&#39;活动名称不能含有特殊字符！&#39;]);">
+                <span class="help-inline">*</span>
+            </div>
+        </div>
+        <div class="clearfix check_row" id="z_url">
+            <label for="url">* 活动链接</label>
+            <div class="input">
+                <input class="xlarge" id="url" name="url" size="30" type="text" value="" onkeyup="check_keyup(this, reg.url, &#39;URL格式不正确！&#39;);">
+                <span class="help-inline">*</span>
+                <span class="help-block">转发链接请以http://开头</span>
+            </div>
+        </div>
+        <div class="clearfix check_row hide" id="z_image" >
+            <label for="url" id="the_upload_pic">直发图片</label>
+            <div class="input">
+                <input class="xlarge" id="image" name="photo" size="30" type="file" value="">
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="begintime">* 开始时间</label>
+            <div class="input">
+                <div class="input-append">
+                    <input class="medium" id="begintime" name="begintime" size="30" type="text" value="" style="cursor:pointer;" onkeydown="return false" onpaste="return false"><span class="calendar_append"></span>
+                    <label class="add-on"><img src="{&APP_IMAGE}company/date.png"></label>
+                    <span class="help-inline">*</span>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="endtime">* 结束时间</label>
+            <div class="input">
+                <div class="input-append">
+                    <input class="medium" id="endtime" name="endtime" size="30" type="text" value="" style="cursor:pointer;" onkeydown="return false" onpaste="return false"><span class="calendar_append"></span>
+                    <label class="add-on"><img src="{&APP_IMAGE}company/date.png"></label>
+                    <span class="help-inline">*</span>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix check_row">
+            <label for="content" id="content_label">* 转发语</label>
+            <div class="input">
+                <textarea class="xlarge" id="content" name="content" rows="5" onkeyup="check_keyup(this, [[1,255]], [&#39;转发语不能为空，最多只能输入255个字符！&#39;]);"></textarea>
+                <span class="help-inline">*</span>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="remark">其他要求</label>
+            <div class="input">
+                <textarea class="xlarge" id="remark" name="remark" rows="5"></textarea>
+                <span class="help-inline"></span>
+                <span class="help-block">请详细填写您的活动要求</span>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label>&nbsp;</label>
+            <div class="input">
+                <input type="hidden" name="d_id" id="d_id" value="0">
+                <input type="hidden" id="id" name="id" value="">
+                <button type="submit" id="next_btn" onclick="return submit_form();" data-loading-text="正在提交..." class="btn primary large">下一步</button>
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript">
+    		function check_change()
+    		{
+    			if ($('#type').val()=='publish' || $('#type').val() == "click")
+    			{
+    				$('#z_image').show();
+    				//$('#z_url').hide();
+                    console.log($('#type').val());
+                    if($('#type').val() == "click"){
+                        $('#content_label').html('* 点击内容');
+                        $('#the_upload_pic').html('点击图片');
+                    }else{
+                        $('#content_label').html('* 直发内容');
+                        $('#the_upload_pic').html('直发图片');
+                    }
+    				$('#url').val('http://aa.cc');
+    				$('#url').triggerHandler("keyup");
+    			}else{
+    				$('#z_image').hide();
+    				$('#z_url').show();
+    				$('#content_label').html('* 转发语');
+    				$('#url').val('');
+    				$('#url').triggerHandler("keyup");
+    			}
+    		}
+    	
+        $("#begintime").calendar().focus(function(){
+            blurStartTime();
+            blurEndTime();
+        });
+        function blurStartTime(){
+            var $begintime = $("#begintime");
+            if(!checktime($begintime.val())){
+                change_status($begintime, "error", "结束时间必须是当前日期30分钟后，7天之内的时间");
+            }else{
+                change_status($begintime);
+            }
+        }
+        $("#endtime").calendar().focus(function(){
+            blurStartTime();
+            blurEndTime();
+        });
+
+        function blurEndTime(){
+            var $endtime = $("#endtime");
+            if(!checktime($endtime.val())){
+                change_status($endtime, "error", "结束时间必须是当前日期30分钟后，7天之内的时间");
+            }else{
+                change_status($endtime);
+            }
+        }
+
+            /*
+        $("#begintime,#endtime").blur(function(){
+            $(this).triggerHandler('focus');
+        });
+        */
+
+        $("#name,#url,#content,#remark").blur(function(){
+            $(this).triggerHandler("keyup");
+        });
+        function submit_form(){    
+            if($("#task_add > div.success").length<4){
+                alert("您还有未正确填写的项\n\n * 请注意带星号(*)的均为必填项\n * 显示红色的表示输入存在问题，绿色表示正确");
+                if($("#task_add > div.error").length<=0){
+                    $("#task_add > div.clearfix:not(.success)").find("input").eq(0).focus();
+                }else{
+                    $("#task_add > div.error:first").find("input").focus().select();
+                }
+                return false;
+            }else{
+                $("#task_add > div.clearfix").addClass("success").find(".help-inline").html("<img src='"+__public__+"/images/poster/task_finish.png'>");
+                $("#next_btn").button("loading");	
+                return true;							
+            }
+        }
+    </script>
+</div>
+    </div>
+
+<include file="public:footer_company" />

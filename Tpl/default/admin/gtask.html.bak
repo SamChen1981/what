@@ -1,0 +1,116 @@
+<include file="public:header_admin" />
+<div class="container">
+    <div class="content" style="padding-top:30px;">
+        <div class="sitemap">
+            <b>当前位置:</b>
+            <span class="gt">&gt;</span>活动管理</div>
+        <div class="child_main">
+            <div style="clear:both;">   </div>
+            <div class="list_header" style="clear:both;">
+                <form id="task_search" method="post">
+                    <div class="pull-left" style="line-height:28px;">
+                        <div class="pull-left">排序：</div>
+                        <div class="pull-left">
+                            <select id="sort" name="sort" onchange="" ondblclick="" class="width-auto">
+                                <option value="">默认排序</option>
+                                <option value="desc">从高到底</option>
+                                <option value="asc">从低到高</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="pull-right" style="line-height:28px;">
+                        <div class="pull-left">&nbsp;搜索内容：</div>
+                        <div class="pull-left">&nbsp;<input type="text" class="medium" name="str" id="str" value=""></div>
+                        <div class="pull-left">&nbsp;
+                            <select id="field" name="field" onchange="" ondblclick="" class="width-auto">
+                                <option value="name">名称</option>
+                                <option value="platform">平台</option>
+                            </select></div>
+                        <div class="pull-left">&nbsp;<button type="button" onclick="subm()" class="btn">查询</button></div>
+                    </div>
+                </form>
+                <script type="text/javascript">
+                    function subm(){
+                        var url = "{$action}";
+                        location.href = url+'&sort='+$('#sort').val()+'&str='+$('#str').val()+'&field='+$('#field').val();
+                        return false;
+                    }
+                </script>
+            </div>
+            <table class="dash_table zebra-striped">
+                <thead>
+                <tr>
+                    <th class="align-center split" width="6%">ID</th>
+                    <th class="align-center split" width="auto">类型</th>
+                    <th class="align-center split" width="5%">平台</th>
+                    <th class="align-center split" width="10%">名称</th>
+                    <th class="align-center split" width="10%">url</th>
+                    <th class="align-center split" width="10%">开始时间</th>
+                    <th class="align-center split" width="18%">转发内容</th>
+                    <th class="align-center split" width="18%">其它说明</th>
+                    <th class="align-center split" width="7%">价格</th>
+                    <th class="align-center split" width="5%">状态</th>
+                    <th class="align-center split" width="6%">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <foreach name="val" item="info">
+                    <tr>
+                        <td class="align-center">{$info.task_id}</td>
+                        <td
+                                class="align-left"><if condition="$info.type eq 'publish'">直发<elseif
+                                condition="$info.type eq 'click'"/>点击<else/>转发</if></td>
+                        <td class="align-left" style="color:orangered;"><if condition="$info.platform eq 'sina'">新浪
+                            <else />腾讯
+                        </if></td>
+                        <td class="align-left" style="color:orangered;">{$info.name}</td>
+                        <td class="align-center">
+                            {$info.url}
+                        </td>
+                        <td class="align-center">
+                            {$info.begintime|date="y-m-d H:i",###}
+                        </td>
+                        <td class="align-center">
+                          <textarea> {$info.content}</textarea>
+                        </td>
+                        <td class="align-center">
+                            <textarea>{$info.remark}</textarea>
+                        </td>
+                        <td class="align-center">
+                            {$info.money}
+                        </td>
+                        <td class="align-center">
+                            <switch name="info.state">
+                                <case value="0">未派单</case>
+                                <case value="1">已派单</case>
+                                <case value="2">进行中</case>
+                                <case value="3">已完成</case>
+                                <case value="4">已取消</case>
+                            </switch>
+                        </td>
+                        <td class="align-center">
+                            <ul class="tabs min_menu">
+                                <li class="dropdown" data-dropdown="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle">操作</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{$hgtask}&task_id={$info.task_id}&act=look" target="_blank">查看活动</a></li>
+                                        <li><a href="{$hgtask}&task_id={$info.task_id}&act=edit" target="_blank">编辑</a></li>
+                                        <li><a href="{$hgtask}&task_id={$info.task_id}&act=fade">退单</a></li>
+                                       <li><a href="{$hgtask}&task_id={$info.task_id}&act=jiesuan">结算该活动</a></li>
+                                        <li><a href="{$hgtask}&task_id={$info.task_id}&act=del">删除</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </foreach>
+                </tbody>
+            </table>
+            <div class="page_style">{$page}</div>
+            <div style="clear:both;"></div>
+        </div>
+    </div>
+    <script>
+        $("a[rel=twipsy]").twipsy({live:true,placement:'right'});
+    </script>
+    <include file="public:footer_admin" />

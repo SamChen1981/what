@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>微推广－微博投放|微博广告|微博主接单平台</title>
+        
+        <meta name="keywords" content="微推广">
+        <meta name="description" content="微推广">
+        <!--[if lt IE 9]>
+        <script type="text/javascript" src="/Public/js/html5.js"></script>
+        <![endif]-->
+        <!--[if lt IE 7]>
+        <script type="text/javascript" src="/Public/js/ie7/IE7.js"></script>
+        <![endif]-->
+       <import file="jquery,bootstrap-modal,bootstrap-alerts,bootstrap-twipsy,bootstrap-popover,bootstrap-dropdown" basepath="./Tpl/default/public/js" />
+    	<import file="bootstrap-scrollspy,bootstrap-tabs,bootstrap-buttons,base,glDatePicker,jquery-calendar,form,xheditor" basepath="./Tpl/default/public/js" />
+    	
+    	<import type='css' file="bootstrap,poster,jquery-calendar,default,ui,bloger" basepath="./Tpl/default/public/css" />	
+        <script type="text/javascript">
+            var __public__ = "http://wbz.weiqc.com/Public";
+        </script>
+        <style type="text/css">
+            body,ul,li,p,table { margin:0px;padding:0px; }
+            html { overflow-x:hidden ; }
+            body { background:#eee; }
+            #header { width:100%;height:100px;background:url("http://wbz.weiqc.com/Public/images/home/bg.gif") repeat scroll 0 0 transparent;text-align:center; }
+			.header_bg{ height:100px; background:url("http://wbz.weiqc.com/Public/images/menu_bar.gif") repeat-x scroll 0 bottom transparent;}
+            #nav,#container,#footer { width:980px;margin:0px auto;clear:both; }
+            #nav { height:76px;padding:11px 0px;text-align:left; }
+            #logo { width:391px; }
+            #container { margin-top:0px;padding:20px 50px;border:1px solid #ccc;border-top:0px;background:#fff; }
+            #container form { display:block;width:90%;margin:20px auto; }
+            #footer { height:60px;line-height:60px;margin-bottom:20px;text-align:center;}
+            #sitemap { border-bottom:1px solid #ccc;height:26px;line-height:26px;margin-top:-10px;clear:both; }
+            .box_style {
+                box-shadow:0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+                    -webkit-box-shadow:0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+                    -moz-box-shadow:0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            }
+            .width-auto { width:auto !important; }
+        </style>
+    </head>
+    <body scroll="no">
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+        <span class="gt">&gt;</span> 操作成功
+</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;"/>
+<div class="child_main">
+    <div class="alert-message block-message success span8" style="height:250px;margin:40px auto;position:relative;background-image:url(http://ggz.weiqc.com/Public/images/success.gif);background-repeat:no-repeat;background-position:right bottom;">
+        <div style="clear:both;">
+            <div class="pull-left" style="width:80px;text-align:center;"><img src="http://ggz.weiqc.com/Public/images/success_face.gif" ></div>
+            <div class="pull-right" style="width:370px;text-align:left;"><span style="line-height:50px;font-size:26px;padding:3px 5px;font-family:'宋体';font-weight:bold;" class="label success">操作成功</span></div>
+        </div>
+        <div style="clear:both;"></div>
+        <div style="clear:both;width:94%;height:135px;margin:10px auto 20px;text-indent:24px;line-height:24px;text-align:justify;font-size:14px;">
+            {$message}        </div>
+                <div style="clear:both;text-align:center;">
+            系统将在&nbsp; <span id="waitSecond" style="color:red;font-weight:bold">{$waitSecond}</span>&nbsp;
+            秒后自动跳转,如果未跳转,直接点击 <a href="{$jumpUrl}" class="blue">这里</a> 跳转
+        </div>
+        <script type="text/javascript">
+            var delay = {$waitSecond};
+            window.setInterval(function(){
+                delay-= 1;
+                $("#waitSecond").html(delay);
+                if(delay == 0){
+                    window.location.href = '{$jumpUrl}';
+                }
+            }, 1000);
+        </script>    </div>
+</div>
+    </div>
+    
+<include file="public:footer_company" />

@@ -1,0 +1,43 @@
+<include file="public:header_company" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span>红包充值</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <form action="" method="post" style="width:750px;margin:50px auto;">
+        <div class="clearfix">
+            <label for="pay_partner">红包卡号: </label>
+            <div class="input">
+                <input class="xlarge"  name="card" size="30"  type="text" >
+                <span class="help-inline">* 卡号不能为空</span>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="pay_key">验证码: </label>
+            <div class="input">
+                <input class="xlarge"  name="verify" size="30" type="text" >
+                <image src="{$verify}">
+                <span class="help-inline">* 验证码不能为空</span>
+            </div>
+        </div>
+        <div class="actions">
+            <button type="submit" class="btn primary" id="submit_repass">确认</button>
+            &nbsp;&nbsp;
+            <button type="button" onclick="history.go(-1)" class="btn">取消</button>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    function addtes()
+    {
+    	$.post('{$testsms}',{smstest:$('#smstest').val()},function(request){
+    		alert(request.info);   		   	
+    	},'json');
+    }
+</script>
+    </div>
+
+<include file="public:footer_company" />

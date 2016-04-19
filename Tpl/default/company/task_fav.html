@@ -1,0 +1,348 @@
+<include file="public:header_company" />
+
+ <div class="container">
+            <div class="content" style="padding-top:30px;">
+               
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span>我的活动<span class="gt">&gt;</span>选择微博主</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <div class="bz1" style="background:url(http://ggz.weiqc.com/Public/images/poster/bz2.jpg) no-repeat;">
+        <span class="bz_a1">1.添加活动</span>
+        <span class="bz_a2"><font style="color:#f30;">2.选择微博主</font></span>
+        <span class="bz_a3">3.提交创建</span>
+    </div>
+    <div class="alert-title" style="margin:10px auto;padding:10px;">
+        <span class="task-success" style="padding:5px 8px 6px;">请为 <span class="task-verify">“{$info.name}”</span> 活动，选择您心仪的微博主</span>
+    </div>
+    <form id="choose_weibo" method="get" style="margin:0px;">
+    		<input type="hidden" name="m" value="company">
+        <input type="hidden" name="a" value="task_choose">
+        <input type="hidden" id="type" name="type" value="{$info['type']}">
+        <input type="hidden" name="act" value="fav">
+        <ul class="tabs first_tabs" style="margin:0px;border-bottom:0px;">
+            <li ><a href="{$select}&task_id={$hide.task_id}">全部微博主</a></li>
+				    <li ><a href="{$select}&cls=grass&task_id={$hide.task_id}">草根微博主</a></li>
+				    <li ><a href="{$select}&cls=red&task_id={$hide.task_id}">红人馆</a></li>
+				    <li ><a href="{$select}&cls=media&task_id={$hide.task_id}">媒体汇</a></li>
+				    <li ><a href="{$select}&cls=small&task_id={$hide.task_id}">精品小号</a></li>
+            <li><a href="{$select}&act=hots&task_id={$hide.task_id}">热门推荐</a></li>
+            <li class="active"><a href="{$select}&act=fav&task_id={$hide.task_id}">我的收藏</a></li>
+            <li><a href="{$select}&act=history&task_id={$hide.task_id}">我的历史</a></li>
+        </ul>
+        <div class="list_header">
+            <div style="padding:0px;">
+                <span>&nbsp;价格：</span><input type="text" class="span1" id="money1" name="money1" value="">&nbsp;-&nbsp;<input type="text" class="span1" id="money2" name="money2" value="">
+                <span>&nbsp;粉丝数量：</span><input type="text" class="span1" id="fans1" name="fans1" value="">&nbsp;-&nbsp;<input type="text" class="span1" id="fans2" name="fans2" value="">
+                 <span>&nbsp;
+                 	<select style="width:120px;" onchange="keyword(this)">
+                 		<option value=''>常用微博主分类</option>
+                 		{$cs}
+                 	</select>
+                 </span>
+                <span>&nbsp;关键字：</span><input type="text" class="span2" id="keywords" name="keywords" value="" data-placement="below" rel="twipsy" data-original-title="搜索微博关键字，多个关键字请以空格分开，最多能输入10个关键字">
+                <!--<span>&nbsp;博主名称：</span><input type="text" class="span2" id="name" name="name" value="">-->
+                &nbsp;<select id="platform" name="platform" onchange="" ondblclick="" class="width-auto"><option value="all">全部平台</option><option value="sina">新浪微博</option><option value="qq">腾讯微博</option></select>
+                <span>&nbsp;是否加V：</span><select id="verify" name="verify" onchange="" ondblclick="" class="width-auto"><option value="all">全部</option><option value="Y">是</option><option value="N">否</option></select>
+                <span>&nbsp;</span><button type="submit" class="btn info" style="width:56px;height:29px;">搜索</button>
+            </div>
+        </div>
+        <input type="hidden" id="id" name="task_id" value="{$info.task_id}">
+        <input type="hidden" id="act" name="act" value="other">
+        <input type="hidden" name="cls" value="{$cls}">        
+        <script type="text/javascript">
+        		function keyword(obj)
+        		{
+        			$('#keywords').val($(obj).val());
+        		}
+//            $("#choose_weibo select").change(function(){
+//                $("#choose_weibo").submit();
+//            });
+            $(function(){
+                $("input[rel=twipsy]").twipsy();
+            });
+        </script>
+    </form>
+    <table id="choose_weibo_table" class="dash_table zebra-striped">
+        <thead>
+            <tr>
+                <th class="align-left split" width="7%">
+                    全选 <input type="checkbox" id="allcheck" name="allcheck" style="vertical-align:middle;">
+                </th>
+                <th class="align-left split" width="">微博主名称</th>
+                <th class="align-left split" width="7%">
+                   <a href="javascript:sort('zp_rate','{$s.zp_rate}')">转评率<span class="arrows_{$class.zp_rate}"></span></a>                
+                </th>
+                <th class="align-left split" width="9%">
+                                        <a href="javascript:sort('fansnum','{$s.fansnum}')">粉丝数量<span class="arrows_{$class.fansnum}"></span></a>                </th>
+                <th class="align-left split" width="9%">
+                                        <a href="javascript:sort('com_money','{$s.com_money}')">转发价格<span class="arrows_{$class.com_money}"></span></a>                </th>
+                <th class="align-left split" width="9%">
+                   <a href="javascript:sort('com_pmoney','{$s.com_pmoney}')">直发价格<span class="arrows_{$class.com_pmoney}"></span></a>                
+                </th>
+                <th class="align-left split" width="7%">
+                   <a href="javascript:sort('month_order','{$s.month_order}')">月订单<span class="arrows_{$class.month_order}"></span></a>                
+                </th>
+                <th class="align-left split" width="7%">
+                   <a href="javascript:sort('week_order','{$s.week_order}')">周订单<span class="arrows_{$class.week_order}"></span></a>                
+                </th>
+                <th class="align-center split" width="8%">受众性别</th>
+                <th class="align-left split" width="6%">加黑</th>
+                <th class="align-center" width="6%">选择</th>
+            </tr>
+        </thead>
+        <tbody>
+        	<foreach name="list" item="vo">
+            <tr wid="{$vo.blog_id}">
+                <td class="align-center">
+	                <eq name="vo.reject" value="N"><input type="checkbox" id="weibo_{$vo.blog_id}" name="select" value="{$vo.blog_id}" style="vertical-align:middle;"></eq>
+	              </td>
+              
+                <td class="align-left" style="padding-left:10px;">
+                	<div style="float: left;">
+							       <a target="_blank" <eq name="vo.reject" value="Y"> rel="twipsy" data-original-title="此微博主暂时不接受订单，请选择其它微博主"</eq> href="{$vo.weibo}">
+							       				       		<img src="{$vo.image}" style="float: left;margin-right: 4px;width: 39px;">
+							       </a>
+						           <div style="float: left;width: 140px;text-align: left;color: #666;line-height: 21px;">
+						           	<span class="username">
+						           		<a href="{$vo.weibo}" target="_blank" rel="twipsy" data-original-title="微博标签：<if condition="$vo.keywords eq ''">无<else/>{$vo.keywords}</if>">
+                      			{$vo.nick}
+                      		</a>
+                      	</span>
+							           <if condition="$vo.verifyinfo eq 'Y'"><img src="{&APP_IMAGE}company/v.gif"></if>
+							           <p style="height:16px;line-height:16px;margin-bottom:0px;">
+								           <if condition="$vo.sex eq 'm'"><img src="{&APP_IMAGE}company/boy.gif" width="9" >
+								           <elseif condition="$vo.sex eq 'f'"/><img src="{&APP_IMAGE}company/gril.gif" width="9" ></if>
+								           <span>{$vo.location}</span>
+							           </p>
+						       			</div>
+						       </div>
+                    
+                </td>
+                <td class="align-center"><span style="color:green"><if condition="$vo.zp_rate eq 0">数据不足<else/>{$vo.zp_rate}</if></span></td>
+                <td class="align-left"><span>{$vo.fansnum}</span></td>
+                <td class="align-left"><span style="color:orangered;">{$vo.com_money} 元</span></td>
+                <td class="align-left"><span style="color:orangered;">{$vo.com_pmoney} 元</span></td>
+                <td class="align-center"><span >{$vo.month_order}</span></td>
+                <td class="align-center"><span >{$vo.week_order}</span></td>
+                <td class="align-center">
+                	<span style="color:orangered;">
+                	<switch name="vo.to_sex">
+                		<case value="0">泛</case>
+                		<case value="1">男</case>
+                		<case value="2">女</case>
+                	</switch>
+                	</span>
+                </td>
+                <td class="align-center">
+                    <a href="javascript:void(0);" class="block_weibo"><img src="{&APP_IMAGE}company/bomb.png"></a>
+                </td>
+                <td class="align-center">
+                    <eq name="vo.reject" value="N"><a href="javascript:void(0);" class="add_weibo"><img src="{&APP_IMAGE}company/basket_put.png"></a></eq>
+                </td>
+            </tr>
+        </foreach>                   </tbody>
+    </table>
+    <div class="page_style">
+    	{$page}
+    	<div style="clear:both;"></div>
+    </div>    
+    <div style="clear:both"></div>
+    <div class="actions" style="text-align:center;padding-left:0px;padding-right:0px;">
+        <button class="btn large danger" onclick="update_select(return_select());" type="button">添加选中的微博主</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn info large" onclick="view_weibo();" data-controls-modal="selected_weibo_view" data-backdrop="true" data-keyboard="true">预览已选择的微博主</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn large primary choose_next" type="button">完成选择，下一步</button>
+    </div>
+    <div id="selected_weibo_view" class="modal hide fade">
+        <div class="modal-header">
+            <a href="http://ggz.weiqc.com/Task/choose/id/4089.html#" class="close">×</a>
+            <h3>预览已选择的微博主</h3>
+        </div>
+        <div class="modal-body" style="padding:10px;">
+            <table class="dash_table zebra-striped" style="margin:0px;">
+                <thead>
+                    <tr>
+                        <th class="align-center split" width="8%">
+                            <input type="checkbox" id="view_allcheck" name="view_allcheck" style="vertical-align:middle;">
+                        </th>
+                        <th class="align-left split" width="">微博主名称</th>
+                        <th class="align-left split" width="18%">粉丝数量</th>
+                        <th class="align-left split" width="18%">转发价格</th>
+                        <th class="align-left split" width="18%">直发价格</th>
+                        <th class="align-left split" width="9%">删除</th>
+                        <th width="16" style="padding:0px !important;">&nbsp;</th>
+                    </tr>
+                </thead>
+            </table>
+            <div style="overflow-y:scroll;height:240px;">
+            <table class="zebra-striped" style="margin:0px;">
+                <tbody id="selected_weibo">
+                </tbody>
+            </table>
+            </div>
+            <div style="height:30px;line-height:30px;border-top:3px solid #4E9BCF;text-align:center;">
+                <span class="label success">已选择微博主总数： <span id="view_order_count" style="color:blue">0</span> 名</span>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="label warning">本次活动需要支付： <span id="view_order_total" style="color: red;">0.00</span> 元</span>
+            </div>
+        </div>
+        <div class="modal-footer align-center">
+            <button class="btn large danger" type="button" onclick="del_weibo(return_select(&#39;view_select&#39;));" style="float:none;">删除选中微博主</button>
+            &nbsp;
+            <button class="btn large primary choose_next" type="button" style="float:none;">确认无误，下一步</button>
+            &nbsp;
+            <button class="btn large" type="button" onclick="$(&#39;#selected_weibo_view&#39;).modal(&#39;hide&#39;);" style="float:none;">继续选择微博主</button>
+        </div>
+    </div>
+    <script type="text/javascript">
+    function sort(sort, direction){
+        var url = "{$url}";
+        location.href = url+'&sort='+sort+'&direction='+direction;
+    }
+    $("a[rel=twipsy]").twipsy({live:true,placement:'right'});
+        var view_items = {};
+        function select_id($obj){
+            return $obj.parent("td").parent("tr").attr("wid");}
+        function return_select(name){
+            var selected = [];
+            name?"":name = 'select';
+            $("input[name="+name+"]:checked").each(function(){
+                selected.push($(this).val());
+            });
+            return selected.join(",");
+        }
+        function update_select(weibo){
+            if(!weibo){
+                alert("请选择一个微博主！");
+            }else{
+                $.post("{$task_add_blog}", {task_id: $("#id").val(),blog_id: weibo}, function(request){
+                    if(request.status == 1 || request.status == 2){
+                        var tmp = weibo.split(",");
+                        for(var i=0;i<tmp.length;i++){
+                            $("#choose_weibo_table tbody tr[wid="+tmp[i]+"]").remove();
+                        }
+                        if (request.status == 2)
+                        	alert(request.info);
+                    }else{
+                        alert(request.info);
+                    }
+                },"json");
+            }
+        }
+        function del_weibo(weibo){
+        	
+            if(!weibo){
+                alert("请选择一个微博主！");
+            }else{
+                $.post("{$task_del_blog}", {task_id: $("#id").val(),blog_id: weibo}, function(request){
+                    if(request.status == 1){
+                        var tmp = weibo.split(",");
+                        var total = parseFloat($("#view_order_total").text());                       
+                        for(var i=0;i<tmp.length;i++){
+                            $("#selected_weibo tr[wid="+tmp[i]+"]").remove();
+                            if ($('#type').val()=='publish')
+                            	total-= parseFloat(view_items[tmp[i]].com_pmoney);
+                            else
+                            	total-= parseFloat(view_items[tmp[i]].com_money);                             
+                        }                        
+                        $("#view_order_count").html($("#selected_weibo tr").length);
+                        $("#view_order_total").html(formatFloat(total, 2));                      
+                    }else{
+                        alert(request.info);
+                    }
+                },"json");
+            }
+        }
+        function view_weibo(){
+            var row_begin = '<tr><td colspan="6">';
+            var row_end = '</td></tr>';
+            $("#selected_weibo").html(row_begin+'<img src="http://ggz.weiqc.com/Public/images/loading.gif" /> 数据加载中，请稍后...'+row_end);
+            $.post("{$task_view_blog}", {task_id:$("#id").val(),type:$("#type").val()}, function(request){
+                if(request.status == 1){
+                    if(request.data){                    	
+                        build_view(request.data, request.info);
+                    }else{
+                        $("#selected_weibo").html(row_begin+'您还没有选择微博主哦~'+row_end);
+                    }
+                }else{ 
+                    $("#selected_weibo").html(row_begin+'<img src="http://ggz.weiqc.com/Public/images/poster/task_verify.png"> '+request.info+row_end);
+                }
+            }, "json");
+        }
+        function build_view(items, money){
+            var row = '';
+            var total = 0;
+            for(var i=0;i<items.length;i++){
+                row+= '<tr wid="'+items[i]['blog_id']+'">';
+                row+= '<td class="align-center" width="8%">';
+                row+= '<input type="checkbox" id="view_'+items[i]['blog_id']+'" name="view_select" value="'+items[i]['blog_id']+'" style="vertical-align:middle;" /></td>';
+                row+= '<td class="align-left"><a href="'+items[i]['weibo']+'" target="_blank">'+items[i]['name'];
+                if(items[i]['verifyinfo'] == "Y"){
+                    row+= '<img src="http://ggz.weiqc.com/Public/images/poster/v.gif" />';
+                }
+                row+= '</a></td>';
+                row+= '<td class="align-left" width="18%"><span style="color:green">'+items[i]['fansnum']+'</span></td>';
+                row+= '<td class="align-left" width="18%"><span style="color:orangered;">'+items[i]['com_money']+' 元</span></td>';
+                row+= '<td class="align-left" width="18%"><span style="color:orangered;">'+items[i]['com_pmoney']+' 元</span></td>';
+                row+= '<td class="align-center" width="9%"><a href="javascript:void(0);" class="del_weibo"><img src="http://ggz.weiqc.com/Public/icon/delete.png" /></a></td></tr>';
+                view_items[items[i]['blog_id']] = items[i];
+            }
+            $("#selected_weibo").html(row);
+            $("#view_order_count").html(items.length);
+            $("#view_order_total").html(formatFloat(money, 2));
+            $(".del_weibo").unbind("click").bind("click", function(){
+                del_weibo(select_id($(this)));
+            });
+        }
+        function formatFloat(src, pos){
+            return Math.round(src*Math.pow(10, pos))/Math.pow(10, pos);
+        }
+        $("#allcheck").click(function(){
+            if(this.checked == true){
+                $("input[name=select]:enabled").attr("checked", true);
+            }else{
+                $("input[name=select]:enabled").attr("checked", false);
+            }
+        });
+        $("#view_allcheck").click(function(){
+            if(this.checked == true){
+                $("input[name=view_select]").attr("checked", true);
+            }else{
+                $("input[name=view_select]").attr("checked", false);
+            }
+        });
+        $(".fav_weibo").click(function(){
+            var $this = $(this);
+            $.post("{$blog_add_fav}", {blog_id:select_id($this)}, function(request){
+                if(request.status == 1){
+                    $this.parent("td").html("<span style='color:#999'>已收藏</span>");
+                }else{ 
+                    alert(request.info);
+                }
+            }, "json");
+        });
+        $(".block_weibo").click(function(){
+            var $this = $(this);
+            $.post("{$blog_add_block}", {blog_id:select_id($this)}, function(request){
+                if(request.status == 1){
+                    $this.parent("td").parent("tr").remove();
+                }else{ 
+                    alert(request.info);
+                }
+            }, "json");
+            
+        });
+        $(".add_weibo").click(function(){
+            update_select(select_id($(this)));
+        });
+        $(".choose_next").click(function(){
+            location.href = "{$task_pay}&task_id={$info.task_id}";
+        });
+    </script>
+</div>
+    </div>
+
+<include file="public:footer_company" />

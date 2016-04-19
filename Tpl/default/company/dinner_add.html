@@ -1,0 +1,109 @@
+<include file="public:header_company" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span>套餐活动<span class="gt">&gt;</span>申请套餐</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <div class="table_title">
+        <span>申请套餐</span>
+    </div>
+    <form action="{$hdinner_add}" enctype="multipart/form-data" method="post" style="margin-top:-15px;">
+        <fieldset>
+                        <div class="clearfix">
+                <label for="type">* 套餐类型</label>
+                <div class="input">
+                    <select name="dinner_id" id="dinner_id" onchange="change_dinner()">
+                    		<foreach name="list" item="vo">
+                                <option value="{$vo.dinner_id}">{$vo.name}</option>
+                         </foreach>                                               
+                    </select>
+                </div>
+            </div>
+            <div class="clearfix" id="dinner_money">
+                <label for="type">套餐类型价格</label>
+                <div class="input">
+                    <span class="uneditable-input" style="cursor:default;"></span>
+                </div>
+            </div>
+            <div class="clearfix" id="dinner_content">
+                <label for="type">套餐类型描述</label>
+                <div class="input">
+                    <pre class="prettyprint" style="width:520px;min-height:100px;margin:0px;"></pre>
+                </div>
+            </div>            <div class="clearfix">
+                <label for="name">* 套餐名称</label>
+                <div class="input">
+                    <input type="text" class="xxlarge" id="name" name="name" value="">
+                </div>
+            </div>
+            <div class="clearfix">
+                <label for="begintime">* 执行时间</label>
+                <div class="input">
+                    <input type="text" class="xxlarge" id="begintime" name="begintime" value="" style="width:120px;cursor:pointer;">
+                    <span class="help-inline">请选择套餐活动的执行时间</span>
+                </div>
+            </div>
+            <div class="clearfix">
+                <label for="content">* 套餐要求</label>
+                <div class="input">
+                    <textarea name="content" id="content" class="extend_edit xlarge" style="width: 540px; height: 300px; display: none; "></textarea>
+                    <span class="help-block">* 在套餐要求中可填写您需要做广告的内容以及广告商品图片</span>
+                </div>
+            </div>
+                    </fieldset>
+        <input type="hidden" name="id" id="id" value="">
+        <div class="actions">
+            <input type="submit" class="btn primary" onclick="return check_form();" value="保存">&nbsp;&nbsp;
+            <button type="button" onclick="if(confirm(&#39;确认要返回上一页吗？&#39;)) history.back();" class="btn">返回上一页</button>
+        </div>
+    </form>
+    <script type="text/javascript">
+        var dinner = {$code};
+        upload_file(".extend_edit", '{$upload}', false, {tools:"mini",upImgExt:"jpg,jpeg,gif,png",forcePtag:false,cleanPaste:3,internalStyle:false,inlineStyle:false,html5Upload:false});
+        change_dinner();
+ 				
+        function change_dinner(){
+            var dinner_id = $("#dinner_id option:selected").val();
+            $("#dinner_money span").html(" &yen; "+dinner[dinner_id].money);
+            $("#dinner_content pre").html(dinner[dinner_id].content);
+        }
+        function add_finish(){
+            var num = parseInt($("#finish_lists li[id^=finish_add_]").length) + 1;
+            var row = '<li id="finish_add_'+num+'"><input type="text" class="xlarge" name="finish[]" value="" \/>';
+            row+= '<a href="javascript:void(0);" onclick="delete_finish(\'finish_add_'+num+'\')"> - 删除<\/a><\/li>';
+            $("#add_finish").before(row);
+        }
+        function delete_finish(id){
+            $("#"+id).remove();
+        }
+        function check_form(){
+            if(!$("#name").val()){
+                alert("请输入套餐名称！");
+                $("#name").focus();
+                return false;
+            }else if(!$("#content").val()){
+                alert("请输入套餐要求！");
+                $("#content").focus();
+                return false;
+            }
+        }
+        $("#begintime").glDatePicker({
+            onChange: function(target, newDate){
+                target.val(
+                    newDate.getFullYear() + "-" +
+                    ((newDate.getMonth() + 1)<10?"0" + (newDate.getMonth() + 1):(newDate.getMonth() + 1)) + "-" +
+                    (newDate.getDate()<10?"0"+newDate.getDate():newDate.getDate())
+                );
+            },
+            showPrevNext: true,
+            allowOld: false,
+            startDate: new Date()
+        });
+    </script>
+</div>
+    </div>
+
+<include file="public:footer_company" />

@@ -1,0 +1,155 @@
+<include file="public:header_blog" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span><a href="http://wbz.weiqc.com/Weibo/lists.html">微博信息</a><span class="gt">&gt;</span>微博详情</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <div style="width:800px;margin:30px auto;">
+        <form>
+            <div class="pull-left">
+                <div class="clearfix">
+                    <label>微博平台</label>
+                    <div class="input">
+                        <span class="uneditable-input default-cursor">
+                        	<if condition="$info.platform eq 'sina'">腾讯微博
+                        	<else />腾讯微博
+                        	</if>
+                        </span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label>账号名称</label>
+                    <div class="input">
+                        <span class="uneditable-input default-cursor">{$info.name}</span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label>微博URL</label>
+                    <div class="input">
+                        <span class="uneditable-input default-cursor">{$info.weibo}</span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label>粉丝数</label>
+                    <div class="input">
+                        <span class="uneditable-input default-cursor">{$info.fansnum}</span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label>是否加V</label>
+                    <div class="input">
+                        <span class="uneditable-input default-cursor">
+                        	<if condition="$info.verifyinfo eq 'N'">未认证
+                        	<else />已认证
+                        	</if>
+                        </span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label>转发价</label>
+                    <div class="input">
+                        <span class="uneditable-input default-cursor">{$info.money}</span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label>直发价</label>
+                    <div class="input">
+                        <span class="uneditable-input default-cursor">{$info.publish_money}</span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label>是否仅软广</label>
+                    <div class="input">
+                        <span class="uneditable-input default-cursor">否</span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label>微博关键字</label>
+                    <div class="input">
+                        <textarea class="default-cursor" readonly="true" style="background:#fff;height:50px;">{$info.keywords}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="pull-left">
+                <div class="clearfix">
+                    <label for="bind">微博ID：</label>
+                    <div class="input">
+                        <span class="uneditable-input default-cursor">{$info.bind}</span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="twitternum">微博数：</label>
+                    <div class="input">
+                        <span class="uneditable-input default-cursor">{$info.twitternum}</span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="follownum">关注数：</label>
+                    <div class="input">
+                        <span class="uneditable-input default-cursor">{$info.follownum}</span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="location">所在地区：</label>
+                    <div class="input">
+                        <span class="uneditable-input default-cursor">{$info.location}</span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="sex">微博受众：</label>
+                    <div class="input">
+                        <span class="uneditable-input default-cursor">
+                        	<if condition="$info.sex eq 'none'">全部
+                        	<elseif condition="$info.sex eq 'M'" />男性
+                        	<else />女性
+                        	</if>
+                        </span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label>是否接单：</label>
+                    <div class="input">
+                        <span class="uneditable-input default-cursor">
+                        	<if condition="$info.reject eq 'N'">不拒单
+                        	<else />拒单
+                          </if>
+                        		
+                        </span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label>是否屏蔽：</label>
+                    <div class="input">
+                        <span class="uneditable-input default-cursor">
+                        	<if condition="$info.shield eq 'N'">不屏蔽
+                        	<else />屏蔽
+                        	</if>
+                        </span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="sex">添加时间：</label>
+                    <div class="input">
+                        <span class="uneditable-input default-cursor">{$info.regtime|date="y-m-d H:m:s",###}</span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="sex">更新时间：</label>
+                    <div class="input">
+                        <span class="uneditable-input default-cursor">{$info.lasttime|date="y-m-d H:m:s",###}</span>
+                    </div>
+                </div>
+            </div>
+            <div style="clear:both;"></div>
+            <div class="actions">
+                <a href="{$weibo}" class="btn">返回微博列表</a>
+            </div>
+        </form>
+    </div>
+</div>
+    </div>
+
+<include file="public:footer_blog" />

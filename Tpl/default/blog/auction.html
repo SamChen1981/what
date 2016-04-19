@@ -1,0 +1,86 @@
+<include file="public:header_blog" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span>竞价活动<span class="gt">&gt;</span>活动列表</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <div class="table_title"><span>竞价活动</span></div>
+    <table class="dash_table zebra-striped">
+        <thead>
+            <tr>
+                <th class="align-center split" width="60">活动ID</th>
+                <th class="align-center split" width="10%">开始时间</th>
+                <th class="align-center split" width="10%">结束时间</th>
+                <th class="align-center split" width="8%">平台</th>
+                <th class="align-center split" width="auto">活动名称</th>
+                <th class="align-center split" width="9%">参与微博</th>
+                <th class="align-center split" width="8%">状态</th>
+                <th class="align-center" width="20%">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="align-center">12</td>
+                <td class="align-center">03-23 16:00</td>
+                <td class="align-center">03-23 21:00</td>
+                <td class="align-center">全部平台</td>
+                <td class="align-left">2012年3月23日竞单</td>
+                <td class="align-center"></td>
+                <td class="align-center">
+                    <span class="auction-finish">已完成</span>
+                </td>
+                <td class="align-center">
+                                        <a href="#">查看订单</a>                    <a href="#">参与记录</a>
+                </td>
+            </tr>                    </tbody>
+    </table>
+    <div class="page_style"><div class="page_count">1/1 页</div><div class="pagination"><ul> <li class="prev disabled"><a href="javascript:void(0);">上一页</a></li>    <li class="next disabled"><a href="javascript:void(0);">下一页 </a></li></ul></div><div style="clear:both;"></div></div>    <div style="clear:both;"></div>
+    <script type="text/javascript">
+        $(function () {
+            $('a[rel=twipsy]').twipsy();
+            $("a[rel=popover]")
+            .popover({
+              offset: 10
+            })
+            .click(function(e) {
+              e.preventDefault()
+            })
+        });
+        function rebate_money(){
+            if($("#w_id").val()){
+                var money = parseFloat($("#rebate").val()) * parseFloat($("#w_id option:selected").attr("money"));
+                if(!money) money = '0.00';
+                $("#rebate_money").html("&yen;" + Math.round(money*100)/100);
+            }
+        }
+        function auction_form(){
+            if(!$("#w_id").val()){
+                alert("请选择一个微博！");
+            }else if(!reg.money.test($("#rebate").val()) || parseFloat($("#rebate").val()) > 1){
+                alert("请输入正确的价格折扣！折扣只能为0~1之间的保留两位数的小数");
+            }else{
+                $("#submit_btn").button("loading");
+                $("#offers_form input,select").attr("disabled", true).addClass("disabled");
+                $.post("/Auction/join", {
+                    id: $("#id").val(),
+                    w_id: $("#w_id").val(),
+                    rebate: $("#rebate").val()
+                }, function(request){
+                    alert(request.info);
+                    if(request.status==1){
+                        history.go();
+                    }
+                    $("#submit_btn").button("reset");
+                    $("#offers_form input,select").attr("disabled", false).removeClass("disabled");
+                }, "json");
+            }
+        }
+    </script>
+</div>
+<div id="window" class="modal hide fade"></div>
+    </div>
+
+<include file="public:footer_blog" />

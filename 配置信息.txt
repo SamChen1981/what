@@ -1,0 +1,26 @@
+管理后台地址  http://*****/index.php?m=admin&a=login   默认用户名 admin 密码 111111
+
+
+1.把weituiguang.sql 直接导入到数据库中，不用新建数据库在导入，直接导入即可
+
+2.修改配置文件conf/config.php  修改配置数据库的相关参数
+
+3.配置获取微博信息：注册微博开放平台账号 open.weibo.com
+
+创建网页应用，填写完相关信息后  授权回调页需要填写如：http://www.***.com/weibo/callback.php
+
+在把你的微博账号 添加到测试账号里，都填写完成后 ，获取App Key，App Secret 填写到根目录下weibo下的config.php里 和 wq/Lib/Com/config.php 相对应的填写， 填写完成后，通过开放平台直接获取 输入网址http://open.weibo.com/tools/console（前提是添加了应用）获取Access Token，也相应的填写到微博weibo/config.php 和 wq/Lib/Com/config.php里的$s_access_token  (也可以)
+
+4,腾讯微博基本一样，open.t.qq.com  注册添加应用，在修改sdkqq下的config.php文件
+然后输入http://www.***.com/sdkqq/index.html 取得相对应的信息 在填写到
+http://www.***.com/wq/Lib/Com/tencent.class.php  
+
+需要填写的信息
+
+define("CLIENT_ID", "801176814");  //填写client_id
+define("CLIENT_SECRET", "e881646146a4be3e0dffc5b442cc7f38");  //填写client_secret
+
+$_SESSION['t_access_token']= ''
+$_SESSION['t_code']=''
+$_SESSION['t_openid']= ''
+$_SESSION['t_openkey']= ''

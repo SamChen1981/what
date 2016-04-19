@@ -1,0 +1,90 @@
+<include file="public:header_admin" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span>活动管理</div>
+<div class="child_main">
+    <div style="clear:both;">   </div>
+    <div class="list_header" style="clear:both;">  
+        <form id="task_search" method="post">
+            <div class="pull-left" style="line-height:28px;">
+                <div class="pull-left">排序：</div>
+                <div class="pull-left">
+                	<select id="sort" name="sort" onchange="" ondblclick="" class="width-auto">
+                	<option value="">默认排序</option>
+                	<option value="desc">从高到底</option>
+                	<option value="asc">从低到高</option>
+                	</select>
+                </div>
+            </div>
+            <div class="pull-right" style="line-height:28px;">
+                <div class="pull-left">&nbsp;搜索内容：</div>
+                <div class="pull-left">&nbsp;<input type="text" class="medium" name="str" id="str" value=""></div>
+                <div class="pull-left">&nbsp;
+                	<select id="field" name="field" onchange="" ondblclick="" class="width-auto">
+											                	<option value="cd.name">套餐名称</option>
+											                	<option value="cd.content">内容</option>
+											                	</select></div>
+               <div class="pull-left">&nbsp;<button type="button" onclick="subm()" class="btn">查询</button></div>
+            </div>
+        </form>
+        <script type="text/javascript">
+        function subm(){
+            var url = "{$action}";
+            location.href = url+'&sort='+$('#sort').val()+'&str='+$('#str').val()+'&field='+$('#field').val();
+            return false;
+        }
+        </script>
+    </div>
+    <table class="dash_table zebra-striped">
+        <thead>
+            <tr>	
+                <th class="align-center split" width="6%">ID</th>
+                <th class="align-center split" width="auto">套餐类型</th>
+                <th class="align-center split" width="7%">用户名</th>
+                <th class="align-center split" width="7%">平台</th>
+                <th class="align-center split" width="19%">套餐名称</th>
+                <th class="align-center split" width="10%">开始时间</th>
+                <th class="align-center split" width="8%">价格</th>
+                <th class="align-center split" width="8%">状态</th>
+                <th class="align-center split" width="10%">操作</th>                
+            </tr>
+        </thead>
+        <tbody>
+        	<foreach name="list" item="info">
+            <tr>
+                <td class="align-center">{$info.cdinner_id}</td>
+                <td class="align-left">{$info.type}</td>
+                <td class="align-left">{$info.realname}</td>
+                <td class="align-left" style="color:orangered;"><if condition="$info.platform eq 'sina'">新浪
+                  <else />腾讯
+                   </if>
+                </td>
+                <td class="align-left" style="color:orangered;">{$info.name}</td>
+                <td class="align-center">
+                				 {$info.begintime|date="y-m-d H:i",###}                             
+                </td>
+                <td class="align-center">
+                       {$info.money}             
+                </td>
+                <td class="align-center">
+                           <if condition="$info.pay_state eq 'Y'"> <span class="label success" >已支付</span>
+                           <elseif condition="$info.pay_state eq 'N'"/><span class="label warning" >未支付</span>
+                           </if>
+                </td>
+								<td class="align-center">
+									<a href="{$hgdinner}&cdinner_id={$info.cdinner_id}&act=look"> <span class="label success" style="color:#FFFFFF" >查看</span></a>
+                       <a href="{$hgdinner}&cdinner_id={$info.cdinner_id}&act=del"> <span class="label important" style="color:#FFFFFF" >删除</span></a>             
+                </td>
+            </tr>   
+          </foreach>                 
+        </tbody>
+    </table>
+    <div class="page_style">{$page}</div>
+       <div style="clear:both;"></div>
+</div>
+    </div>
+
+<include file="public:footer_admin" />

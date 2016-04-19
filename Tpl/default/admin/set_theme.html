@@ -1,0 +1,144 @@
+<include file="public:header_admin" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span>邮件短信模版设置</div>
+<div class="child_main">
+    <div style="clear:both;">
+
+        <div class="pull-right">
+        </div>    </div>
+
+    <form action=""   method="post">
+    <table class="dash_table zebra-striped">
+        <thead>
+            <tr>	
+            		<th class="align-center split" width="15%">发送项目</th>
+            		<th class="align-center split" width="15%">手机短信</th>
+                <th class="align-center split" width="15%">电子邮件</th>                
+                <th class="align-center " width="auto"></th>
+            </tr>
+        </thead>
+        <tbody>
+        	<foreach name="list" item="vo">
+            <tr >
+                <td class="align-center">{$vo.send_name}</td>
+                <td class="align-center"><input type="checkbox" <eq name="vo.sms_status" value='1'>checked</eq> name="{$vo.sms_id}"><a href="{$theme_edit}&theme_id={$vo.sms_id}">编辑</a></td> 
+                <td class="align-center"><input type="checkbox" <eq name="vo.email_status" value='1'>checked</eq> name="{$vo.email_id}"><a href="{$theme_edit}&theme_id={$vo.email_id}">编辑</a></td>
+                <td class="align-left"></td>
+            </tr>   
+          </foreach>
+          <tr id="before">    </tr>
+        </tbody>
+    </table>
+  	
+    <div class="actions pie">
+	            <input type="submit"  class="btn pie primary" value="保存" />
+    </div>
+    </form>
+</div>
+				<script type="text/javascript">					
+	        
+	        function rank_del(srank_id)
+	        {
+	        	$.post('{$hshoplv}&act=del',{srank_id:srank_id},function(request){
+	        		if (request.status)
+	        			$("#"+srank_id).remove();
+	        		else
+	        			alert(request.info);
+	        	},'json');
+	        }
+	        
+	        var edit_sta=0;
+	        
+	        function rank_edit(srank_id)
+	        {
+	        	if (edit_sta)
+	        		return false;
+	        	else
+	        		edit_sta=1;
+	        	$.post('{$hshoplv}&act=edit',{srank_id:srank_id},function(request){
+	        		var htm='';
+	        		if (request.status)
+	        		{
+	        			htm +='<td class="align-center"><input type="text" class="span2" name="name" value="'+request.data.name+'"/></td>'
+                htm +='<td class="align-center"><input type="text" class="span2" name="min_point" value="'+request.data.min_point+'"/></td>'
+               	htm +=' <td class="align-center"><input type="text" class="span2" name="max_point" value="'+request.data.max_point+'"/></td>'
+                htm +='<td class="align-center"><input type="file" class="span3" name="photo" /></td>'                                             
+                htm +='<td class="align-center">'
+                htm +='		<input type="submit" class="btn pie primary" onclick="rank_save()" value="保存">'
+                htm +='		<input type="button" class="btn pie" onclick="get_rank_info('+request.data.srank_id+')" value="取消">' 
+                htm +='		<input type="hidden" name="srank_id" value="'+request.data.srank_id+'">'                           
+                htm +='</td> <td class="align-left"></td>'
+                $('#'+request.data.srank_id).html(htm);
+	        		}else
+	        			 alert(request.info);
+	        		
+	        		},'json');
+	        }
+	        
+	        function rank_save()
+	        {
+	        	edit_sta=0;
+	        }
+	        
+	        function get_rank_info(id,av)
+	        {
+	        	edit_sta=0;
+	        	$.post('{$hshoplv}&act=edit',{srank_id:id},function(request){
+	        		var htm='';
+	        		if (request.status)
+	        		{
+	        			htm +='<td class="align-center">'+request.data.name+'</td>'
+                htm +='<td class="align-center">'+request.data.min_point+'</td>'
+               	htm +=' <td class="align-center">'+request.data.max_point+'</td>'
+                htm +='<td class="align-center"><img src="'+request.data.image+'"></td>'                                             
+                htm +='<td class="align-center">'
+                htm +='		<a href="javascript:void(0);" onclick="return rank_edit('+request.data.srank_id+');" ><img src="{&APP_IMAGE}edit.png"/></a>'                 		
+                htm +='		<a href="javascript:void(0);" onclick="return rank_del('+request.data.srank_id+')" ><img src="{&APP_IMAGE}delete.png"/></a>'                            
+                htm +='</td> <td class="align-left"></td>'
+                if (av!=undefined)
+                {
+                	$('#av').html(htm);
+                	$('#av').attr('id',id);
+                }
+                else
+                	$('#'+request.data.srank_id).html(htm);
+	        		}else
+	        			 alert(request.info);	        		
+	        		},'json');
+	        }
+	        function hidetime()
+	        {
+	        	$('#msg').hide();
+	        }
+	        var add_v=0;
+	        function rank_add()
+	        {
+	        	if (edit_sta)
+	        	{
+	        		$('#msg').html('保存后继续···').show();
+	        		setTimeout(hidetime,1000);
+	        		return false;
+	        	}
+	        	else
+	        		edit_sta=1;
+	        			var htm='';
+	        			htm +='<tr id="av"><td class="align-center"><input type="text" class="span2" name="name" /></td>'
+                htm +='<td class="align-center"><input type="text" class="span2" name="min_point" /></td>'
+               	htm +=' <td class="align-center"><input type="text" class="span2" name="max_point" /></td>'
+                htm +='<td class="align-center"><input type="file" class="span3" name="photo" /></td>'                                             
+                htm +='<td class="align-center">'
+                htm +='		<input type="submit" class="btn pie primary" onclick="rank_save()" value="保存">'
+                htm +='		<input type="button" class="btn pie" onclick="$(\'#av\').remove();edit_sta=0;" value="取消">' 
+                htm +='		<input type="hidden" name="act"  value="add">'                         
+                htm +='</td> <td class="align-left"></td></tr>'
+                $('#before').before(htm);
+	        }
+        </script>
+        <iframe name="post" style="display:none"></iframe>
+    </div>
+
+<include file="public:footer_admin" />

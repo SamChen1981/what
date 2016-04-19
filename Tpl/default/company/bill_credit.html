@@ -1,0 +1,28 @@
+<include file="public:header_company" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span><a href="">账单</a><span class="gt">&gt;</span>余额查询</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <div style="width:920px;margin:auto;">
+        <h3>当前账户信息 <small>({$time|date="Y-m-d H:i",###})</small></h3>
+        <div class="com_info">
+            <table class="dash_table zebra-striped">
+                <tbody><tr>
+                    <td width="10%" height="25" align="right" class="tdbg">
+                        <strong>账户剩余总额：</strong>
+                    </td>
+                    <td width="40%" height="35">    
+                        <span class="task-verify">{$money}元</span>
+                    </td>
+                </tr>
+            </tbody></table>
+        </div>
+    </div>
+</div>
+    </div>
+
+<include file="public:footer_company" />

@@ -1,0 +1,66 @@
+<include file="public:header_admin" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span>编辑管理员</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <form action="" method="post" style="width:650px;margin:50px auto;">
+        <div class="clearfix">
+            <label for="oldpassword">用户名：</label>
+            <div class="input">
+                <input class="xlarge" id="username" name="username" size="30" value="{$info.username}" type="text" maxlength="16">
+                <span class="help-inline">* 6-16位字符或者数字</span>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="password">密码：</label>
+            <div class="input">
+                <input class="xlarge" id="password" name="password" size="30" type="password" maxlength="16">
+                <span class="help-inline">* 6-16位字符或者数字</span>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="repassword">重复密码：</label>
+            <div class="input">
+                <input class="xlarge" id="repassword" name="repassword" size="30" type="password" maxlength="16">
+                <span class="help-inline">* 6-16位字符或者数字</span>
+            </div>
+        </div>
+        <div class="actions">
+            <button type="submit" class="btn primary" id="submit_repass">确认修改</button>
+            &nbsp;&nbsp;
+            <button type="reset" class="btn">重置</button>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+$("#submit_repass").click(function(){
+    var old = $("#username").val();
+    var pwd = $("#password").val();
+    var repwd = $("#repassword").val();
+    if(!old){
+        alert("用户名！");
+        return false;
+    }
+    if (pwd!='')
+    {
+	    if(old == pwd){
+	        alert("密码不能和用户名相同！");
+	    }else if(pwd.length < 6 || pwd.length >16){
+	        alert("密码长度不正确！");
+	    }else if(pwd != repwd){
+	        alert("密码两次输入不相同！");
+	    }else{
+	        return true;
+	    }
+	    return false;
+	  }
+	  return true;
+})    
+</script>
+    </div>
+
+<include file="public:footer_admin" />

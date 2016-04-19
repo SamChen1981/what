@@ -1,0 +1,156 @@
+<include file="public:header_admin" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span><a href="./account_info_files/account_info.htm">用户信息</a><span class="gt">&gt;</span>修改用户信息</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <form id="reg_form" style="width:900px;margin:20px auto;">
+        <div style="width:820px;height:40px;line-height:40px;margin-left:40px;border-bottom:1px solid #ccc;">
+            <span style="color:orangered;font-size:16px;font-weight:bold;padding-left:10px;border-left:4px solid orangered;">基本信息：</span>
+        </div>
+        <div class="clearfix">
+            <label for="username">用户名</label>
+            <div class="input" style="line-height:28px;">
+                {$info.username}            </div>
+        </div>
+        <div class="clearfix">
+            <label for="realname">昵称</label>
+            <div class="input">
+                <input class="xlarge pie" id="realname" name="realname" size="30" type="text" value="{$info.realname}">
+                <span class="help-inline">* 个人请填写昵称，企业请填写公司名称</span>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="contact">联系人</label>
+            <div class="input">
+                <input class="xlarge pie" id="contact" name="contact" size="30" type="text" value="{$info.contact}" onkeyup="check_input(this, reg.string, &#39;联系人名称不能含有特殊字符&#39;)">
+                <span class="help-inline">* 请输入联系人姓名</span>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="phone">手机</label>
+            <div class="input">
+                <input class="xlarge pie" id="phone" name="phone" size="30" type="text" value="{$info.phone}" onkeyup="check_input(this, reg.phone, &#39;手机格式不正确&#39;)" >
+                <span class="help-inline">* 请输入联系人手机</span>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="email">邮箱</label>
+            <div class="input">
+                <input class="xlarge pie" id="email" name="email" size="30" type="text" value="{$info.email}" onkeyup="check_input(this, reg.email, &#39;邮箱格式不正确&#39;)">
+                <span class="help-inline">*</span>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="qq">QQ</label>
+            <div class="input">
+                <input class="xlarge pie" id="qq" name="qq" size="30" type="text" value="{$info.qq}">
+                <span class="help-inline"></span>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="password">新密码</label>
+            <div class="input">
+                <input class="xlarge pie" id="password" name="password" size="30" type="password" value="">
+                <span class="help-inline"></span>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="repassword">确认密码</label>
+            <div class="input">
+                <input class="xlarge pie" id="repassword" name="repassword" size="30" type="password" value="">
+                <span class="help-inline"></span>
+            </div>
+        </div>
+        <div style="width:820px;height:40px;line-height:40px;margin-left:40px;border-bottom:1px solid #ccc;margin-bottom:18px;">
+            <span style="color:orangered;font-size:16px;font-weight:bold;padding-left:10px;border-left:4px solid orangered;">支付信息：</span>
+        </div>
+        <div class="clearfix">
+            <label for="alipay_account">支付宝账户</label>
+            <div class="input">
+                <input class="xlarge pie" id="alipay_account" name="alipay_account" size="30" type="text" value="{$info.alipay_account}" >
+                <span class="help-inline">*</span>
+            </div>
+        </div>
+        <div class="clearfix">
+            <label for="alipay_realname">收款人</label>
+            <div class="input">
+                <input class="xlarge pie" id="alipay_realname" name="alipay_realname" size="30" type="text" value="{$info.alipay_realname}">
+                <span class="help-inline">*</span>
+            </div>
+        </div>
+                <div class="actions pie">
+            <button type="button" id="submit_btn" onclick="submit_form();" class="btn pie primary" data-loading-text="提交中...">确认修改</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="reset" class="btn pie">重置</button>
+        </div>
+    </form>
+    <script type="text/javascript">
+        function check_realname($obj){
+            var val = $obj.val();
+            if(val.length< 2 || val.length> 22){
+                change_status($obj, "error", "请输入大于2个小于22个文字字母或数字");
+            }else if(!reg.string.test($obj.val())){
+                change_status($obj, "error", "您填写的内容中包含特殊字符");
+            }else{
+                change_status($obj);
+            }
+        }
+        $("#realname").keyup(function(){
+            check_realname($(this));
+        });
+        $("#email,#realname,#contact,#phone").blur(function(){
+            $(this).triggerHandler("keyup");
+        });
+        function get_form_data(){
+            return {
+                realname : $("#realname").val(),
+                contact : $("#contact").val(),
+                phone : $("#phone").val(),
+                email : $("#email").val(),
+                qq : $("#qq").val(),
+                alipay_account : $("#alipay_account").val(),
+                alipay_realname : $("#alipay_realname").val(),
+                password : $("#password").val(),
+                repassword : $("#repassword").val(),
+                member_id : {$info.member_id}
+            };
+        }
+        function submit_form(){
+            check_realname($("#realname"));
+            $("input[type=text]").each(function(){
+                var name = $(this).attr("name");
+                switch(name){
+                    case "contact":check_input(this, reg.string, '联系人名称不能含有特殊字符');break;
+                    case "phone":check_input(this, reg.phone, '手机格式不正确');break;
+                    case "email":check_input(this, reg.email, '邮箱格式不正确');break;
+                }
+            });
+            if($("#reg_form > div.success").length<4){
+                alert("您还有未正确填写的项\n\n * 请注意带星号(*)的均为必填项\n * 显示红色的表示输入存在问题，绿色表示正确");
+                if($("#reg_form > div.error").length<=0){
+                    $("#realname").focus();
+                }else{
+                    $("#reg_form > div.error:first").find("input").focus();
+                }
+            }else{
+                $("#submit_btn").button("loading");
+                $("#reg_form input,button[type=reset]").attr("disabled", true).addClass("disabled");
+                $.post("{$hblog_edit}", get_form_data(), function(request){
+                    alert(request.info);
+                    if(request.status==1){
+                        history.go(0);
+                    }
+                    $("#submit_btn").button("reset");
+                    $("#reg_form input,button[type=reset]").attr("disabled", false).removeClass("disabled");
+                }, "json");
+            }
+        } 
+    </script>
+</div>
+    </div>
+
+<include file="public:footer_admin" />

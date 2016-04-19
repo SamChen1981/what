@@ -1,0 +1,108 @@
+<include file="public:header_admin" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span>微博主管理</div>
+<div class="child_main">
+    <div style="clear:both;">
+
+        <div class="pull-right">
+        </div>    </div>
+     <div class="list_header" style="clear:both;">  
+        <form id="task_search"  method="get">
+            <div class="pull-left" style="line-height:28px;">
+                <div class="pull-left">排序：</div>
+                <div class="pull-left">
+                	<select id="sort" name="sort" onchange="" ondblclick="" class="width-auto">
+                	<option value="">默认排序</option>
+                	<option value="desc">从高到底</option>
+                	<option value="asc">从低到高</option>
+                	</select>
+                </div>
+            </div>
+            <div class="pull-right" style="line-height:28px;">
+                <div class="pull-left">&nbsp;关键字：</div>
+                <div class="pull-left">&nbsp;<input type="text" class="medium" name="str" id="str" value=""></div>
+                <div class="pull-left">&nbsp;
+                	<select id="field" name="field" onchange="" ondblclick="" class="width-auto">
+											                	<option value="username">会员名称</option>
+											                	<option value="realname">真实姓名</option>
+											                	<option value="contact">联系人</option>
+											                	<option value="phone">手机号码</option>
+											                	<option value="qq">QQ号码</option>
+											                	<option value="email">E_MAIL</option>
+											                	<option value="alipay_realname">支付宝名称</option>
+											                	<option value="alipay_account">支付宝帐号</option>
+											                	</select></div>
+                <div class="pull-left">&nbsp;<button type="button" onclick="subm()" class="btn">查询</button></div>
+            </div>
+        </form>
+        <script type="text/javascript">
+        function subm(){
+            var url = "{$action}";
+            location.href = url+'&sort='+$('#sort').val()+'&str='+$('#str').val()+'&field='+$('#field').val();
+            return false;
+        }
+        </script>
+    </div>
+    <table class="dash_table zebra-striped">
+        <thead>
+            <tr>	
+                <th class="align-center split" width="6%">ID</th>
+                <th class="align-center split" width="auto">用户名</th>
+                <th class="align-center split" width="10%">联系人</th>
+                <th class="align-center split" width="10%">真实姓名</th>
+                <th class="align-center split" width="10%">手机号码</th>
+                <th class="align-center split" width="7%">qq</th>
+                <th class="align-center split" width="7%">email</th>
+                <th class="align-center split" width="7%">支付宝账户</th>
+                <th class="align-center split" width="12%">最后登录</th>                <th class="align-center" width="10%">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        	<foreach name="list" item="vo">
+            <tr>
+                <td class="align-center">{$vo.member_id}</td>
+                <td class="align-left">{$vo.username}</td>
+                <td class="align-left">{$vo.contact}</td>
+                <td class="align-left" style="color:orangered;">{$vo.realname}</td>
+                <td class="align-left" style="color:orangered;">{$vo.phone}</td>
+                <td class="align-center">
+                			{$vo.qq}                               
+                </td>
+                <td class="align-center">
+                   {$vo.email}
+                </td>
+                <td class="align-center">
+                    {$vo.alipay_realname}               
+                </td>
+                <td class="align-center">
+                			{$vo.lasttime|date="y-m-d H:i",###}
+                </td>
+                <td class="align-center">
+                	<ul class="tabs min_menu">
+                                <li class="dropdown" data-dropdown="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle">管理操作</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{$hblog_member}&member_id={$vo.member_id}&act=edit" target="_blank">编辑</a></li>
+                                        <li><a href="{$hblog_member}&member_id={$vo.member_id}&act=blog" target="_blank">微博</a></li>
+                                        <li><a href="{$hblog_member}&member_id={$vo.member_id}&act=pay" target="_blank">打款信息</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="{$hblog_member}&member_id={$vo.member_id}&act=del">删除</a></li>
+                                    </ul>
+                                </li>
+                  </ul>	          
+                </td>
+            </tr>   
+          </foreach>                 
+        </tbody>
+    </table>
+    <div class="page_style">{$page}<div style="clear:both"></div>
+       <div style="clear:both;"></div>
+</div>
+    </div>
+  </div>
+
+<include file="public:footer_admin" />

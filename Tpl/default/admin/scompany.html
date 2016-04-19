@@ -1,0 +1,61 @@
+<include file="public:header_admin" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span>广告主审核</div>
+<div class="child_main">
+    <div style="clear:both;">   </div>
+    <table class="dash_table zebra-striped">
+        <thead>
+            <tr>	
+                <th class="align-center split" width="6%">ID</th>
+                <th class="align-center split" width="auto">用户名</th>
+                <th class="align-center split" width="10%">昵称/公司名称</th>
+                <th class="align-center split" width="10%">网址</th>
+                <th class="align-center split" width="18%">公司联系地址</th>
+                <th class="align-center split" width="7%">联系人</th>
+                <th class="align-center split" width="7%">手机</th>
+                <th class="align-center split" width="7%">邮箱</th>
+                <th class="align-center split" width="7%">QQ</th>
+                <th class="align-center split" width="11%">审核</th>               
+            </tr>
+        </thead>
+        <tbody>
+        	<foreach name="val" item="info">
+            <tr>
+                <td class="align-center">{$info.member_id}</td>
+                <td class="align-left">{$info.username}</td>
+                <td class="align-left" style="color:orangered;">{$info.realname}</td>
+                <td class="align-left" style="color:orangered;">{$info.homepage}</td>
+                <td class="align-center">
+                				{$info.address}                              
+                </td>
+                <td class="align-center">
+                    {$info.contact}
+                </td>
+                <td class="align-center">
+                       {$info.phone}             
+                </td>
+                <td class="align-center">
+                       {$info.email}             
+                </td>
+                <td class="align-center">
+                       {$info.qq}             
+                </td>
+                <td class="align-center">
+                           <a href="{$hscompany}&member_id={$info.member_id}&wedlock=1"> <span class="label success" >通过</span></a>
+                           <a href="{$hscompany}&member_id={$info.member_id}&wedlock=2"> <span class="label warning" >驳回</span></a>
+                </td>
+
+            </tr>   
+          </foreach>                 
+        </tbody>
+    </table>
+    <div class="page_style">{$page}</div>
+       <div style="clear:both;"></div>
+</div>
+    </div>
+
+<include file="public:footer_admin" />

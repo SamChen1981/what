@@ -1,0 +1,76 @@
+<include file="public:header_blog" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <div class="table_title"><span>微博审核：</span></div>
+    <div class="list_header" style="">  
+        <form id="search" action="#" method="get" style="margin-bottom:0px;">
+            <div class="pull-right line">
+                <div class="pull-left line" style="line-height:24px;">
+                    &nbsp;&nbsp;收益日期：
+                </div>
+                <div class="pull-left line">
+                    &nbsp;&nbsp;<input id="date" name="date" style="width:120px;cursor:pointer;" type="text" value="" class=""><div id="date-gldp" style="position: absolute; display: none; "><div class="gldp-default"><table><tbody><tr><td class="gldp-default-prevnext prev">◄</td><td class="gldp-default-monyear" colspan="5">五月 2012</td><td class="gldp-default-prevnext next"></td></tr><tr class="gldp-default-dow"><td>周日</td><td>周一</td><td>周二</td><td>周三</td><td>周四</td><td>周五</td><td>周六</td></tr><tr class="days"><td class="gldp-days noday gldp-default-noday"><div class="noday">29</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">30</div></td><td class="gldp-days day gldp-default-day"><div class="day">1</div></td><td class="gldp-days day gldp-default-day"><div class="day">2</div></td><td class="gldp-days day gldp-default-day"><div class="day">3</div></td><td class="gldp-days day gldp-default-day"><div class="day">4</div></td><td class="gldp-days sat gldp-default-sat"><div class="sat">5</div></td></tr><tr class="days"><td class="gldp-days today gldp-default-today"><div class="today">6</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">7</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">8</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">9</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">10</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">11</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">12</div></td></tr><tr class="days"><td class="gldp-days noday gldp-default-noday"><div class="noday">13</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">14</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">15</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">16</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">17</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">18</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">19</div></td></tr><tr class="days"><td class="gldp-days noday gldp-default-noday"><div class="noday">20</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">21</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">22</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">23</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">24</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">25</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">26</div></td></tr><tr class="days"><td class="gldp-days noday gldp-default-noday"><div class="noday">27</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">28</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">29</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">30</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">31</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">1</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">2</div></td></tr><tr class="days"><td class="gldp-days noday gldp-default-noday"><div class="noday">3</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">4</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">5</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">6</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">7</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">8</div></td><td class="gldp-days noday gldp-default-noday"><div class="noday">9</div></td></tr></tbody></table></div></div>
+                </div>
+                <div class="pull-left line">
+                    &nbsp;&nbsp;<button type="submit" class="btn primary">筛选</button>
+                    &nbsp;&nbsp;<button type="button" class="btn" onclick="location.href=&#39;/Bill/payoff.html&#39;">显示全部</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <table class="dash_table zebra-striped">
+        <thead>
+            <tr>	
+                <th class="align-center split" width="12%">收益日期</th>
+                <th class="align-center split" width="14%">收益金额</th>
+                <th class="align-center split" width="14%">结算金额</th>
+                <th class="align-center split" width="12%">结算折扣</th>
+                <th class="align-center split" width="10%">状态</th>
+                <th class="align-center" width="auto">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        	<if condition="$list eq ''">
+              <tr>
+                <td class="align-center" colspan="6">
+                    暂无结算记录...
+             		</td>
+            	</tr>
+          <else />
+          	<foreach name="list" item="vo">  
+          		<tr>
+                <td class="align-center">{$vo.time|date="Y-m-d",###}</td>
+                <td class="align-center">{$vo.money}</td>
+                <td class="align-center">{$vo.account_money}</td>
+                <td class="align-center">无折扣</td>
+                <td class="align-center">
+                	<if condition="$vo.state eq 0"><span class="label important">待打款</span>
+                	<elseif condition="$vo.state eq 1"/><span class="label success">打款完成</span>
+                	</if>
+                </td>
+                <td class="align-center">删除</td>
+            	</tr>
+            </foreach> 
+          </if>     
+        </tbody>
+    </table>
+        <div style="clear:both;"></div>
+</div>
+<script type="text/javascript">
+$("#date").glDatePicker({
+    onChange: function(target, newDate){
+        target.val(
+            newDate.getFullYear() + "-" +
+            ((newDate.getMonth() + 1)<10?"0" + (newDate.getMonth() + 1):(newDate.getMonth() + 1)) + "-" +
+            (newDate.getDate()<10?"0"+newDate.getDate():newDate.getDate())
+        );
+    },
+    endDate: new Date()
+});
+</script>
+    </div>
+
+<include file="public:footer_blog" />

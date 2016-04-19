@@ -1,0 +1,72 @@
+<include file="public:header_company" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span><a href="">账单</a><span class="gt">&gt;</span>消费明细</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <div class="table_title"><span>{$_SESSION.username} 活动支出：</span></div>
+    <div class="list_header" style="">  
+        <form id="search" action="" method="get" style="margin-bottom:0px;">
+            <div class="pull-right line">
+                <div class="pull-left line" style="line-height:24px;">
+                    &nbsp;&nbsp;活动日期：
+                </div>
+                <div class="pull-left line">
+                    &nbsp;&nbsp;<input id="date" name="date" style="width:120px;cursor:pointer;" type="text" value="">
+                </div>
+                <div class="pull-left line">
+                    &nbsp;&nbsp;<button type="submit" class="btn primary">筛选</button>
+                    &nbsp;&nbsp;<button type="button" class="btn" onclick="location.href=&#39;/Bill/payoff.html&#39;">显示全部</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <table class="dash_table zebra-striped">
+        <thead>
+            <tr>
+                <th class="align-center split" width="12%">活动日期</th>
+                <th class="align-center split" width="15%">活动预算</th>
+                <th class="align-center split" width="15%">活动支出</th>
+                <th class="align-center split" width="30%">活动总数</th>
+                <th class="align-center" width="auto">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        <if condition="$list neq ''">
+        	<foreach name="list" item="vo">
+        	 <tr>
+                <td class="align-center">{$vo.time|date="y-m-d",###}</td>
+                <td class="align-center">{$vo.money}</td>
+                <td class="align-center">{$vo.consume}</td>
+                <td class="align-center">1</td>
+                <td class="align-center">删除</td>
+                 
+           </tr>           
+         </foreach>
+         <else /> 
+         		<tr>      	
+                <td colspan="5">暂无相关数据...</td>
+            </tr> 
+          </if>       
+        </tbody>
+    </table>
+        <div style="clear:both;"></div>
+</div>
+<script type="text/javascript">
+$("#date").glDatePicker({
+    onChange: function(target, newDate){
+        target.val(
+            newDate.getFullYear() + "-" +
+            ((newDate.getMonth() + 1)<10?"0" + (newDate.getMonth() + 1):(newDate.getMonth() + 1)) + "-" +
+            (newDate.getDate()<10?"0"+newDate.getDate():newDate.getDate())
+        );
+    },
+    endDate: new Date()
+});
+</script>
+    </div>
+
+<include file="public:footer_company" />

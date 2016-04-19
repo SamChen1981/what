@@ -1,0 +1,57 @@
+<include file="public:header_admin" />
+		<div class="container" >
+            <div class="content" style="padding-top:30px;min-height:200px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span>任务自动执行</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main" >
+    <div class="table_title">
+        <span>任务自动执行</span>
+    </div>
+        <fieldset>
+            <div class="clearfix">
+                <label for="begintime">下一次执行时间：</label>
+                    <div style="padding-top:8px;margin-left:150px;width:100px;"><span id="sss" style="color:#FF0000;"></span>秒后</div>
+            </div>
+                    </fieldset>
+		</div></div>
+    <script type="text/javascript">
+    	var tim = 5;
+    	var timer,state;
+     function cron()
+     {
+     	 $.post('index.php?m=admin&a=task_cron',{task:'123'},function(request){
+					if (request.status==1)
+					{
+						tim=request.info;
+						$('#sss').html(tim);
+						state=1;
+						time_cron();
+					}else{
+						tim=60;
+						$('#sss').html('暂无任务');
+						state=0;
+						time_cron();
+					}
+     	 },'json');
+     }
+     
+     function time_cron(){
+     	timer = setTimeout(time_cron,1000);
+     	tim--;
+     	if (state==1)
+     		$('#sss').html(tim);
+     	else
+     		$('#sss').html('暂无任务'+tim);
+     	if (tim <=0)
+     	{
+     		clearTimeout(timer);
+     		$('#sss').html('正在获取数据...');
+     		cron();
+     	}
+     }   
+     cron();
+    </script>
+
+<include file="public:footer_admin" />

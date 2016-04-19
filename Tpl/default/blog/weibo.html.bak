@@ -1,0 +1,241 @@
+<include file="public:header_blog" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span>微博信息</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <div style="clear:both;">
+        <div class="table_title pull-left">
+            <span>{$_SESSION.username}的全部微博：</span>
+        </div>
+        <div class="pull-right">
+            <button type="button" onclick="build_adtask_info()" class="btn success">
+                <span class="icon" style="background-image:url(http://wbz.weiqc.com/Public/icon/user_add.png);"></span>添加微博
+            </button>
+        </div>    </div>
+    <div class="list_header" style="clear:both;">  
+        <form id="task_search" method="post">
+            <div class="pull-left" style="line-height:28px;">
+                <div class="pull-left">排序：</div>
+                <div class="pull-left">
+                	<select id="sort" name="sort" onchange="" ondblclick="" class="width-auto">
+                	<option value="default">默认排序</option>
+                	<option value="fansnum desc">粉丝数量从高到低</option>
+                	<option value="fansnum asc">粉丝数量从低到高</option>
+                	<option value="money desc">转发价格从高到低</option>
+                	<option value="money asc">转发价格从低到高</option>
+                	</select>
+                </div>
+            </div>
+            <div class="pull-right" style="line-height:28px;">
+                <div class="pull-left">&nbsp;微博名称：</div>
+                <div class="pull-left">&nbsp;<input type="text" class="medium" name="str" id="str" value=""></div>
+                <div class="pull-left">&nbsp;
+                	<select  name="platform" onchange="" ondblclick="" class="width-auto">
+											                	<option value="">全部平台</option>
+											                	<option value="sina">新浪微博</option>
+											                	<option value="qq">腾讯微博</option>
+											                	</select></div>
+                <div class="pull-left">&nbsp;<button type="submit" class="btn">查询</button></div>
+            </div>
+        </form>
+    </div>
+    <table class="dash_table zebra-striped">
+        <thead>
+            <tr>	
+                <th class="align-center split" width="6%">平台</th>
+                <th class="align-center split" width="auto">微博名称</th>
+                <th class="align-center split" width="10%">粉丝</th>
+                <th class="align-center split" width="10%">转发价格</th>
+                <th class="align-center split" width="10%">直发价格</th>
+                <th class="align-center split" width="10%">点击价格</th>
+                <th class="align-center split" width="9%">是否硬广</th>
+                <th class="align-center split" width="9%">是否接单</th>
+                <th class="align-center split" width="9%">是否直发</th>
+                <th class="align-center split" width="7%">审核</th>                <th class="align-center" width="10%">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        	<foreach name="val" item="info">
+            <tr>
+                <td class="align-center"><if condition="$info.platform eq 'sina'">新浪<else />腾讯</if></td>
+                <td class="align-left"><a href="{$info.weibo}" target="_blank">{$info.nick}</a></td>
+                <td class="align-left">{$info.fansnum}</td>
+                <td class="align-left" style="color:orangered;">¥ {$info.money}</td>
+                <td class="align-left" style="color:orangered;">¥ {$info.publish_money}</td>
+                <td class="align-left" style="color:orangered;">¥ {$info.click_money}</td>
+                <td class="align-center">
+                	<select onchange="save_info('soft',{$info.blog_id},$(this).val())" style="width:50px;">
+                		<option value="Y" <eq name="info.soft" value="Y"> selected</eq>>是</option>
+                		<option value="N" <eq name="info.soft" value="N"> selected</eq>>否</option>
+                	</select>                            
+                </td>
+                <td class="align-center">
+                	<select onchange="save_info('reject',{$info.blog_id},$(this).val())" style="width:50px;">
+                		<option value="N" <eq name="info.reject" value="N"> selected</eq>>是</option>
+                		<option value="Y" <eq name="info.reject" value="Y"> selected</eq>>否</option>
+                	</select> 
+                </td>
+                <td class="align-center">
+                	<select onchange="save_info('shield',{$info.blog_id},$(this).val())" style="width:50px;">
+                		<option value="Y" <eq name="info.shield" value="Y"> selected</eq>>是</option>
+                		<option value="N" <eq name="info.shield" value="N"> selected</eq>>否</option>
+                	</select>               
+                </td>
+                <td class="align-center">
+                				<if condition="$info.lock eq 0">
+                					<span class="label important" title="微博正在审核中，请耐心等待">待审</span>
+                				<elseif condition="$info.lock eq 1" />
+                            <span class="label success" title="审核已经通过">通过</span>
+                        <elseif condition="$info.lock eq 2" />
+                            <span class="label warning" title="被驳回">驳回</span>
+                        </if> 
+                </td>
+                <td class="align-center">
+                    <a href="{$info.weibo}" target="_blank">查看详情</a>        
+                </td>
+            </tr>   
+          </foreach>                 
+        </tbody>
+    </table>
+       <div style="clear:both;"></div>
+</div>
+<div id="adtask_info" class="modal hide fade" getid="">
+    <div class="modal-header">
+        <a href="#" class="close">×</a>
+        <h5>添加微博</h5>
+    </div>
+    <div class="modal-body">
+        <div class="com_info">
+            <table class="bordered-table" style="border-top:0px;">
+                <tbody>
+                	<tr>
+                    <td width="15%" height="25" id="adtask_info_type"><strong class="label" id="weibo_label">微博昵称：</strong></td>
+                    <td><span><input type="text" name="name" id="name"/></span>
+                    	<span id="qq_info" class="hide">
+                    		<p>例:进入何炅微博主页,如图 填写红色框内的ID.</p>
+                    	<img src="{&APP_IMAGE}twb.jpg">
+                    	</span>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td width="15%" height="25"  id="adtask_info_url"><strong class="label">投放平台：</strong></td>
+                    	<td width="85%">
+                    		<span >
+	                    		<select name="platform" id="platform" onchange="dis_qqinfo()">
+	                    			<option value="sina">新浪</option>
+	                    			<option value="qq">腾讯</option>
+	                    		</select>
+                    		</span>
+                    	</td>
+                </tr>
+                <tr>
+                    <td width="15%" height="25"  id="adtask_info_begintime"><strong class="label">直发价格：</strong></td>
+                <td><span><input name="publish_money" id="publish_money" type="text"/></span></td>
+                </tr>
+                <tr>
+                    <td width="15%" height="25"  id="adtask_info_content"><strong class="label">转发价格：</strong></td>
+                <td><span><input name="money" id="money" type="text"/></span></td>
+                </tr>
+                <tr>
+                    <td width="15%" height="25"  id="adtask_info_click"><strong class="label">点击价格：</strong></td>
+                    <td><span><input name="click_money" id="click_money" type="text"/></span></td>
+                </tr>
+                <tr >
+                    <td width="15%" height="25"  id="" style="border-right:none;"></td>
+                <td style="border-left:none;"><input type="submit" onclick="return check_info()" class="btn success" value="提交"></td>
+                </tr>
+                <tr >
+                    <td  height="25" colspan="2" id="" style="border-right:none;"> <span style="color:#FF0000"><p>平台申请条件：新浪微博粉丝超过5000人。腾讯微博粉丝超过2000人。</p>
+注：博主您好，您在填写直发价格和转发价格时请参考您注册的其它微博接单平台，我们不建议涨价，同等的平台条件，我们建议你的价格一致，以避免减少你的订单量。</span></td>
+                </tr>
+                
+               
+            </tbody></table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+	function save_info(field,id,val)
+	{
+		$.post('{$save_info}',{field:field,blog_id:id,val:val},function(request){
+			if (request.status==1)
+				alert('信息修改成功');
+			else
+				alert('修改失败，请稍后重试');
+		},'json');
+	}
+	
+	
+	function check_info()
+	{
+	
+		if ($('#publish_money').val()< 0 || $('#publish_money').val()=='')
+		{
+			alert('请填写直发价格');
+			return false;
+		}
+		if ($('#money').val()< 0 || $('#money').val()=='')
+		{
+			alert('请填写转发价格');
+			return false;
+		}
+        if ($('#click_money').val()< 0 || $('#click_money').val()=='')
+        {
+            alert('请填写点击价格');
+            return false;
+        }
+		$.post("{$check_info}", {platform: $('#platform').val(),name:$('#name').val(),money:$('#money').val(),publish_money:$('#publish_money').val(), click_money:$('#click_money').val()}, function(request){
+            if(request.status==1){
+            		alert('增加成功');
+            }else{
+                alert(request.info);
+                return false;
+            }
+        }, "json");
+     return false;  
+	}
+	
+	
+	function build_adtask_info(){
+      
+        $('#adtask_info').modal({
+            backdrop: true,
+            keyboard: true,
+            show: true
+        });
+    }
+    $(".adtask_info").click(function(){
+    		getid = $(this).parent("td").parent("tr").attr("oid");
+    	 $.post("{$getinfo}", {task_id: $(this).attr("task_id")}, function(request){
+            if(request.status==1){
+                build_adtask_info(request.data);
+                return false;
+            }else{
+                alert(request.info);
+                return false;
+            }
+        }, "json");  
+        return false;      
+    });
+  function dis_qqinfo()
+  {
+  	stat = $('#platform').val();
+  	if (stat=='sina')
+  	{
+  		$('#qq_info').hide();
+  		$('#weibo_label').html('微博昵称：');
+  	}
+  	else{
+			$('#qq_info').show();  
+			$('#weibo_label').html('微博ID：');	
+		}	
+  }
+</script>
+    </div>
+
+<include file="public:footer_blog" />

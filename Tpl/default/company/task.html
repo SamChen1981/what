@@ -1,0 +1,175 @@
+<include file="public:header_company" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span>我的活动</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <div style="height:40px;line-height:40px;background:url(http://ggz.weiqc.com/Public/images/poster/nav_all.jpg) repeat-x;">
+        <button type="button" class="btn primary" onclick="window.location.href=&#39;{$company.task_add}&#39;" style="cursor:pointer;">添加活动 &gt;&gt;</button>
+                        <div class="pull-right">
+                    </div>
+    </div>    <div class="list_header">  
+        <form id="task_search" action="{$task}" method="post">
+            <div class="clearfix" style="margin-left:-58px;">
+                <label>起止时间：</label>
+                <div class="input" style="margin-left:10px;">
+                    <div class="inline-inputs">
+                        <div class="input-append pull-left">
+                            <input id="start_time" name="start_time" style="width:120px;cursor:pointer;" type="text" value="">
+                            <span class="calendar_append"></span>
+                            <label class="add-on"><img src="{&APP_IMAGE}company/date.png"></label>
+                        </div>
+                        <div class="pull-left" style="line-height:28px;">
+                            至&nbsp;
+                        </div>
+                        <div class="input-append pull-left">
+                            <input id="end_time" name="end_time" style="width:120px;cursor:pointer;" type="text" value="">
+                            <span class="calendar_append"></span>
+                            <label class="add-on"><img src="{&APP_IMAGE}company/date.png"></label>
+                        </div>
+                        <div class="pull-left" style="line-height:28px;">
+                            &nbsp;关键词：
+                        </div>
+                        <div class="input-append pull-left">
+                            <input id="keyword" name="keyword" style="width:120px;" type="text" value="">
+                            <label class="add-on"><button><img src="{&APP_IMAGE}company/magnifier.png"></button></label>
+                        </div>
+                        <div class="input-prepend pull-right" style="margin-right:5px;">
+                            <label for="sort">排序：</label>
+                            <select id="sort" name="sort" onchange="" ondblclick="" class="width-auto">
+                            	<option value="">默认排序</option>
+                            	<option value="costup">按实际消费从低到高</option>
+                            	<option value="costdown">按实际消费从高到低</option>
+                            	<option value="timeup">按活动时间从早到晚</option>
+                            	<option value="timedown">按活动时间从晚到早</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $('#start_time,#end_time').calendar();
+                $("#sort").change(function(){ $('#task_search').submit(); });
+                $(".input-append button").click(function(){ $('#task_search').submit(); });
+            </script>
+        </form>
+    </div>
+    <table class="dash_table zebra-striped">
+        <thead>
+            <tr>
+                <th class="align-center split" width="8%">活动ID</th>
+                                <th class="align-center split" width="auto">活动名称</th>
+                <th class="align-center split" width="5%">平台</th>
+                <th class="align-center split" width="5%">类型</th>
+                <th class="align-center split" width="10%">活动时间</th>
+                <th class="align-center split" width="15%">活动要求</th>                <th class="align-center split" width="8%">活动预算</th>
+                <th class="align-center split" width="8%">实际消费</th>
+                                <th class="align-center split" width="12%">活动状态</th>
+                <th class="align-center" width="8%">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        	<if condition="$list eq ''">
+            <tr>
+                <td colspan="11">暂无相关记录...</td>
+            </tr>
+         	<else />
+            <foreach name="list" item="vo">
+                    <tr>
+
+                <td class="align-center">{$vo.task_id}</td>
+
+                                <td class="align-left">
+
+                     <a href="{$task_info}&task_id={$vo.task_id}" data-placement="right" rel='twipsy' data-original-title='{$vo.name}'>{$vo.name}</a>
+
+                </td>
+
+                <td class="align-center">
+                	<if condition="$vo.platform eq 'sina'">新浪
+                  <else />腾讯
+                   </if>
+                </td>
+
+                <td class="align-center"><if condition="$vo.type eq 'publish'">直发<elseif
+                        condition="$vo.type eq 'click'"/>点击<else/>转发</if></td>
+
+                <td class="align-center">{$vo.begintime|date="m-d H:i",###}</td>
+
+                <td class="align-left">
+
+                    <a href="#" data-placement="right" rel="twipsy" data-original-title='{$vo.content}'>{$vo.ctrim}</a>
+
+                </td>                
+                <td class="align-left"><span class="yan" style="color:orangered">
+                	&yen;<if condition="$vo.type eq 'publish'">{$vo.com_pmoney}<else/>{$vo.com_money}</if></span>
+                </td>
+
+                <td class="align-left"><span class="yan" style="color:orangered">&yen;{$vo.consume}</span></td>
+
+                                <td class="align-center">
+
+                    <span class="task-draft">
+                    		<switch name="vo.state">
+                           	<case value="0">未派单</case>
+                           	<case value="1">已派单</case>
+                           	<case value="2">活动进行中</case>
+                           	<case value="3">派单完成</case>
+                           	<case value="4">已取消</case>
+                         </switch> 
+                     </span>
+
+                    <img src="{&APP_IMAGE}company/task_draft.png" />
+
+                </td>
+
+                <td class="align-center" style="padding:0px;">
+
+                    <ul class="tabs min_menu">
+
+                        <li class="dropdown" data-dropdown="dropdown">
+
+                            <a href="javascript:void(0);" class="dropdown-toggle">管理操作</a>
+
+                            <ul class="dropdown-menu">
+
+                                <li><a href="{$task_info}&task_id={$vo.task_id}">查看详情</a></li>                                
+                                <li><a href="{$task_edit}&task_id={$vo.task_id}">编辑活动</a></li>                                
+                                <li><a href="{$task_choose}&task_id={$vo.task_id}">选择微博</a></li>                                
+                                <li><a href="{$task_pay}&task_id={$vo.task_id}">立即付款</a></li>                                
+                                <li class="divider"></li>
+                                <li><a href="{$task_del}&task_id={$vo.task_id}">删除活动</a></li>                            
+                            </ul>
+
+                        </li>
+
+                    </ul>
+
+                                    </td>
+
+            </tr>
+          	</foreach>
+           </if>
+                    </tbody>
+    </table>
+        <div style="clear:both;"></div>
+    <script type="text/javascript">
+        $(function () {
+            $('a[rel=twipsy]').twipsy();
+            $("a[rel=popover]")
+            .popover({
+              offset: 10
+            })
+            .click(function(e) {
+              e.preventDefault()
+            })
+        });
+    </script>
+</div>
+<div id="window" class="modal hide fade"></div>
+    </div>
+
+<include file="public:footer_company" />

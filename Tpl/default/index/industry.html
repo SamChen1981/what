@@ -1,0 +1,26 @@
+﻿<include file="public:header" />
+
+<div id="container">
+    <div class="content clear">
+        <div class="sitemap">当前位置：首页 &gt; 业界动态</div>
+        <div class="conleft">
+            <div class="left_nav">
+            	<div class="top">业界动态</div>
+            	<ul>
+            		<foreach name="list" item="vo">
+            		<li><a href="{$industry}&article_id={$vo.article_id}">{$vo.name}</a></li>
+            		</foreach>
+            	</ul>
+            	</div>       
+        </div>        
+        <div class="conright">
+            <div class="page_content box">
+                <h4>{$info.name}</h4>
+                {$info.remark}                
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<include file="public:footer" />

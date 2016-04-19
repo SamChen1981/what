@@ -1,0 +1,206 @@
+<include file="public:header_dz" />
+<import type="css" file="index" basepath="./Tpl/default/public/css" />
+	<import file="uladmin" basepath="./Tpl/default/public/js" />
+<div class="container">
+      <script type="text/javascript" src="./Tpl/default/public/js/Xslider.js" ></script>
+      <script>
+      	$(document).ready(function(){ 
+                // 焦点图片水平滚动
+                $("#slider1").Xslider({
+                   // 默认配置
+                    affect: 'scrollx', //效果  有scrollx|scrolly|fade|none
+                    speed: 800, //动画速度
+                    space: 6000, //时间间隔
+                    auto: true, //自动滚动
+                    trigger: 'mouseover', //触发事件 注意用mouseover代替hover
+                    conbox: '.conbox', //内容容器id或class
+                    ctag: 'a', //内容标签 默认为<a>
+                    switcher: '.switcher', //切换触发器id或class
+                    stag: 'a', //切换器标签 默认为a
+                    current:'cur', //当前切换器样式名称
+                    rand:false //是否随机指定默认幻灯图片
+                }); 
+
+        });
+      </script>
+      <style type="text/css"> 
+      	#bottom { width:100%; height:327px; margin-top:20px;  background:url(../images/bottombg.png) repeat-x }
+#bologger{width:479px; height:165px; float:left}
+#bologger p{line-height:16px; float:right; padding-right:10px; color:#999; font-size:12px;}
+#bologger span{color:#666;}
+#bottom   h2{float:left; font-size:12px; color:#999999; margin-top:24px;}
+      	.slider { width:707px;height:239px;border:1px solid #ccc;position:relative;overflow:hidden;}
+				.conbox { position:absolute;top:0px;left:0px;}
+				.conbox a { font-size:0px;display:inline-block;width:707px;height:239px;overflow:hidden;float:left;}
+				.switcher { position:absolute;height:30px;float:right;right:10px;bottom:10px;z-index:999;}
+				.switcher a{  margin:2px;padding:2px 5px;border:1px solid #666666;height:30px;line-height:30px;text-align:center;}
+				.switcher a:hover,a.cur{ background:#666666;padding:2px 5px;color:#fff;border:1px solid #666666;}
+      </style>
+      <div class="cont">
+        <div class="cont_left fl">
+        	<div   style="height:239;"> 
+          <!--<iframe src="flash/banner.html" scrolling="no" height="255px" width="707px" allowtransparency="no" frameborder="0" style="z-index:0; margin-left:-9px; margin-top:-14px;" ></iframe>-->
+	          <div id="slider1" class="slider">
+>
+	            <div class="conbox" >
+	                <a href="#" title=""><img width="707" height="239" alt="1" src="{&APP_IMAGE}home/flash1.jpg" /></a>
+	                <a href="#" title=""><img width="707" height="239" alt="2" src="{&APP_IMAGE}home/flash2.jpg" /></a>   
+					<a href="#" title=""><img width="707" height="239" alt="2" src="{&APP_IMAGE}home/flash3.jpg" /></a>           
+	            </div>
+	            <div class="switcher" >
+	                <a href="#" class="cur">1</a>
+	                <a href="#" >2</a>
+					<a href="#" >3</a>
+	            </div>
+	        	</div>
+       	 	</div>
+        	
+          <div class="cont_bottom">
+            <div class="yuan_left fl"></div>
+            <div class="yuan_zz fl">
+              <p>通过微推广平台，简单三步即可完成微博传播:</p>
+              <div class="pic"> <img src="{&APP_IMAGE}one.jpg" /><img src="{&APP_IMAGE}two.jpg" /><img src="{&APP_IMAGE}three.jpg" /> </div>
+            </div>
+            <div class="yuan_right fl"></div>
+          </div>
+        </div>
+        <div class="cont_right fr">
+            <!--<div class="right_top">
+              <div class="right_top_left fl"></div>
+              <div class="right_top_zz fl"> 博主数：<span class="s1">26400</span>粉丝数：<span class="s2">234323426400</span>品牌数：<span class="s3">3839</span>昨日订单：<span class="s4">9693</span> </div>
+              <div class="right_top_right fl"></div>
+            </div>-->
+            	
+  				<include file="public:login" />		 
+            <div class="bozhu fl">
+              <div class="bozhu_top"></div>
+              <div class="bozhu_z">
+                <div id="contact">
+             <h2 style="font-size:14px;">&nbsp;联系方式</h2>
+             
+             <ul>
+                  <li> 
+                         <span>广告投放咨询：&nbsp;</span><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=345938947&amp;site=qq&amp;menu=yes"><img border="0" style="margin-top:5px;" src="http://wpa.qq.com/pa?p=2:345938947:41 &amp;r=0.6560435213681088" alt="留言给我们" title="留言给我们"></a>
+                         <dl>
+                               <dt>电话：qq:345938947 </dt>
+                               <dd></dd>
+                               <dt></dt>
+                               <dd>18737157797 (7×24小时)</dd>
+                               
+                         </dl>
+                  </li>
+                  <li>   <span>博主接单咨询：&nbsp;</span><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=345938947&amp;site=qq&amp;menu=yes"><img style="margin-top:5px;" border="0" src="http://wpa.qq.com/pa?p=2:345938947:41 &amp;r=0.6560435213681088" alt="留言给我们" title="留言给我们"></a>
+                         <dl >
+                               <dt>电话：qq:345938947</dt>
+                               <dd> </dd>
+                               <dt></dt>
+                               <dd>qq:345938947(7×24小时)</dd>
+							    <dd>qq:345938947(7×24小时)</dd>
+                         </dl>
+                         
+                  </li>
+             </ul>
+       
+      </div>
+              </div>
+            </div>
+        </div>
+      </div>
+	  
+	  <div style="clear:both;"></div>
+	 
+    <!--精准数据开始-->
+  <div class="main_content">
+
+    <div class="accurate_data">
+      <h2><b>精准数据</b><span>（以某知名微博账号为例）</span><a target="_blank" href="http://chuanbo.weiboyi.com/hwauth/register">注册,了解更多&gt;&gt;</a></h2>
+      <div class="data_list_left">
+        <h3>移动终端比例</h3>
+        <p><img src="{&APP_IMAGE}show01.jpg" width="367" height="185" /></p>
+      </div>
+      <div class="data_list_right">
+        <h3>活跃时段分布</h3>
+        <p><img src="{&APP_IMAGE}show02.jpg" width="578" height="185" /></p>
+      </div>
+      <div class="data_list_left">
+        <h3>粉丝地域分布-按片区查看</h3>
+        <p><img src="{&APP_IMAGE}show03.jpg" width="367" height="185" /></p>
+      </div>
+      <div class="data_list_right">
+        <h3>粉丝地域分布-按省查看</h3>
+        <p><img src="{&APP_IMAGE}show04.jpg" width="578" height="185" /></p>
+      </div>
+    </div>
+    
+
+  </div>
+<!--精准数据结束--> 
+  <!--bottomleft start-->
+  	<div  style="float:left;margin-top:5px;">
+      <div class="dibuweibo_left fl" style="height:144px;"></div>
+      <div class="yuan_zz fl" style="width:460px;height:130px;">
+      <div id="bologger">
+            <h2 style="font-size:14px;">知名微博主</h2> 
+            <div id="weibo_list" style="height:100px;"><br>
+           <ul>
+				<li><img src="http://tp2.sinaimg.cn/1652194081/50/5617934867/0"> <p><span>美容健康</span><br>粉丝数量：289万</p></li>
+				<li><img src="http://tp4.sinaimg.cn/1678862287/50/5617900145/0"> <p><span>实用心理学</span><br>粉丝数量：260万</p></li>
+				<li><img src="http://tp1.sinaimg.cn/1628951200/50/5601521282/1"> <p><span>创意铺子</span><br>粉丝数量：257万</p></li>
+				<li><img src="http://tp3.sinaimg.cn/1843443790/50/1289115377/1"> <p><span>精彩电影</span><br>粉丝数量：254万</p></li>
+				<li><img src="http://tp2.sinaimg.cn/1761216793/50/5625638197/0"> <p><span>全球潮流时尚榜</span><br>粉丝数量：236万</p></li>
+				<li><img src="http://tp3.sinaimg.cn/1740577714/50/5628673502/0"> <p><span>全球热门搜罗</span><br>粉丝数量：233万</p></li>
+		   </ul>
+		   <ul>
+				<li><img src="http://tp2.sinaimg.cn/1652194081/50/5617934867/0"> <p><span>美容健康1</span><br>粉丝数量：289万</p></li>
+				<li><img src="http://tp4.sinaimg.cn/1678862287/50/5617900145/0"> <p><span>实用心理学1</span><br>粉丝数量：260万</p></li>
+				<li><img src="http://tp1.sinaimg.cn/1628951200/50/5601521282/1"> <p><span>创意铺子1</span><br>粉丝数量：257万</p></li>
+				<li><img src="http://tp3.sinaimg.cn/1843443790/50/1289115377/1"> <p><span>精彩电影1</span><br>粉丝数量：254万</p></li>
+				<li><img src="http://tp2.sinaimg.cn/1761216793/50/5625638197/0"> <p><span>全球潮流时尚榜1</span><br>粉丝数量：236万</p></li>
+				<li><img src="http://tp3.sinaimg.cn/1740577714/50/5628673502/0"> <p><span>全球热门搜罗1</span><br>粉丝数量：233万</p></li>
+		   </ul>
+		   <ul>
+				<li><img src="http://tp2.sinaimg.cn/1652194081/50/5617934867/0"> <p><span>美容健康2</span><br>粉丝数量：289万</p></li>
+				<li><img src="http://tp4.sinaimg.cn/1678862287/50/5617900145/0"> <p><span>实用心理学2</span><br>粉丝数量：260万</p></li>
+				<li><img src="http://tp1.sinaimg.cn/1628951200/50/5601521282/1"> <p><span>创意铺子2</span><br>粉丝数量：257万</p></li>
+				<li><img src="http://tp3.sinaimg.cn/1843443790/50/1289115377/1"> <p><span>精彩电影2</span><br>粉丝数量：254万</p></li>
+				<li><img src="http://tp2.sinaimg.cn/1761216793/50/5625638197/0"> <p><span>全球潮流时尚榜2</span><br>粉丝数量：236万</p></li>
+				<li><img src="http://tp3.sinaimg.cn/1740577714/50/5628673502/0"> <p><span>全球热门搜罗2</span><br>粉丝数量：233万</p></li>
+		   </ul>
+		   
+		   </div>  
+      </div>  
+    </div>   
+    <div class="dibuweibo_right fl" style="height:144px;"></div>  
+    </div>  
+    <script>  
+    	scrollT('weibo_list','ul');
+    </script>
+      <!--bottomleft end-->
+      <!--bottomright start-->
+		<div style="float:right;margin-top:5px;" >
+      <div class="dibuweibo_left fl" style="height:144px;"></div>
+		  <div class="yuan_zz fl"  style="width:440px;height:130px;">
+      <div id="custom">
+           <h2 style="font-size:14px;">典型客户</h2><br>
+           <ul>
+                <li><img src="{&APP_IMAGE}zouxiu.jpg"></li>
+                <li><img src="{&APP_IMAGE}yo.jpg"></li>
+                <li><img src="{&APP_IMAGE}ml1.jpg"></li>
+                <li><img src="{&APP_IMAGE}jm.jpg"></li>
+                <li><img src="{&APP_IMAGE}jd.jpg"></li>
+                <li><img src="{&APP_IMAGE}hb.jpg"></li>
+                <li><img src="{&APP_IMAGE}gj.jpg"></li>
+                <li><img src="{&APP_IMAGE}bd.jpg"></li>
+                <li><img src="{&APP_IMAGE}girl.jpg"></li>
+                <li><img src="{&APP_IMAGE}dd.jpg"></li>      
+                <li><img src="{&APP_IMAGE}yn.jpg"></li>
+                <li><img src="{&APP_IMAGE}js.jpg"></li>                             
+           </ul>
+           
+      </div>
+    </div>
+      <div class="dibuweibo_right fl" style="height:144px;"></div> 
+    </div>  
+      <!--bottomright end-->
+  </div>
+<include file="public:footer_dz" />

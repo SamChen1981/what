@@ -1,0 +1,79 @@
+<include file="public:header_company" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span><a href="{$company.task}">我的活动</a><span class="gt">&gt;</span>预览活动</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <div class="task_show span11">
+        <div class="row show-grid">
+            <span class="span3" style="text-align:right !important;"><strong>活动名称：</strong></span>
+            <span class="span8 " style="text-align:left !important;"><span class="">{$info.name}</span></span>
+        </div>
+        <div class="row show-grid">
+            <span class="span3 " style="text-align:right !important;"><strong>活动类型：</strong></span>
+            <span class="span8 " style="text-align:left !important;"><span class="task-runing">
+            	<if condition="$info.type eq 'forward'">转发<elseif condition="$info.type eq 'click'" />点击<else/>直发</if>
+            	</span></span>
+        </div>
+        <div class="row show-grid">
+            <span class="span3 " style="text-align:right !important;"><strong>投放平台：</strong></span>
+            <span class="span8 " style="text-align:left !important;"><span class="task-failure">
+            	<if condition="$info.platform eq 'sina'">新浪微博
+            	<else />腾讯微博	
+            	</if>
+            	</span></span>
+        </div>
+        <div class="row show-grid">
+            <span class="span3" style="text-align:right !important">
+               <strong>链接：</strong>
+            </span>
+            <span class="span8" style="text-align:left !important">
+                <strong></strong><a href="{$info.url}" target="_blank">{$info.url}</a></strong>
+            </span>
+        </div>
+        <div class="row show-grid">
+            <span class="span3 " style="text-align:right !important;"><strong><if condition="$info.type eq 'forward'">转发链接：<else/>直发图片：</if></strong></span>
+            <span class="span8 " style="text-align:left !important;">
+            	<if condition="$info.type eq 'forward'">
+            		<a href="{$info.url}" target="_blank">{$info.url}</a>
+            	<else/>
+            		<eq name="info.image" value=''>无图片</eq>
+            		<neq name="info.image" value=''><img src="{$info.image}" width="400"></neq>
+            	</if>
+            </span>
+        </div>
+        <div class="row show-grid">
+            <span class="span3 " style="text-align:right !important;"><strong>开始时间：</strong></span>
+            <span class="span8 " style="text-align:left !important;">
+                <span class="task-success">{$info.begintime|date="y-m-d H:i",###}</span>
+                &nbsp;<span class="task-verify">距离活动开始还有<span id="active_start_time" >{$info.beginm}</span>分钟</span>            </span>
+        </div>
+        <div class="row show-grid">
+            <span class="span3 " style="text-align:right !important;"><strong>转发语：</strong></span>
+            <span class="span8 " style="text-align:left !important;">{$info.content}</span>
+        </div>
+        <div class="row show-grid">
+            <span class="span3 " style="text-align:right !important;"><strong>其他要求：</strong></span>
+            <span class="span8 " style="text-align:left !important;">{$info.remark}</span>
+        </div>
+    </div>
+    <div class="span11" style="margin:30px auto;text-align:center;padding-align-left:20px;">
+        <a href="{$task_edit}" class="btn large danger">返回重填</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{$task_choose}" class="btn large primary">选择微博主</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="{$task}" class="btn large">查看我的活动</a>    </div>
+    <div class="alert-message block-message span11" style="margin:20px auto;">
+         <p style="color:#015591"><span style="color:#ce0007">注：</span>对已填信息有所改动，可点击：“返回重填”</p>
+    </div>
+    <script type="text/javscript">
+        
+    </script>
+</div>
+    </div>
+
+<include file="public:footer_company" />

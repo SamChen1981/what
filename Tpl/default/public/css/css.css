@@ -1,0 +1,22 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*浮动QQ在线客服*/
+.QQbox{z-index:99; width:190px; right:0; top:150px; position:absolute;}
+.QQbox .Qlist{ width:190px; margin:0 auto; display:none;}
+.QQbox .Qlist .t{background: url(http://ggz.weiqc.com/Public/Widget/Service/qq/top.gif) no-repeat; width:190px;height:33px; position:relative;}
+.QQbox .Qlist .t .close{position:absolute; width:16px; height:16px; right:10px;top:10px}
+.QQbox .Qlist .t .close a{ background:url(http://ggz.weiqc.com/Public/Widget/Service/qq/close.gif) no-repeat; background-position:-0px -0px;width:16px; height:16px;display:block;}
+.QQbox .Qlist .t .close a:hover{ background:url(http://ggz.weiqc.com/Public/Widget/Service/qq/close.gif) no-repeat; background-position:-26px -0px;width:16px; height:16px;display:block;}
+.QQbox .Qlist .b{background:url(http://ggz.weiqc.com/Public/Widget/Service/qq/bot.gif) no-repeat; height:7px;}
+.QQbox .Qlist .con{margin:0 auto; background:url(http://ggz.weiqc.com/Public/Widget/Service/qq/cen.gif) no-repeat; width:190px; height:137px; text-align:center;}
+.QQbox .Qlist .con .tit{font-size:12px; font-weight:bold; margin-bottom:5px; height:20px; line-height:20px; color:#000000;}
+.QQbox .Qlist .con ul{margin: 0 auto 0 45px;padding: 0;text-align: left;width: 140px;}
+.QQbox .Qlist .con li.group { width:110px;line-height:30px;text-indent:6px;text-align:left; }
+.QQbox .Qlist .con li{font-size:9pt; list-style-type:none; height:35px; padding-right:5px; line-height:30px;}
+.QQbox .Qlist .con li a{ display:block;line-height:30px;}
+.QQbox .Qlist .con li span{float:left; line-height:25px; margin-left:5px;  display:inline; vertical-align:middle;}
+.QQbox_small{z-index:99; width:48px; height:154px; right:0; top:0px; position:absolute;  background:url(http://ggz.weiqc.com/Public/Widget/Service/qq/small.gif) no-repeat;}
+.QQbox_small a{width:48px; height:154px; display:block;}
+
+/*浮动QQ在线客服*/

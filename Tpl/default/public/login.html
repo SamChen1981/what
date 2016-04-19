@@ -1,0 +1,115 @@
+
+      
+      <!--提交成功begin-->
+      <div class="tj_succ"> <img src="{&APP_IMAGE}tj_succ.png" />留言成功 </div>
+      <!--提交成功end--> 
+      <!--意见反馈弹出层-->
+      <div class="liuyan" id="liuyan"> 
+      	<a href="javascript:void(0)" class="liuyan_close fr" onclick="$.unblockUI()">×</a>
+        <table width="100%"  border="0" cellpadding="0" cellspacing="0">
+          <form action="mail.php" method="post">
+            <tr class="tab_tr">
+              <td width="12%" align="right" valign="middle">姓名：</td>
+              <td width="88%" align="left"><input type="text" class="tt" name="name" id="name"></td>
+            </tr>
+            <tr class="tab_tr">
+              <td width="12%" align="right" valign="middle">电话：</td>
+              <td width="88%" align="left"><input type="text" class="tt" name="phone" id="phone">
+                <span class="liuyan_tip">*</span></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td align="left"><p class="liuyan_p"><span  id="tip1">请输入座机号或手机号码！</span><span class="liuyan_tip" id="tip" style="display:none;">请输入正确的座机或手机号码！</span></td>
+            </tr>
+            <tr>
+              <td width="12%" align="right" valign="top" class="beizhu">留言：</td>
+              <td width="88%" align="left"><textarea class="tt_all" name="text" id="text"></textarea></td>
+            </tr>
+            <tr>
+              <td colspan="2" align="right" valign="middle"><p class="fl liuyan_p liuyan_p1">您还可以输入<span class="liuyan_tip" id="num">300</span>字</p>
+                <p class="fl liuyan_p liuyan_p2" style="display:none">超出了<span class="liuyan_tip" id="num2">400</span>字</p>
+                <input value="" type="button" class="tj_btn" onclick="sendmailjs()">
+                <input name="" type="button" class="tj_btn1" onclick="$.unblockUI()"></td>
+            </tr>
+          </form>
+        </table>
+      </div>
+      <!--意见反馈弹出层-->
+      <div class="chice" style="margin-top:0px;">
+              <div class="chice_top" id="login">
+                <a onclick="change('qiye',$(this))" class="a1 a1_now"></a>
+                <a onclick="change('bozhu',$(this))" class="a2"></a>
+             </div>
+<div class="user clear">
+   
+      <!--企业begin-->
+<div id="qiye_login">
+   <table width="100%" border="0">
+  <tr class="line_tr">
+    <td width="26%" align="right" valign="middle">用户名：</td>
+    <td width="74%"><input type="text" class="tt" name="username_qiye" id="username_qiye"></td>
+  </tr>
+  <tr class="line_tr">
+    <td width="26%" align="right" valign="middle">密&nbsp;&nbsp;&nbsp;码：</td>
+    <td width="74%"><input type="password" class="tt" name="password_qiye" id="password_qiye"></td>
+  </tr>
+  <tr class="line_tr">
+    <td width="26%" align="right" valign="middle">验证码：</td>
+    <td width="74%"><input type="text" class="tt1" name="captcha_qiye" id="verify_qiye"><img id="verify_image_qiye" src="index.php?m=blog&a=verify" class="yzm" /><a onclick="change_verify('qiye')" class="hyz">换一张？</a></td>
+  </tr>
+  <tr class="line_tr1">
+    <td colspan="2" align="center" valign="middle" class="ch_box"><input name="save_qiye" id="save_qiye" type="checkbox" value="" class="cc"><span style="color: #999;">记住用户名</span>|<a href="index.php?m=index&a=get_pw&type=1" target="_blank" class="forg">忘记密码</a></td>
+  </tr>
+  <tr class="line_tr1">
+    <td colspan="2" align="left" valign="middle" class="ch_btn"><input type="button" class="btn" onclick="login_submit('qiye')"><input type="button" class="btn1"   onclick="javascript:gotoUrl('qiye')"></td>
+  </tr>
+</table>
+</div>
+<!--企业登陆end-->
+
+   <!--微博主登陆begin-->
+   <div id="bozhu_login" style="display:none">
+   <table width="100%" border="0">
+  <tr class="line_tr">
+    <td width="26%" align="right" valign="middle" >用户名：</td>
+    <td width="74%"><input type="text" class="tt" name="username_bozhu" id="username_bozhu"></td>
+  </tr>
+  <tr class="line_tr">
+    <td width="26%" align="right" valign="middle">密&nbsp;&nbsp;&nbsp;码：</td>
+    <td width="74%"><input type="password" class="tt" name="password_bozhu" id="password_bozhu"></td>
+  </tr>
+  <tr class="line_tr">
+    <td width="26%" align="right" valign="middle">验证码：</td>
+    <td width="74%"><input type="text" class="tt1" name="captcha_bozhu" id="verify_bozhu"><img id="verify_image_bozhu" src="" class="yzm" ><a onclick="change_verify('bozhu')" class="hyz">换一张？</a></td>
+  </tr>
+  <tr class="line_tr1">
+    <td colspan="2" align="center" valign="middle" class="ch_box"><input name="save_bozhu" id="save_bozhu" type="checkbox" value="" class="cc">
+    	<span style="color: #999;">记住用户名</span>|<a href="index.php?m=index&a=get_pw&type=2" target="_blank" class="forg">忘记密码</a></td>
+  </tr>
+  <tr class="line_tr1">
+    <td colspan="2" align="left" valign="middle" class="ch_btn1"><input  type="button" class="btn" onclick="login_submit('bozhu')"><input type="button" class="btn1" onclick="javascript:gotoUrl('bozhu')"></td>
+  </tr>
+</table>
+</div>
+<!--微博主登陆end-->
+<!--企业登陆成功begin-->
+<div id="login_qiye_ok" style="padding-top:60px;display:none;">
+   <p style="text-align:center; line-height:28px;"><span id="name_qiye"></span>，您好！<br />
+   <a href="index.php?m=company&a=myindex" target="_blank" style="color:#06C;">我的微推广</a> | 
+   <a href="http://shanghu.weiboyi.com/hwauth/index/help" target="_blank" style="color:#666;">帮助</a> | 
+   <a href="index.php?m=company&a=logout" style="color:#666;">退出</a>
+</p>
+</div>
+<!--企业登陆成功end-->
+<!--微博主登陆成功begin-->
+<div id="login_bozhu_ok" style="padding-top:60px;display:none;">
+   <p style="text-align:center; line-height:28px;"><span id="name_bozhu"></span>，您好！<br />
+   <a href="index.php?m=blog&a=myindex" target="_blank" style="color:#06C;">我的微推广</a> | 
+   <a href="http://qudao.weiboyi.com/auth/index/help" target="_blank"
+   style="color:#666;">帮助</a> | <a href="index.php?m=blog&a=logout" style="color:#666;">退出</a>
+</p>
+</div>
+<!--微博主登陆成功end-->
+</div>
+
+</div>

@@ -1,0 +1,136 @@
+<include file="public:header_admin" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span>分类管理</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <form action="" method="post" style="width:800px;margin:20px auto;" enctype="multipart/form-data" >
+    		<div class="clearfix label success">
+    			{$msg}
+    		</div>
+    		<div class="clearfix">
+            <label for="shop_name">标签: </label>
+            <div class="input">
+                <textarea name="label"  id="label" style="width:400px;height:200px">{$info.label}</textarea>
+                <span class="help-block">* 多个标签请用“,”隔开,每个标签两个字最佳;保存后生效 </span>
+            </div>
+        </div>
+        <foreach name="list" item="vo" >
+        <div class="clearfix" id='{$vo.class_id}'>
+            <label for="shop_title">分类: </label>
+            <div class="input">
+                <input class="xlarge" style="width:50px;"name="name[{$vo.class_id}]"  value="{$vo.name}" type="text" >
+                <?php for ($i=0;$i< 10;$i++){ ?>
+	                <select style="width:50px;" name="clabel[{$vo.class_id}][]">
+	                	<?php if ($vo['label'][$i]){ ?>
+	                		<option value="<?php echo $vo['label'][$i]; ?>" selected ><?php echo $vo['label'][$i]; ?></option>
+	                	<?php } ?>
+	                	<option class="hide uel" ></option>
+	                </select>
+              	<?php } ?>
+              	<a href="#" class="label important" onclick="del_class({$vo.class_id});return false;" >删除</a>
+                <span class="help-block"> 选择的标签数,不可超过10个 </span>
+            </div>
+        </div>
+      	</foreach>
+        <div class="actions">
+            <button type="submit" class="btn primary" id="submit_repass">确认修改</button>
+            &nbsp;&nbsp;
+            <button type="button" onclick="add_class()" class="btn">增加分类</button>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+		$('#clear_time,#start_time,#end_time').calendar();
+		$(document).ready(function(){
+			str = $('#label').val();
+			arr = str.split(',');
+			str2='<option value="">--</option>';
+			for (i=0;i < arr.length;i++)
+			{
+				str2 +='<option value="'+arr[i]+'">'+arr[i]+'</option>';
+			}
+			$('.uel').before(str2);
+		});		
+		
+		function remove_class(id)
+		{
+			$('#a'+id).remove();
+		}
+		
+		function del_class(id)
+		{
+			$.post('{$del_class}',{id:id},function(request){
+					if (request.status==1)
+						$('#'+id).remove();
+					else
+						alert(request.info);
+			},'json');
+		}
+		num=0;
+		function add_class()
+		{
+			str = $('#label').val();
+			arr = str.split(',');
+			str2='<option value="">--</option>';
+			for (i=0;i < arr.length;i++)
+			{
+				str2 +='<option value="'+arr[i]+'">'+arr[i]+'</option>';
+			}
+			str = '<div class="clearfix" id="a'+num+'">'+
+            '<label for="shop_title">分类: </label>'+
+            '<div class="input">'+
+                '<input class="xlarge" style="width:50px;"  name="class_namea['+num+']"  value="{$info.class_name}" type="text" >'+
+               ' <select style="width:50px;" name="clabela['+num+'][]">'+str2+
+                '</select>'+
+               ' <select style="width:50px;" name="clabela['+num+'][]">'+str2+
+               ' </select>'+
+               ' <select style="width:50px;" name="clabela['+num+'][]">'+str2+
+               ' </select>'+
+               ' <select style="width:50px;" name="clabela['+num+'][]">'+str2+
+                '</select>'+
+                ' <select style="width:50px;" name="clabela['+num+'][]">'+str2+
+                '</select>'+
+                ' <select style="width:50px;" name="clabela['+num+'][]">'+str2+
+                '</select>'+
+                ' <select style="width:50px;" name="clabela['+num+'][]">'+str2+
+                '</select>'+
+                ' <select style="width:50px;" name="clabela['+num+'][]">'+str2+
+                '</select>'+
+                ' <select style="width:50px;" name="clabela['+num+'][]">'+str2+
+                '</select>'+
+                ' <select style="width:50px;" name="clabela['+num+'][]">'+str2+
+                '</select>'+
+                '<a href="#" class="label notice" onclick="remove_class('+num+');return false;" >取消</a>'+
+                '<span class="help-block"> 选择的标签数,不可超过10个 </span>'+
+           ' </div>'+
+       ' </div>';
+       $('.actions').before(str);
+       num++;
+		}
+		function check_blur()
+		{
+			str = $('#label').val();
+			arr = str.split(',');
+			str='<option value="">--</option>';
+			for (i=0;i < arr.length;i++)
+			{
+				str +='<option value="'+arr[i]+'">'+arr[i]+'</option>';
+			}
+			$('select').html(str);
+		}
+    function addtes()
+    {
+    	$.post('{$testsms}',{smstest:$('#smstest').val()},function(request){
+    		alert(request.info);   		   	
+    	},'json');
+    }
+    
+    upload_file(".extend_edit", '/weiqi/index.php?m=company&a=upload', false, {tools:"mfull",upImgExt:"jpg,jpeg,gif,png",forcePtag:false,cleanPaste:3,internalStyle:false,inlineStyle:false,html5Upload:false});
+</script>
+    </div>
+
+<include file="public:footer_admin" />

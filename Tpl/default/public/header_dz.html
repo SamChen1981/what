@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$info.shop_title}</title>
+<meta name="keywords" content="{$info.shop_keywords}">
+<meta name="description" content="{$info.shop_account}">
+<import file="jquery,domain,cookie" basepath="./Tpl/default/public/js" />
+<import type="css" file="style" basepath="./Tpl/default/public/css" />
+<script type="text/javascript">
+//ajax提交
+function sendmailjs()
+{
+var name=$('#name').val();
+var phone=$('#phone').val();
+var text=$('#text').val();
+$.post("mail.php",{'submit':'submit','name':name,'phone':phone,'text':text},function(date){
+//alert(date);
+});
+}
+
+function displaySubMenu(li) { 
+var subMenu = li.getElementsByTagName("ul")[0]; 
+subMenu.style.display = "block"; 
+} 
+function hideSubMenu(li) { 
+var subMenu = li.getElementsByTagName("ul")[0]; 
+subMenu.style.display = "none"; 
+} 
+</script>
+
+<script type="text/javascript">
+//滚动
+$(document).ready(function(){
+	//多行应用@Mr.Think
+	var wrap=$('#notice_show_win');//定义滚动区域
+	var interval=3000;//定义滚动间隙时间
+	var moving;//需要清除的动画	wrap.hover(function(){
+		clearInterval(moving);//当鼠标在滚动区域中时,停止滚动
+		},function(){
+		moving=setInterval(function(){
+		var field=wrap.find('div:eq(0)');//此变量不可放置于函数起始处，li:first取值是变化的s
+		var h=field.height();//取得每次滚动高度
+		field.animate({marginTop:-h+'px'},500,function(){//通过取负margin值，隐藏第一行		field.css('marginTop',0).appendTo(wrap);//隐藏后，将该行的margin值置零，并插入到最后，实现无缝滚动		})
+		},interval)//滚动间隔时间取决于_interval
+	}).trigger('mouseleave');//函数载入时，模拟执行mouseleave，即自动滚动
+});
+</script>
+
+</head>
+
+<body>
+<div class="box">
+  <div class="header_all">
+    <div class="container">
+      <div class="header">
+        <div class="logo fl"><a href="index.php?m=index&a=index"><img src="{&APP_IMAGE}logo.jpg"></a></div>
+        <img src="{&APP_IMAGE}pt.jpg" class="pt"> 
+        
+        <!--粉丝数据-->
+<div class="shuju_top">
+          <img src="{&APP_IMAGE}top_left.jpg" class="shuju_img fl">
+          <div class="shuju_z fl"> 博主数：<span class="col1" id='account_num'>81097</span>&nbsp;&nbsp;粉丝数：<span class="col2" id='follows_num'>13505254896</span>&nbsp;&nbsp;品牌数：<span class="col3" id='company_num'>93524</span>&nbsp;&nbsp;昨日订单：<span class="col4" id='order_num'>9865</span> </div>
+          <img src="{&APP_IMAGE}top_right.jpg" class="shuju_img fl">
+        </div>
+        <!--粉丝数据-->
+
+
+       
+      </div>
+    </div>
+  </div>
+  <div class="nav">
+    <div class="container" style="z-index:999">
+      <div class="nav_top">
+        <ul id="nav">
+          <li><a href="/" <eq name="on" value=""> class="hong" </eq>>首页</a></li>
+          <li <neq name="on" value="1">onmouseover="displaySubMenu(this)"</neq> <eq name="on" value="1"> class="hong" </eq> onmouseout="hideSubMenu(this)" class="li_all"><a href="index.php?m=index&a=gaishu">企业客户</a>
+            <ul>
+              <li><a href="index.php?m=index&a=gaishu">概述</a></li>
+              <li><a href="index.php?m=index&a=youshi">我们的优势</a></li>
+              <li><a href="index.php?m=index&a=tuiguang">我要推广</a></li>
+              <li><a href="index.php?m=index&a=anli">成功案例</a></li>
+              <li><a href="index.php?m=index&a=qiyetuiguang">企业推广平台</a></li>
+            </ul>
+          </li>
+          <li <neq name="on" value="2">onmouseover="displaySubMenu(this)"</neq> <eq name="on" value="2"> class="hong" </eq> onmouseout="hideSubMenu(this)" class="li_all"><a href="index.php?m=index&a=weibo_gaishu">微博主</a>
+            <ul class="li_in1">
+              <li><a href="index.php?m=index&a=weibo_gaishu">概述</a></li>
+              <li><a href="index.php?m=index&a=zhuanqian">我要赚钱</a></li>
+              <li><a href="index.php?m=index&a=bozhu">知名微博主</a></li>
+              <li><a href="index.php?m=index&a=weibo_jiedan">微博主接单平台</a></li>
+            </ul>
+          </li>
+          <li onmouseover="displaySubMenu(this)" <eq name="on" value="3"> class="hong" </eq> onmouseout="hideSubMenu(this)" class="li_all"><a href="index.php?m=index&a=anli_2">成功案例</a> 
+            <!--<ul class="li_in">
+              <li><a href="#">概述</a></li>
+              <li><a href="#">我要赚钱</a></li>
+              <li><a href="#">知名微博主</a></li>
+            </ul>--> 
+          </li>
+          <li <neq name="on" value="4">onmouseover="displaySubMenu(this)"</neq> <eq name="on" value="4"> class="hong" </eq> onmouseout="hideSubMenu(this)" class="li_all"><a href="index.php?m=index&a=guanyu">关于我们</a>
+            <ul class="li_in">
+              <li><a href="index.php?m=index&a=guanyu">关于微推广</a></li>
+              <li><a href="index.php?m=index&a=guanli">管理团队</a></li>
+              <li><a href="index.php?m=index&a=wenhua">企业文化</a></li>
+              <li><a href="index.php?m=index&a=zhaoren">招贤纳士</a></li>
+              <li><a href="index.php?m=index&a=lianxi">联系我们</a></li>
+            </ul>
+			
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>微推广</title>
+        <meta name="keywords" content="微推广">
+        <meta name="description" content="微推广">
+        <!--[if lt IE 9]>
+        <script type="text/javascript" src="/Public/js/html5.js"></script>
+        <![endif]-->
+        <!--[if lt IE 7]>
+        <script type="text/javascript" src="/Public/js/ie7/IE7.js"></script>
+        <![endif]-->
+       <import file="jquery,bootstrap-modal,bootstrap-alerts,bootstrap-twipsy,bootstrap-popover,bootstrap-dropdown" basepath="./Tpl/default/public/js" />
+    	<import file="bootstrap-scrollspy,bootstrap-tabs,bootstrap-buttons,base,glDatePicker,jquery-calendar,form,xheditor" basepath="./Tpl/default/public/js" />
+    	
+    	<import type='css' file="bootstrap,poster,jquery-calendar,default,ui,bloger" basepath="./Tpl/default/public/css" />	
+        <script type="text/javascript">
+            var __public__ = "http://wbz.weiqc.com/Public";
+        </script>
+        <style type="text/css">
+            body,ul,li,p,table { margin:0px;padding:0px; }
+            html { overflow-x:hidden ; }
+            body { background:#eee; }
+            #header { width:100%;height:100px;background:url("http://wbz.weiqc.com/Public/images/home/bg.gif") repeat scroll 0 0 transparent;text-align:center; }
+			.header_bg{ height:100px; background:url("http://wbz.weiqc.com/Public/images/menu_bar.gif") repeat-x scroll 0 bottom transparent;}
+            #nav,#container,#footer { width:980px;margin:0px auto;clear:both; }
+            #nav { height:76px;padding:11px 0px;text-align:left; }
+            #logo { width:391px; }
+            #container { margin-top:0px;padding:20px 50px;border:1px solid #ccc;border-top:0px;background:#fff; }
+            #container form { display:block;width:90%;margin:20px auto; }
+            #footer { height:60px;line-height:60px;margin-bottom:20px;text-align:center;}
+            #sitemap { border-bottom:1px solid #ccc;height:26px;line-height:26px;margin-top:-10px;clear:both; }
+            .box_style {
+                box-shadow:0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+                    -webkit-box-shadow:0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+                    -moz-box-shadow:0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            }
+            .width-auto { width:auto !important; }
+        </style>
+    </head>
+    <body scroll="no">
+        <div id="header" class="box_style">
+        <div class="header_bg">
+            <div id="nav">
+                <div id="logo"><img src="{&APP_IMAGE}blog/wbz_logo.png" height="47"></div>
+                 <button type="button" class="btn danger" onClick="location.href=&#39;{$login}&#39;" style="float:right;margin-right:40px;margin-top:6px;">已有账户，我要登录 &gt;&gt;</button>
+            </div>
+            </div>
+        </div>
+        <div id="container" class="box_style">
+            <div id="sitemap">
+                当前位置：<a href="http://ggz.weiqc.com/" style="color:#1F69A4;text-decoration:none;">我的微推广</a> &gt; 注册
+               
+            </div>
+            <form id="reg_form">
+                <div class="clearfix">
+                    <label for="username">* 用户名</label>
+                    <div class="input">
+                        <input class="xlarge error" id="username" name="username" size="30" maxlength="16" type="text">
+                        <span class="help-inline">* 用户名长度为4~16个字符，不能使用特殊符号</span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="password">* 登录密码</label>
+                    <div class="input">
+                        <input class="xlarge" id="password" name="password" size="30" type="password" maxlength="16">
+                        <span class="help-inline">* 密码长度为6~16位</span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="repassword">* 重复密码</label>
+                    <div class="input">
+                        <input class="xlarge" id="repassword" name="repassword" size="30" type="password" maxlength="16">
+                        <span class="help-inline">* 重复上面的密码</span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="realname">* 昵称/公司名称</label>
+                    <div class="input">
+                        <input class="xlarge" id="realname" name="realname" size="30" type="text">
+                        <span class="help-inline">* 个人请填写昵称，企业请填写公司名称</span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="homepage">* 公司/店铺网址</label>
+                    <div class="input">
+                        <input class="xlarge" id="homepage" name="homepage" size="30" type="text" onKeyUp="check_input(this, reg.url, &#39;URL格式不正确&#39;)">
+                        <span class="help-inline">* 网址必须以http://开头</span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="address">公司联系地址</label>
+                    <div class="input">
+                        <input class="xlarge" id="address" name="address" size="30" type="text">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="contact">* 联系人</label>
+                    <div class="input">
+                        <input class="xlarge" id="contact" name="contact" size="30" type="text" onKeyUp="check_input(this, reg.string, &#39;联系人名称不能含有特殊字符&#39;)">
+                        <span class="help-inline">* 请输入联系人姓名</span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="phone">* 手机</label>
+                    <div class="input">
+                        <input class="xlarge" id="phone" name="phone" size="30" type="text" onKeyUp="check_input(this, reg.phone, &#39;手机格式不正确&#39;)">
+                        <span class="help-inline">* 请输入联系人手机</span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="email">* 邮箱</label>
+                    <div class="input">
+                        <input class="xlarge" id="email" name="email" size="30" type="text" onKeyUp="check_input(this, reg.email, &#39;邮箱格式不正确&#39;)">
+                        <span class="help-inline">* 请输入邮箱地址</span>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <label for="qq">* QQ</label>
+                    <div class="input">
+                        <input class="xlarge" id="qq" name="qq" size="30" type="text" onKeyUp="check_input(this, reg.number, &#39;请输入正确的QQ号码&#39;)">
+                        <span class="help-inline">* 请输入您的QQ号码</span>
+                    </div>
+                </div>
+                                <div class="clearfix">
+                    <label for="email">* 验证码</label>
+                    <div class="input">
+                        <input class="mini" id="verify" name="verify" size="30" type="text">
+                        <img id="verifyImg" src="{$verify}" align="absmiddle">
+                        <a href="javascript:void(0);" style="color:#666;" onClick="changeVerify();">看不清楚？点击更换</a>
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button type="button" id="submit_btn" onClick="submit_form();" class="btn primary" data-loading-text="提交中...">提交</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="reset" class="btn">重置</button>
+                </div>
+            </form>
+        </div>
+        <div id="footer">
+            CopyRight © 版权所有***科技有限公司(fandow.com) 粤ICP备***号             
+        </div>
+        <script type="text/javascript">
+            $("#username").keyup(function(){
+                var $this = $(this);
+                var val = $this.val();
+                if(val.length< 4 || val.length> 16){
+                    change_status($this, "error", "用户名长度不正确");
+                }else if(!reg.string.test(val)){
+                    change_status($this, "error", "用户名中不能含有特殊符号");
+                }else{
+                    change_status($this);
+                }
+            }).blur(function(){
+                var $this = $(this);
+                $this.triggerHandler("keyup");
+                var obj = select_row($this);
+                if(!obj.is(".error")){
+                    change_status($this, "loading");
+                    $.post("{$checkUsername}", {username:$this.val()}, function(request){
+                        if(request.status==1){
+                            change_status($this);
+                        }else{
+                            change_status($this, "error", request.info);
+                        }
+                    },"json");
+                }
+            });
+            $("#password").keyup(function(){
+                var $this = $(this);
+                var val = $(this).val();
+                if(val.length< 4 || val.length> 16){
+                    change_status($this, "error", "密码长度不正确");
+                }else{
+                    change_status($this);
+                }
+            });
+            $("#repassword").keyup(function(){
+                var $this = $(this);
+                var val = $(this).val();
+                if(val.length< 4 || val.length> 16){
+                    change_status($this, "error", "密码长度不正确");
+                }else if(val!=$("#password").val()){
+                    change_status($this, "error", "两次输入密码不相同");
+                }else{
+                    change_status($this);
+                }
+            });
+            $("#realname").keyup(function(){
+                var $this = $(this);
+                var val = $(this).val();
+                if(val.length< 2 || val.length> 22){
+                    change_status($this, "error", "请输入大于2个小于22个文字字母或数字");
+                }else if(!reg.string.test($(this).val())){
+                    change_status($this, "error", "您填写的内容中包含特殊字符");
+                }else{
+                    change_status($this);
+                }
+            });
+            $("#verify").keyup(function(){
+                var $this = $(this);
+                if($(this).val().length==4){
+                    change_status($this, "loading");
+                    $.post("{$checkVerify}", {verify:$(this).val()}, function(request){
+                        if(request.status==1){
+                            change_status($this);
+                        }else{
+                            change_status($this, "error", request.info);
+                        }
+                    },"json");
+                }else{
+                    change_status($this, "error", "验证码长度不正确");
+                }
+            });
+            $("#email,#password,#repassword,#realname,#contact,#homepage,#phone,#verify,#qq").blur(function(){
+                $(this).triggerHandler("keyup");
+            });
+            function get_form_data(){
+                return {
+                    username : $("#username").val(),
+                    password : $("#password").val(),
+                    repassword : $("#repassword").val(),
+                    realname : $("#realname").val(),
+                    homepage : $("#homepage").val(),
+                    address : $("#address").val(),
+                    contact : $("#contact").val(),
+                    phone : $("#phone").val(),
+                    email : $("#email").val(),
+                    qq : $("#qq").val(),
+                    invite: $("#invite").val(),
+                    verify : $("#verify").val()
+                };
+            }
+            function submit_form(){
+                if($("#reg_form > div.success").length<10){
+                    alert("您还有未正确填写的项\n\n * 请注意带星号(*)的均为必填项\n * 显示红色的表示输入存在问题，绿色表示正确");
+                    if($("#reg_form > div.error").length<=0){
+                        $("#username").focus();
+                    }else{
+                        $("#reg_form > div.error:first").find("input").focus();
+                    }
+                }else{
+                    $("#submit_btn").button("loading");
+                    $("#reg_form input,button[type=reset]").attr("disabled", true).addClass("disabled");
+                    $.post("{$hregister}", get_form_data(), function(request){
+                        if(request.status==1){
+                        		alert(request.info);
+                            //location.href = request.info;
+                        }else{
+                            alert(request.info);
+                            if(request.data) location.href = request.data;
+                        }
+                        $("#submit_btn").button("reset");
+                        $("#reg_form input,button[type=reset]").attr("disabled", false).removeClass("disabled");
+                    }, "json");
+                }
+            }
+            function changeVerify(){
+                var img = "{$verify}";
+                $("#verifyImg").attr("src",img+"&d="+Math.random());
+                select_row($("#verify")).removeClass("success error");
+                select_row_error($("#verify")).html("");
+                $("#verify").focus();
+            }    
+        </script>
+    
+</body></html>

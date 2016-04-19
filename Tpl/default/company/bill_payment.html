@@ -1,0 +1,72 @@
+<include file="public:header_company" />
+
+<div class="container">
+            <div class="content" style="padding-top:30px;">
+                <div class="sitemap">
+    <b>当前位置:</b>
+<span class="gt">&gt;</span><a href="">账单</a><span class="gt">&gt;</span>充值记录</div>
+<hr style="margin:4px 0px 10px;border-color:#ccc;">
+<div class="child_main">
+    <form id="choose_weibo" method="post" style="margin:0px;">
+        <div class="list_header">
+            <div class="clearfix" style="margin-left:-58px;">
+                <label>起止时间：</label>
+                <div class="input" style="margin-left:10px;">
+                    <div class="inline-inputs">
+                        <div class="input-append pull-left">
+                            <input id="start_time" name="start_time" style="width:120px;cursor:pointer;" type="text" value=""><span class="calendar_append"></span>
+                            <label class="add-on"><img src="{&APP_IMAGE}company/date.png"></label>
+                        </div>
+                        <div class="pull-left" style="line-height:28px;">
+                            &nbsp;至&nbsp;
+                        </div>
+                        <div class="input-append pull-left">
+                            <input id="end_time" name="end_time" style="width:120px;cursor:pointer;" type="text" value=""><span class="calendar_append"></span>
+                            <label class="add-on"><img src="{&APP_IMAGE}company/date.png"></label>
+                        </div>
+                        <div class="pull-left" style="line-height:28px;">
+                            &nbsp;&nbsp;
+                        </div>
+                        <div class="pull-left" style="line-height:28px;">
+                            <button type="submit" class="btn info">搜索</button>
+                        </div>
+                        <div class="pull-right" style="line-height:28px;">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $('#start_time,#end_time').calendar();
+        </script>
+    </form>
+    <table id="choose_weibo_table" class="dash_table zebra-striped">
+        <thead>
+            <tr>
+                <th class="align-center split">充值时间</th>
+                <th class="align-center split">交易号</th>
+                <th class="align-center split">充值类型</th>
+                <th class="align-center">充值金额</th>
+            </tr>
+        </thead>
+        <tbody>
+        	<if condition="$list eq ''">
+            <tr><td colspan="4">暂无相关记录...</td></tr>   
+          <else />
+          	<foreach name="list" item="vo">     
+          		<tr>
+	          			<td class="align-center">{$vo.time|date="y-m-d H:i",###}</td>
+	          		<td class="align-center">{$vo.code}</td> 
+	          		<td class="align-center">{$vo.type}</td>
+	          		<td class="align-center">{$vo.money}</td>
+          		</tr>
+          	</foreach>
+          </if>
+        </tbody>
+    </table>
+        <div style="clear:both;"></div>
+</div>
+    </div>
+
+<include file="public:footer_company" />
